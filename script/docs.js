@@ -67,6 +67,20 @@ var docs_regex = [
             return st;
         }
     ], [
+        /\{\{bltin\}\} (.+?)\.(__[\w\d_]+__)\(([\w\d*_, ]*)\)\n\{\{usage\}\} (.*)\n\n/gm,
+        function(m, p4, p2, p3, p5) {
+            if(p5 == undefined)
+                p5 = ""
+            var st = `\n\n<div id="${p2}" class="head2">`;
+            jumps.push([p2, `fn ${p2}()`]);
+            st += `~] ` + p2 + ` <span class="typ">{{fn}}</span>`;
+            st += `</div><div class="note"><b>NOTE ] </b>This function is actually meant to be used as \``;
+            st += `${p5}\` because it is a Python builtin function`;
+            st += `</div><div class="code">`;
+            st += py_mark(p5) + "</div>";
+            return st;
+        }
+    ], [
         /\{\{sepfn\}\} (await )?([\w\d_]+)\(([\w\d*_, ]*)\)(.*)\n\n/gm,
         function(m, p1, p2, p3, p5) {
             if(p1 == undefined)
