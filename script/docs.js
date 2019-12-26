@@ -226,6 +226,14 @@ var docs_regex = [
                 console.error(err)
             }
         }
+    ], [
+        /\{\{noinit\}\}([^{]*)/gm,
+        function(m, p1) {
+            var st = `<div class="note"><b>NOTE ] </b>This class shouldn't be initialized by hand. Don't do that</div>`;
+            if(p1 != undefined)
+                st += p1;
+            return st;
+        }
     ]
 ]
 
