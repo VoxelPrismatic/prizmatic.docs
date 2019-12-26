@@ -229,9 +229,17 @@ var docs_regex = [
     ], [
         /\{\{noinit\}\}([^{]*)\n\n/gm,
         function(m, p1) {
-            var st = `<div class="note"><b>NOTE ] </b>This class shouldn't be initialized by hand. Don't do that</div>`;
-            if(p1 != undefined)
-                st += p1;
+            var st = `<div class="note"><b>NOTE ] </b>`;
+            var def = "This class shouldn't be initialized by hand. Don't do that.";
+            if(p1 != undefined) {
+                if(p1.startsWith("+"))
+                    st += def + " " + p1.slice(1).trim();
+                else
+                    st += p1;
+            } else {
+                st += def;
+            }
+            st += "</div>";
             return st;
         }
     ]
