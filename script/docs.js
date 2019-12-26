@@ -13,8 +13,12 @@ function mkJmp(nam, show = "") {
 
 var props = false;
 var params = false;
-var notes = {}
-var jumps = []
+var py_desc = {
+    "__repr__": "Returns the 'Python Correct' name string",
+    "__dict__": "Returns the 'send-ready' object",
+};
+var notes = {};
+var jumps = [];
 var docs_regex = [
     [
         /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, ]*)\)\n\n/gm,
@@ -27,7 +31,6 @@ var docs_regex = [
             st += p3.replace(/\n */gm, " ");
             st += ")</div>";
             return st;
-            
         }
     ], [
         /\{\{subcls\}\} \[(.+)\] (.+?) = (.+?)\(([\w\d*_, ]*)\)\n\n/gm,
@@ -40,7 +43,6 @@ var docs_regex = [
             st += p3.replace(/\n */gm, " ");
             st += ")</div>";
             return st;
-            
         }
     ], [
         /\{\{desc\}\} ([^{]+)\n\n/gm,
@@ -150,7 +152,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{rtn\}\} \[(.+?)\] ([^{]+)\n\n/gm,
+        /\{\{rtn\}\} \[(.+?)\] ([^{]*)\n\n/gm,
         function(m, p1, p2) {
             var st = `<span class="typ">{{rtn}}</span>`;
             st += ` [<span class="cls">${p1}</span>] ${p2}\n`;
@@ -213,6 +215,16 @@ var docs_regex = [
         /\{\{norm\}\} (.+)/gm,
         function(m, p1) {
             return `<b>NOTE ] </b>The default value is <span class="code">${p1}</span>`;
+        }
+    ], [
+        /\{\{pydesc\}\} (.+)/gm,
+        function(m, p1) {
+            try {
+                return ind(4) + py_desc[p1];
+            } catch(err) {
+                return "{{pydesc}} " + p1;
+                console.error(err)
+            }
         }
     ]
 ]
