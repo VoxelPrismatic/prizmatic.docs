@@ -278,6 +278,7 @@ var docs_regex = [
 
 function docs_mark(st) {
     jumps = [];
+    loc = "";
     props = false;
     params = false;
     st = st.slice(8); // Removes the "--top--"
