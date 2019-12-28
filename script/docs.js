@@ -19,8 +19,15 @@ var py_desc = {
 };
 var notes = {};
 var jumps = [];
+var loc = "";
 var docs_regex = [
     [
+        /\{\{loc\}\} (.+?)\n\n/gm,
+        function(m, p1) {
+            loc = p1;
+            return "";
+        }
+    ], [
         /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, ]*)\)\n\n/gm,
         function(m, p1, p2, p3) {
             var st = `<div id="top"></div><div id="${p2}" class="head1">`;
@@ -181,6 +188,24 @@ var docs_regex = [
             st += `</div>`;
             return st;
         }
+    ], [
+        /dis\.mod\./gm,
+        `discord.models.`
+    ], [
+        /\~\//gm, 
+        `discord.models.`
+    ], [
+        /\~\.\.\.\./gm,
+        loc.split(".").slice(0, -3).join(".") + "."
+    ], [
+        /\~\.\.\./gm,
+        loc.split(".").slice(0, -2).join(".") + "."
+    ], [
+        /\~\.\./gm,
+        loc.split(".").slice(0, -1).join(".") + "."
+    ], [
+        /\~\./gm,
+        loc + "."
     ], [
         /discord\.([.\w_]+)/gm, 
         function(m, p1) {
