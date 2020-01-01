@@ -253,8 +253,8 @@ var docs_regex = [
             try {
                 return ind(4) + py_desc[p1];
             } catch(err) {
-                return "{{pydesc}} " + p1;
                 console.error(err)
+                return "{{pydesc}} " + p1;
             }
         }
     ], [
