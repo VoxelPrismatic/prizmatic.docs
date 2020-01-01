@@ -132,7 +132,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{param\}\} (.+?) \[(.+)\]\n([^{]*)\n*/gm,
+        /\{\{param\}\} (.+?) \[((.|\n)+)\]\n([^{]*)\n*/gm,
         function(m, p1, p2, p3) {
             var st = ""
             if(!params) {
@@ -140,6 +140,7 @@ var docs_regex = [
                 jumps.push(["params", ""]);
                 params = true;
             }
+            p2 = p2.replace(/\n */gm, " ");
             st += `<span class="typ">{{param}}</span>`;
             st += ` <span class="var"><b>${p1}</b></span> [<span class="cls">${p2}</span>]\n`;
             st += ind(4) + mark_page(trim(p3).replace(/\n */gm, "\n" + ind(4))) + "\n";
