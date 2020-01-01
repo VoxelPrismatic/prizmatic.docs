@@ -55,7 +55,7 @@ var docs_regex = [
     ], [
         /\{\{desc\}\} ([^{]+)\n\n/gm,
         function(m, p1) {
-            return ind(4) + trim(p1).replace(/\n */gm, "\n" + ind(4)) + "\n";
+            return ind(4) + mark_page(trim(p1).replace(/\n */gm, "\n" + ind(4))) + "\n";
         }
     ], [
         /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n+/gm,
@@ -142,7 +142,7 @@ var docs_regex = [
             }
             st += `<span class="typ">{{param}}</span>`;
             st += ` <span class="var"><b>${p1}</b></span> [<span class="cls">${p2}</span>]\n`;
-            st += ind(4) + trim(p3).replace(/\n */gm, "\n" + ind(4)) + "\n";
+            st += ind(4) + mark_page(trim(p3).replace(/\n */gm, "\n" + ind(4))) + "\n";
             return st;
         }
     ], [
@@ -156,7 +156,7 @@ var docs_regex = [
             }
             st += `<span class="typ">{{prop}}</span>`;
             st += ` <span class="var"><b>${p1}</b></span> [<span class="cls">${p2}</span>]\n`;
-            st += ind(4) + trim(p3).replace(/\n */gm, "\n" + ind(4)) + "\n";
+            st += ind(4) + mark_page(trim(p3).replace(/\n */gm, "\n" + ind(4))) + "\n";
             return st;
         }
     ], [
@@ -177,7 +177,7 @@ var docs_regex = [
         /\{\{note\}\} ([^{]+)\n\n/gm,
         function(m, p1) {
             var st = `<div class="note"><b>NOTE ] </b>`
-            st += p1.replace(/\n */gm, " ");
+            st += mark_page(p1.replace(/\n */gm, " "));
             st += `</div>`;
             return st;
         }
@@ -185,7 +185,7 @@ var docs_regex = [
         /\{\{warn\}\} ([^{]+)\n\n/gm,
         function(m, p1) {
             var st = `<div class="warn"><b>WARNING ] </b>`
-            st += p1.replace(/\n */gm, " ");
+            st += mark_page(p1.replace(/\n */gm, " "));
             st += `</div>`;
             return st;
         }
@@ -266,7 +266,7 @@ var docs_regex = [
         /\{\{noinit\}\}([^{]*)\n\n+/gm,
         function(m, p1) {
             var st = `<div class="note"><b>NOTE ] </b>`;
-            var def = "This class shouldn't be initialized by hand. Don't do that.";
+            var def = "This class shouldn't be initialized by hand. Don't do that";
             if(p1 != undefined) {
                 if(p1.startsWith("+"))
                     st += def + " " + p1.slice(1).trim();
