@@ -23,3 +23,15 @@ CDNAsset.txt
 Error.txt
 PrizmCls.txt
 Webhook.txt
+Audit.dir
+Status.dir
+Text.dir
+Perms.dir
+Semi.dir
+Invite.dir
+Raw.dir
+Member.dir
+Events.dir
+Voice.dir
+File.dir
+Channel.dir

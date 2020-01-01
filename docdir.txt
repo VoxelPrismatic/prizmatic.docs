@@ -1,6 +1,0 @@
-dir.txt
-__init__.txt
-ver.txt
-modelsdir.txt
-iters.txt
-util.txt

@@ -6,3 +6,4 @@ testing.txt
 index.txt
 setup.txt
 md.txt
+discord.dir
