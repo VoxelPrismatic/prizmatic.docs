@@ -296,6 +296,7 @@ function docs_mark(st) {
     params = false;
     loc = findHtml("this-here").slice(20).split("/").slice(0, -1).join(".");
     here = loc;
+    notes = {}
     st = st.slice(8); // Removes the "--top--"
     st = st.trim() + "\n\n";
     for(var r of docs_regex)
