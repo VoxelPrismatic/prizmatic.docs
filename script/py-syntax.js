@@ -2,9 +2,9 @@ var cls = [
     "int", "float", "dict", "list",
     "tuple", "set", "bool", "None",
     "frozenset", "str", "bytes",
-    "files", "type", "complex", "True",
+    "file", "type", "complex", "True",
     "range", "bytearray", "memoryview",
-    "False"
+    "False", "range"
 ];
 
 var kw = [
