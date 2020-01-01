@@ -22,13 +22,13 @@ var jumps = [];
 var loc = "";
 var docs_regex = [
     [
-        /\{\{loc\}\} (.+?)\n\n/gm,
+        /\{\{loc\}\} (.+?)\n\n+/gm,
         function(m, p1) {
             loc = p1;
             return "";
         }
     ], [
-        /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, \n]*)\)\n\n/gm,
+        /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, \n]*)\)\n\n+/gm,
         function(m, p1, p2, p3) {
             var st = `<div id="top"></div><div id="${p2}" class="head1">`;
             st += `#] ` + p2 + ` <span class="typ">{{cls}}</span>`;
@@ -40,7 +40,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{subcls\}\} \[(.+)\] (.+?) = (.+?)\(([\w\d*_, ]*)\)\n\n/gm,
+        /\{\{subcls\}\} \[(.+)\] (.+?) = (.+?)\(([\w\d*_, ]*)\)\n\n+/gm,
         function(m, p4, p1, p2, p3) {
             var st = `<div id="top"></div><div id="${p2}" class="head1">`;
             st += `#] ` + p2 + "(" + p4 + ")" + ` <span class="typ">{{cls}}</span>`;
@@ -57,7 +57,7 @@ var docs_regex = [
             return ind(4) + trim(p1).replace(/\n */gm, "\n" + ind(4)) + "\n";
         }
     ], [
-        /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n/gm,
+        /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n+/gm,
         function(m, p1, p4, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -76,7 +76,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{bltin\}\} (.+?)\.(__[\w\d_]+__)\(([\w\d*_, ]*)\)\n\{\{usage\}\} (.*)\n\n/gm,
+        /\{\{bltin\}\} (.+?)\.(__[\w\d_]+__)\(([\w\d*_, ]*)\)\n\{\{usage\}\} (.*)\n\n+/gm,
         function(m, p4, p2, p3, p5) {
             if(p5 == undefined)
                 p5 = ""
@@ -90,7 +90,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{sepfn\}\} (await )?([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n/gm,
+        /\{\{sepfn\}\} (await )?([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n+/gm,
         function(m, p1, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -112,7 +112,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{clsfn\}\} (.*) = (await )?([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n/gm,
+        /\{\{clsfn\}\} (.*) = (await )?([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n+/gm,
         function(m, p4, p1, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -131,7 +131,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{param\}\} (.+?) \[(.+)\]\n([^{]*)\n\n*/gm,
+        /\{\{param\}\} (.+?) \[(.+)\]\n([^{]*)\n+/gm,
         function(m, p1, p2, p3) {
             var st = ""
             if(!params) {
@@ -145,7 +145,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{prop\}\} (.+?) \[(.+)\]\n([^{]*)\n\n*/gm, 
+        /\{\{prop\}\} (.+?) \[(.+)\]\n([^{]*)\n+/gm, 
         function(m, p1, p2, p3) {
             var st = ""
             if(!props) {
@@ -232,33 +232,33 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\n\%n(\d+)\% ([^%{]+)\n/gm,
+        /\n\%n(\d+)\% ([^%{]+)\n+/gm,
         function(m, p1, p2) {
             notes["\\%N" + p1 + "\\%"] = p2;
             return "\n";
         }
     ], [
-        /\{\{alias\}\} ([\w\d_]+)/gm,
+        /\{\{alias\}\} ([\w\d_]+)\n+/gm,
         function(m, p1) {
             return `<b>NOTE ] </b>An alias resides under '${p1}'</div>`;
         }
     ], [
-        /\{\{norm\}\} (.+)/gm,
+        /\{\{norm\}\} (.+)\n+/gm,
         function(m, p1) {
             return `<b>NOTE ] </b>The default value is <span class="code">${p1}</span>`;
         }
     ], [
-        /\{\{pydesc\}\} (.+)/gm,
+        /\{\{pydesc\}\} (.+)\n\n+/gm,
         function(m, p1) {
             try {
                 return ind(4) + py_desc[p1];
             } catch(err) {
-                return "{{pydesc}} " + p1;
                 console.error(err)
+                return "{{pydesc}} " + p1;
             }
         }
     ], [
-        /\{\{noinit\}\}([^{]*)\n\n/gm,
+        /\{\{noinit\}\}([^{]*)\n\n+/gm,
         function(m, p1) {
             var st = `<div class="note"><b>NOTE ] </b>`;
             var def = "This class shouldn't be initialized by hand. Don't do that.";
