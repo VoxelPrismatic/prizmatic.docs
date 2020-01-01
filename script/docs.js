@@ -19,9 +19,16 @@ var py_desc = {
 };
 var notes = {};
 var jumps = [];
+var loc = "";
 var docs_regex = [
     [
-        /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, ]*)\)\n\n/gm,
+        /\{\{loc\}\} (.+?)\n\n/gm,
+        function(m, p1) {
+            loc = p1;
+            return "";
+        }
+    ], [
+        /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, \n]*)\)\n\n/gm,
         function(m, p1, p2, p3) {
             var st = `<div id="top"></div><div id="${p2}" class="head1">`;
             st += `#] ` + p2 + ` <span class="typ">{{cls}}</span>`;
@@ -50,7 +57,7 @@ var docs_regex = [
             return ind(4) + trim(p1).replace(/\n */gm, "\n" + ind(4)) + "\n";
         }
     ], [
-        /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, ]*)\)(.*)\n\n/gm,
+        /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n/gm,
         function(m, p1, p4, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -83,7 +90,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{sepfn\}\} (await )?([\w\d_]+)\(([\w\d*_, ]*)\)(.*)\n\n/gm,
+        /\{\{sepfn\}\} (await )?([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n/gm,
         function(m, p1, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -105,7 +112,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{clsfn\}\} (.*) = (await )?([\w\d_]+)\(([\w\d*_, ]*)\)(.*)\n\n/gm,
+        /\{\{clsfn\}\} (.*) = (await )?([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n/gm,
         function(m, p4, p1, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -182,13 +189,37 @@ var docs_regex = [
             return st;
         }
     ], [
+        /dis\.mod\./gm,
+        `discord.models.`
+    ], [
+        /\~\//gm, 
+        `discord.models.`
+    ], [
+        /\~\.\.\.\./gm,
+        loc.split(".").slice(0, -3).join(".") + "."
+    ], [
+        /\~\.\.\./gm,
+        loc.split(".").slice(0, -2).join(".") + "."
+    ], [
+        /\~\.\./gm,
+        loc.split(".").slice(0, -1).join(".") + "."
+    ], [
+        /\~\./gm,
+        loc + "."
+    ], [
         /discord\.([.\w_]+)/gm, 
         function(m, p1) {
             if(p1.startsWith("gg"))
                 return "discord." + p1;
             var st = `<button class="btn" onclick="btnload(this.id)"`;
             st += `id="discord/${p1.replace(/\./gm, "/")}.txt">`;
-            st += "discord." + p1;
+            var l = "discord." + p1;
+            if(l.startsWith(loc)) {
+                l = "~." + p1;
+            } else if (l.startsWith(loc.split(".").slice(0, -1).join("."))) {
+                l = "~.." + p1;
+            }
+            st += l;
             st += "</button>";
             return st;
         }
@@ -247,6 +278,7 @@ var docs_regex = [
 
 function docs_mark(st) {
     jumps = [];
+    loc = "";
     props = false;
     params = false;
     st = st.slice(8); // Removes the "--top--"
