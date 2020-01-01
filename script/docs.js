@@ -214,10 +214,12 @@ var docs_regex = [
             var st = `<button class="btn" onclick="btnload(this.id)"`;
             st += `id="discord/${p1.replace(/\./gm, "/")}.txt">`;
             var l = "discord." + p1;
-            if(l.startsWith(loc)) {
-                l = "~." + p1;
-            } else if (l.startsWith(loc.split(".").slice(0, -1).join("."))) {
-                l = "~.." + p1;
+            if(loc != "") {
+                if(l.startsWith(loc)) {
+                    l = "~." + p1;
+                } else if (l.startsWith(loc.split(".").slice(0, -1).join("."))) {
+                    l = "~.." + p1;
+                }
             }
             st += l;
             st += "</button>";
