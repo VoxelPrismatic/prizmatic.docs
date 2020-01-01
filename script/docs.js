@@ -207,14 +207,15 @@ var docs_regex = [
         /\~\./gm,
         loc + "."
     ], [
-        /discord\.([.\w_]+)/gm, 
-        function(m, p1) {
-            if(p1.startsWith("gg"))
+        /(discord|reddit|matrix)\.([.\w_]+)/gm, 
+        function(m, p2, p1) {
+            if(p1 == "discord" && p1.startsWith("gg"))
                 return "discord." + p1;
             var st = `<button class="btn" onclick="btnload(this.id)"`;
-            st += `id="discord/${p1.replace(/\./gm, "/")}.txt">`;
-            var l = "discord." + p1;
-            if(loc != "" && l.startsWith(loc)) {
+            st += `id="${p2}/${p1.replace(/\./gm, "/")}.txt">`;
+            var l = p2 + "." + p1;
+            var here = findHtml("this-here").slice(20).split("/").slice(0, -1).join(".");
+            if(loc != "" && l.startsWith(loc) && loc == here) {
                 l = "~." + p1;
             }
             st += l;
@@ -279,6 +280,7 @@ function docs_mark(st) {
     loc = "";
     props = false;
     params = false;
+    loc = findHtml("this-here").slice(20).split("/").slice(0, -1).join(".");
     st = st.slice(8); // Removes the "--top--"
     st = st.trim() + "\n\n";
     for(var r of docs_regex)
