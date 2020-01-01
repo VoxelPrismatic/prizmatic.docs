@@ -20,6 +20,7 @@ var py_desc = {
 var notes = {};
 var jumps = [];
 var loc = "";
+var here = "";
 var docs_regex = [
     [
         /\{\{loc\}\} (.+?)\n\n+/gm,
@@ -131,7 +132,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{param\}\} (.+?) \[(.+)\]\n([^{]*)\n+/gm,
+        /\{\{param\}\} (.+?) \[(.+)\]\n([^{]*)\n*/gm,
         function(m, p1, p2, p3) {
             var st = ""
             if(!params) {
@@ -145,7 +146,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{prop\}\} (.+?) \[(.+)\]\n([^{]*)\n+/gm, 
+        /\{\{prop\}\} (.+?) \[(.+)\]\n([^{]*)\n*/gm, 
         function(m, p1, p2, p3) {
             var st = ""
             if(!props) {
@@ -192,8 +193,14 @@ var docs_regex = [
         /dis\.mod\./gm,
         `discord.models.`
     ], [
+        /red\.mod\./gm,
+        `reddit.models.`
+    ], [
+        /mat\.mod\./gm,
+        `riot.models.`
+    ], [
         /\~\//gm, 
-        `discord.models.`
+        here.split(".").slice(0, 2).join(".");
     ], [
         /\~\.\.\.\./gm,
         loc.split(".").slice(0, -3).join(".") + "."
@@ -207,17 +214,15 @@ var docs_regex = [
         /\~\./gm,
         loc + "."
     ], [
-        /discord\.([.\w_]+)/gm, 
-        function(m, p1) {
-            if(p1.startsWith("gg"))
+        /(discord|reddit|matrix)\.([.\w_]+)/gm, 
+        function(m, p2, p1) {
+            if(p1 == "discord" && p1.startsWith("gg"))
                 return "discord." + p1;
             var st = `<button class="btn" onclick="btnload(this.id)"`;
-            st += `id="discord/${p1.replace(/\./gm, "/")}.txt">`;
-            var l = "discord." + p1;
-            if(l.startsWith(loc)) {
+            st += `id="${p2}/${p1.replace(/\./gm, "/")}.txt">`;
+            var l = p2 + "." + p1;
+            if(loc != "" && l.startsWith(loc) && loc == here) {
                 l = "~." + p1;
-            } else if (l.startsWith(loc.split(".").slice(0, -1).join("."))) {
-                l = "~.." + p1;
             }
             st += l;
             st += "</button>";
@@ -281,6 +286,8 @@ function docs_mark(st) {
     loc = "";
     props = false;
     params = false;
+    loc = findHtml("this-here").slice(20).split("/").slice(0, -1).join(".");
+    here = loc;
     st = st.slice(8); // Removes the "--top--"
     st = st.trim() + "\n\n";
     for(var r of docs_regex)
