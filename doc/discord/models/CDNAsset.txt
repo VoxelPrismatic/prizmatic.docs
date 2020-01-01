@@ -1,0 +1,13 @@
+{{cls}} instance = CDNAsset(url, **fmt)
+
+{{desc}} Represents a CDN Asset for emojis and things
+
+{{param}} url [str]
+    The URL of the asset, with formatting
+
+{{param}} **fmt [kwargs]
+    How to format the URL
+    {{note}} All of these keys will automatically become attributes
+
+{{prop}} url [str]
+    The formatted URL

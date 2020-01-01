@@ -1,0 +1,23 @@
+{{cls}} instance = Text(*, too_many_args_to_list_here)
+
+{{desc}} Represents a message
+
+{{note}} This class shouldn't be initialized by hand. Don't do that.
+
+{{param}} id [str, discord.Snow]
+    ID of the message
+
+{{param}} channel_id [str, disxord.Snow]
+    The Channel ID
+
+{{param}} guild_id [str, discord.Snow, NoneType]
+    The Guild ID, or None if it is in DMs
+
+{{param}} content [str]
+    The content of the message
+
+{{param}} member [discord.Player, discord.User]
+    The player or user that sent the message. If a user, then the user
+    either left the guild or sent the message in DMs.
+
+{{param}} timestamp [str]

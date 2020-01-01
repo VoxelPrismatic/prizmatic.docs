@@ -18,33 +18,19 @@
     The actual int color
 
 {{prop}} rgb [tuple]
-    The RGB tuple
-
-{{fn}} instance.__str__()
-
-{{note}} This function is actually supposed to be used as `str(instance)`
+    The RGB tuple{{fn}} str(instance)
 
 {{desc}} Return the hex color of the class
 
-{{rtn}} [str] The color
-
-{{fn}} instance.__int__()
-
-{{note}} This function is actually supposed to be used as `int(instance)`
+{{rtn}} [str] The color{{fn}} int(instance)
 
 {{desc}} Return the int color of the class
 
-{{rtn}} [int] The int color
-
-{{fn}} instance.__tuple__()
-
-{{note}} This function is actually supposed to be used as `tuple(instance)`
+{{rtn}} [int] The int color{{fn}} tuple(instance)
 
 {{desc}} Return the RGB tuple of the color
 
-{{rtn}} [tuple] The RGB tuple
-
-{{sepfn}} get_color(obj)
+{{rtn}} [tuple] The RGB tuple{{sepfn}} get_color(obj)
 
 {{desc}} Returns the color value of an object
 

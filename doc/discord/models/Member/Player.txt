@@ -1,0 +1,1 @@
+Represents a player [or member] in a guild

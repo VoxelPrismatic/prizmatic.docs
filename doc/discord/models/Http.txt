@@ -1,0 +1,32 @@
+{{cls}} instance = Http(client, bot)
+
+{{desc}} Cleans up code by providing functions instead of so many URLs.
+
+{{note}} This class is used internally to interact with discord. Do not
+initialize this class.
+
+{{param}} client [aiohttp.ClientSession]
+    The client
+
+{{param}} bot [discord.models.Bot]
+    The bot
+
+{{prop}} client [aiohttp.ClientSession]
+    The client
+
+{{prop}} bot [discord.models.Bot]
+    The bot
+
+{{prop}} token [str]
+    Obtained from the bot object
+
+{{note}} This class contains many functions to interact with discord easily.
+Only the main function will be documented and other smaller functions will
+be documented.{{fn}} await instance.req(*, m, u, t, r, fd, **data)
+
+{{note}} This function is asyncronous, so it must be awaited
+
+{{warn}} Using this function is dangerous. Do not use it unless you know
+what you're doing in relation to the API
+
+{{desc}} Sends a payload to the API

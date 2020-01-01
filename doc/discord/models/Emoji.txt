@@ -1,0 +1,85 @@
+{{cls}} instance = Emoji(*, too_many_args_to_list_here)
+
+{{desc}} Represents an emoji.
+
+{{noinit}}
+
+{{param}} id [str, ~/Snow, int]
+    ID of the emoji
+
+{{param}} name [str]
+    Name of the emoji
+
+{{param}} require_colons [bool]
+    Whether or not this emoji requires the use of colons
+
+{{param}} managed [bool]
+    Whether or not this emoji is managed by an integration
+
+{{param}} roles [List[dict]]
+    The roles that this emoji is limited to, if an empty list then it is
+    usable by all users
+
+{{param}} available [bool]
+    Whether or not the client is allowed to use this emoji
+
+{{param}} animated [bool]
+    Whether or not this emoji is animated
+
+{{param}} guild_id [str, ~/Snow, int]
+    ID of the emoji's guild
+
+{{param}} bot_obj [~/Bot]
+    Bot object
+
+{{prop}} id [int]
+    ID of the emoji
+
+{{prop}} name [str]
+    Name of the emoji
+
+{{prop}} colons [bool]
+    Whether or not this emoji requires the use of colons
+
+{{prop}} managed [bool]
+    Whether or not this emoji is managed by an integration
+
+{{prop}} roles [List[~/Role]]
+    The roles that this emoji is limited to, if an empty list then it is
+    usable by all users
+
+{{prop}} usable [bool]
+    Whether or not the client is allowed to use this emoji
+
+{{prop}} gif [bool]
+    Whether or not this emoji is animated
+
+{{prop}} guild_id [str]
+    ID of the emoji's guild
+
+{{prop}} guild [~/Guild]
+    The guild this emoji belongs to
+
+{{prop}} send [str]
+    The sendable form
+
+{{prop}} url [str]
+    Url of the emoji
+
+{{prop}} bot_obj [~/Bot]
+    Bot object{{bltin}} instance.__str__()
+{{usage}} str(instance)
+
+{{desc}} Returns the sendable name, <:name:id>
+
+{{rtn}} [str]{{bltin}} instance.__repr__()
+{{usage}} repr(instance)
+
+{{pydesc}} __repr__
+
+{{rtn}} [str]{{bltin}} instance.__dict__()
+{{usage}} dict(instance)
+
+{{pydesc}} __dict__
+
+{{rtn}} [dict]

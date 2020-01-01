@@ -73,21 +73,30 @@
     Not really a dict, but basically the same.
     Holds all VoiceClient objects and IDs
 
-{{fn}} instance.run(?token)
+{{prop}} http [~/Http]
+    The HTTP client/interface
+
+{{prop}} skip_next [bool]
+    Whether or not to skip the next listener, useful for creating objects
+    inside this wrapper to prevent duplicate objects{{fn}} instance.run(token)
 
 {{desc}} Starts the bot
 
-{{param}} ?token [str]
-    The token. Optional if the token was not provided upon init.
-
-{{fn}} await instance.send_beat()
+{{param}} token [str]
+    The token
+    {{norm}} The token provided upon initialization{{fn}} await instance.send_beat()
 
 {{desc}} Sends a heartbeat to discord
 
 {{note}} This function is used internally, and is not meant to be used
-by hand
+by hand{{fn}} await instance.req(**kw)
 
-{{fn}} await instance._gate(**payload)
+{{desc}} Short for instance.http.req(**kw)
+
+{{param}} **kw [kwargs]
+    Kwargs for http.req()
+
+{{rtn}} [Any] What ever was returned{{fn}} await instance._gate(**payload)
 
 {{desc}} Sends a payload to the Discord Websocket
 
@@ -97,9 +106,7 @@ by hand
 {{param}} **payload [kwargs]
     The payload
 
-{{rtn}} [dict] The response from the websocket
-
-{{fn}} await instance.make(cl, id, url)
+{{rtn}} [dict] The response from the websocket{{fn}} await instance.make(cl, id, url)
 
 {{desc}} Returns an object or creates it from a URL
 
@@ -115,9 +122,7 @@ by hand
 {{param}} url [str]
     Where to find the object
 
-{{rtn}} [any] The object found or made
-
-{{fn}} instance.raw(c, objs, *a, **kw)
+{{rtn}} [any] The object found or made{{fn}} instance.raw(c, objs, *a, **kw)
 
 {{desc}} Returns an object or creates it from provided data
 
@@ -133,9 +138,24 @@ by hand
 {{param}} *a, **kw [args, kwargs]
     Global attributes if the object needs to be created
 
-{{rtn}} [any] The object found or made
+{{rtn}} [Any] The object found or made{{fn}} instance.raw_many(objs, *args, *kwargs)
 
-{{fn}} instance.raw_edit(c, obj, *a, **kw)
+{{desc}} A bunch of `instance.raw()` calls
+
+{{note}} This function is used internally, and is not meant to be used
+by hand
+
+{{param}} objs [list]
+    A list of args and kwargs used for calling `instance.raw()`.
+    `[c, [objs], *args, {kwargs}]`, where `*args` and `{kwargs}` are
+    optional and do NOT need to be included
+
+{{param}} *args, **kwargs [args, kwargs]
+    These are global
+
+{{note}} This function does return everything as a tuple
+
+{{rtn}} [List[Any]] The objects found or made{{fn}} instance.raw_edit(c, obj, *a, **kw)
 
 {{edit}} Edits an object with provided data
 
@@ -151,9 +171,7 @@ by hand
 {{param}} *a, **kw [args, kwargs]
     How to edit the object
 
-{{rtn}} [any] The object found or made
-
-{{fn}} await instance.await_make(c, raw_obj, **kw)
+{{rtn}} [any] The object found or made{{fn}} await instance.await_make(c, raw_obj, **kw)
 
 {{desc}} Similar to raw(), but is awaitable and uses Raw instead
 
@@ -169,9 +187,7 @@ by hand
 {{param}} **kw [kwargs]
     Global attributes if the object needs to be created
 
-{{rtn}} [any] The object found or made
-
-{{fn}} instance.find(c, id, url, fmt, **kw)
+{{rtn}} [any] The object found or made{{fn}} instance.find(c, id, url, fmt, **kw)
 
 {{desc}} Finds an object with a given ID, and returns it. If it doesn't
 exist, then a Raw object is returned instead.
@@ -194,17 +210,13 @@ by hand
 {{param}} **kw [kwargs]
     Additional attributes for the object's creation
 
-{{rtn}} [any] The object found or made
-
-{{fn}} await instance.login()
+{{rtn}} [any] The object found or made{{fn}} await instance.login()
 
 {{desc}} Logs in the bot
 
 {{note}} Do not use this function. Use `bot.run()` instead. This is
 because you will need to use `asyncio.run(bot.login)` which is redundant
-and will prevent the bot from continuing to run properly.
-
-{{sepfn}} get_json(data)
+and will prevent the bot from continuing to run properly.{{sepfn}} get_json(data)
 
 {{desc}} Returns the JSON data sent by the discord gateway
 

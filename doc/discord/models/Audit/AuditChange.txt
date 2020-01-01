@@ -1,21 +1,39 @@
-#] AuditChange
-NOTE---
-This class is almost useless, don't use it.
----
-@EX---
-DESCRIPTION ---
-    Represents an audit log change, that `01` you see
----
-@INFO---
-PARAMS ---
-    #new_value# [ {{cls}}any ]
-        - Value after change
-    #old_value# [ {{cls}}any ]
-        - Value before change
-    #key# [ {{cls}}str ]
-        - What changed
----
-@NEW---
-FUNCTIONS ---
-    None
----
+{{cls}} instance = AuditChange(new_value, old_value, key)
+
+{{desc}} Represents an audit log change, that `01` you see
+
+{{note}} This class is almost useless. Don't use it.
+
+{{param}} new_value [Any]
+    Value after the change
+
+{{param}} old_value [Any]
+    Value before the change
+
+{{param}} key [str]
+    The object changed, eg "role"
+
+{{param}} bot_obj [~/Bot]
+    The Bot object, so you can access the bot anywhere
+
+{{prop}} new [Any]
+    Value after the change
+
+{{prop}} old [Any]
+    Value before the change
+
+{{prop}} key [str]
+    The object changed
+
+{{prop}} bot_obj [~/Bot]
+    The Bot object, so you can access the bot anywhere{{bltin}} instance.__dict__()
+{{usage}} dict(instance)
+
+{{pydesc}} __dict__
+
+{{rtn}} [str]{{bltin}} instance.__repr__()
+{{usage}} repr(instance)
+
+{{pydesc}} __repr__
+
+{{rtn}} [str]

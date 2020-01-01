@@ -1,0 +1,21 @@
+DESCRIPTION ---
+    Represents a file that is awaiting a download
+
+PARAMS ---
+    url [str]
+    - The url to download
+
+
+FUNCTIONS ---
+    thing = RawFile(url)
+    - Creates a new RawFile object
+
+    await thing.get()
+    - Download the file, returns the BytesIO object
+    - If already downloaded, just return the file
+
+    thing()
+    - Returns the BytesIO object as is
+
+    await thing.update()
+    - Re downloads the file

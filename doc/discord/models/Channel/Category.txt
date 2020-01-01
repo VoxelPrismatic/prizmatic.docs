@@ -1,0 +1,175 @@
+{{loc}} discord.models.Channel
+
+{{cls}} instance = Category(*, too_many_args_to_list_here)
+
+{{desc}} Represents a category channel
+
+{{noinit}}
+
+{{param}} permission_overwrites [List[dict]]
+    A list of permission overwrites
+
+{{param}} name [str]
+    The name of the category
+
+{{param}} parent_id [int, ~/Snow, str]
+    The catgory's category id, this should normally be None
+
+{{param}} nsfw [bool]
+    Whether or not the category is NSFW, should normally be False
+
+{{param}} guild_id [int, ~/Snow, str]
+    ID of the guild
+
+{{param}} type [int]
+    Type of channel, this will always be `4` unless you change it
+
+{{param}} id [int, ~/Snow, str]
+    The ID of the category
+
+{{param}} position [int]
+    The position of this category
+
+{{param}} bot_obj [~/Bot]
+    The bot object
+
+{{prop}} overwrites{{fn}} instance.get_channels_by_type(type)
+
+{{desc}} Returns a list of channels that this category "owns" given a
+channel type
+
+{{param}} type [int]
+    The channel type
+
+{{rtn}} [List[~.AnyChannel]] The list of channels{{fn}} await instance.make_channel(name, *, topic, overwrites, slowmode,
+nsfw)
+
+{{desc}} Creates a text channel under this category
+
+{{param}} name [str]
+    The name of the new channel
+
+{{param}} topic [str]
+    Topic of the new channel
+    {{norm}} ""
+
+{{param}} overwrites [List[dict, ~/Perms/Overwrite], ~/Perms/Overwrites]
+    Channel overwrites
+    {{norm}} []
+
+{{param}} slowmode [int]
+    The slowmode limit in seconds
+    {{norm}} 0
+
+{{param}} nsfw [bool]
+    Whether or not this channel is NSFW
+    {{norm}} False
+
+{{rtn}} [~.Channel] The new channel{{fn}} await instance.make_store(name, *, topic, overwrites, slowmode,
+nsfw)
+
+{{desc}} Creates a store channel under this category
+
+{{param}} name [str]
+    The name of the new channel
+
+{{param}} topic [str]
+    Topic of the new channel
+    {{norm}} ""
+
+{{param}} overwrites [List[dict, ~/Perms/Overwrite], ~/Perms/Overwrites]
+    Channel overwrites
+    {{norm}} []
+
+{{param}} slowmode [int]
+    The slowmode limit in seconds
+    {{norm}} 0
+
+{{param}} nsfw [bool]
+    Whether or not this channel is NSFW
+    {{norm}} False
+
+{{rtn}} [~.StoreChannel] The new channel{{fn}} await instance.make_news(name, *, topic, overwrites, slowmode,
+nsfw)
+
+{{desc}} Creates a news channel under this category
+
+{{param}} name [str]
+    The name of the new channel
+
+{{param}} topic [str]
+    Topic of the new channel
+    {{norm}} ""
+
+{{param}} overwrites [List[dict, ~/Perms/Overwrite], ~/Perms/Overwrites]
+    Channel overwrites
+    {{norm}} []
+
+{{param}} slowmode [int]
+    The slowmode limit in seconds
+    {{norm}} 0
+
+{{param}} nsfw [bool]
+    Whether or not this channel is NSFW
+    {{norm}} False
+
+{{rtn}} [~.NewsChannel] The new channel{{fn}} await instance.make_vc(name, *, bitrate, overwrites, limit)
+
+{{desc}} Creates a voice channel under this category
+
+{{param}} name [str]
+    The name of the new vc
+
+{{param}} bitrate [int]
+    The bitrate of this vc
+    {{norm}} 64
+
+{{param}} overwrites [List[dict, ~/Perms/Overwrite], ~/Perms/Overwrites]
+    Channel overwrites
+
+{{param}} limit [int]
+    Number of users this vc can hold
+    {{norm}} 0
+
+{{rtn}} [~.VC] The new vc{{fn}} await instance.edit(*, too_many_args_to_list_here)
+
+{{desc}} Edits the object
+
+{{note}} All parameters are optional
+
+{{param}} name [str]
+    Name of the channel
+
+{{param}} pos [int]
+    Position of the channel
+    {{alias}} position
+
+{{param}} overwrites [~/Perms.Overwrites, List[~/Perms.Overwrite], dict]
+    The overwrites. If a dict, then it must be in `{id: perms_instance}`
+    key-value pairs, otherwise, it will not work
+    {{alias}} permission_overwrites
+
+{{rtn}} [~.Category] The edited self
+
+{{err}} [TypeError] If any of the {id: perms_intance} pairs has an ID
+that doesn't belong to a user or a role{{bltin}} instance.__list__()
+{{usage}} list(instance)
+
+{{desc}} Returns the list of subchannels
+
+{{rtn}} [List[~.AnyChannel]]{{bltin}} instance.__iter__()
+{{usage}} iter(instance)
+
+{{desc}} Creates a generator of channels
+
+{{rtn}} [generator]{{bltin}} instance.__next__()
+{{usage}} for channel in instance: #... code
+
+{{desc}} Allows you to iterate through this category's sub-channels
+
+{{rtn}} [~.AnyChannel]{{bltin}} instance.__dict__()
+{{usage}} dict(instance)
+
+{{pydesc}} __dict__
+
+{{rtn}} [dict]

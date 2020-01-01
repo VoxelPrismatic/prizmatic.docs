@@ -1,0 +1,10 @@
+{{cls}} instance = Channel(*, too_many_args_to_list_here)
+
+{{desc}} Represents a text channel
+
+{{noinit}}
+
+{{param}} id [str, discord.models.Snow, int]
+    The Channel ID
+
+{{param}} guild_id [str, discord.models.Snow, int]

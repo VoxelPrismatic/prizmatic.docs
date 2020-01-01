@@ -1,0 +1,19 @@
+{{cls}} error = Error(name, attempts, typ, *args, **kwargs)
+
+{{desc}} Represents the base error class
+
+{{param}} name [Any]
+    Name of the error, `TypeError: Type 'thing' cannot be converted into
+    type 'thing'`
+
+{{param}} attempts [Any]
+    Attempted fixes or ways to prevent the error
+
+{{param}} typ [Any]
+    The type of error eg TypeError or PrizmaticError
+
+{{param}} *args [args]
+    A list of other info
+
+{{param}} **kwargs [kwargs]
+    A dict of slightly more specific info

@@ -1,0 +1,15 @@
+DESCRIPTION ---
+    Represents an invite
+
+PARAMS ---
+    This class shouldn't be initialized by hand. Don't do that.
+
+FUNCTIONS ---
+    invite = Invite(code, guild, channel, user, type, presences, members)
+    - Create a new Invite object
+
+    await invite.update()
+    - Updates the invite data
+
+    await invite.delete()
+    - Deletes the invite, and the object

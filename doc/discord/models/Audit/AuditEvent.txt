@@ -1,12 +1,86 @@
-CODE ---
-{{kw}}class {{cls}}AuditEvent 
+{{loc}} discord.models.Audit
 
-DESCRIPTION ---
-    Represents an audit log event
+{{cls}} instance = AuditEvent(*, too_many_args_to_list_here)
 
-PARAMS ---
-    This class shouldn't be initialized by hand. Don't do that.
+{{desc}} Represents an audit log event
 
-FUNCTIONS ---
-    None
----
+{{noinit}}
+
+{{param}} target_id [str, ~/Snow, int]
+    The target ID, eg a role ID or a channel ID
+
+{{param}} changes [List[dict]]
+    A list of applied changes
+
+{{param}} user_id [str, ~/Snow, int]
+    The user ID that made the change
+
+{{param}} id [str, dis.mod.Snow, int]
+    The ID of the audit event
+
+{{param}} action_type [int]
+    Type of action, which somehow has more types than the gateway which is
+    mildly infuriating
+
+{{param}} options [dict]
+    Other things
+
+{{param}} reason [str]
+    Reason for those changes
+
+{{param}} bot_obj [~/Bot]
+    The bot object, so you can access it anywhere
+
+{{prop}} target_id [int]
+    The target ID, eg a role ID or a channel ID
+
+{{prop}} changes [List[~.AuditChange]]
+    A list of applied changes
+
+{{prop}} user_id [int]
+    The user ID that made the change
+
+{{prop}} user [dis.mod.Member.User]
+
+{{prop}} id [int]
+    The ID of the audit event
+
+{{prop}} action_type [int]
+    Type of action, which somehow has more types than the gateway which is
+    mildly infuriating
+
+{{prop}} action [str]
+    Type of action, but human readable
+
+{{prop}} options [dict]
+    Other things
+
+{{prop}} reason [str]
+    The reason for those changes
+
+{{prop}} bot_obj [~/Bot]
+    The bot object, so you can access it anywhere{{bltin}} instance.__repr__()
+{{usage}} repr(instance)
+
+{{pydesc}} __repr__
+
+{{rtn}} [str]{{bltin}} instance.__getitem__(index)
+{{usage}} instance[index]
+
+{{desc}} Treats this class as if it were a list of
+discord.models.Audit.AuditChange objects
+
+{{param}} index [int]
+    That specific change
+
+{{rtn}} [~.AuditChange] That specific change{{bltin}} instance.__list__()
+{{usage}} list(instance)
+
+{{desc}} Returns the list of changes
+
+{{rtn}} [List[~.AuditChange]]{{bltin}} instance.__dict__()
+{{usage}} dict(instance)
+
+{{pydesc}} __dict__
+
+{{rtn}} [dict]

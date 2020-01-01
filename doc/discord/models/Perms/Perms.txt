@@ -1,0 +1,10 @@
+{{cls}} instance = Perms(*, allow, deny, none)
+{{desc}} Represents the permissions of a member, user, or overwrite
+
+{{param}} allow [int]
+    The allowed things, as an int
+
+{{param}} deny [int]
+    The denied things, as an int
+
+{{note}} Use the encode method to create an int from a list of perms

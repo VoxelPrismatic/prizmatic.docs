@@ -1,5 +1,36 @@
-{{cls}} instance = Integration()
+{{cls}} instance = Integration(*, too_many_args_to_list_here)
 
-{{desc}} Represents a guild integration
+{{desc}} Represents an integration, or partial integration if only some
+params are passed
 
-{{note}} This class doesn't actually exist yet
+{{param}} id [int, discord.models.Snow, str]
+    ID of this integration
+
+{{param}} name [str]
+    Name of this integration
+
+{{param}} account [dict]
+    Account containing name and id
+
+{{param}} enabled [bool]
+    Whether or not this integration is enabled
+
+{{param}} syncing [bool]
+    Whether or not this integration is being synced
+
+{{param}} role_id [int, discord.models.Snow, str]
+    The role ID
+
+{{param}} expire_behavior [int]
+    The behaviour of expiring subscribers
+
+{{param}} expire_grace_period [int]
+    The grace period before expiring subscribers
+
+{{param}} user [dict]
+    User for this object
+
+{{param}} synced_at [str, datetime.datetime]
+    When this integration was last synced
+
+{{}}

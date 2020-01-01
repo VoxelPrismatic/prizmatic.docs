@@ -1,0 +1,23 @@
+DESCRIPTION ---
+    Acts like a raw object, until it's created. When it is created, it turns
+    into the object you wanted.
+
+PARAMS ---
+    typ [type]
+    - What to initialize, should be from this class
+
+    url [str]
+    - The url, like in Raw
+
+    bot [Bot]
+    - The bot object, so this class can be transformed properly
+
+    *a, **kw
+    - Other args to initialize with
+
+FUNCTIONS ---
+    raw_any = RawAny(typ, url, bot)
+    - Create a new RawAny object
+
+    await raw_any.make()
+    - The magical transformation function

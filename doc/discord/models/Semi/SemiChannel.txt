@@ -1,0 +1,30 @@
+{{cls}} instance = SemiChannel(*, name, typ)
+
+{{desc}} Represents a partial channel object
+
+{{param} name [str]
+    Name of the channel
+
+{{param}} typ [int, str, class]
+    Type of channel
+    0, "text", Channel -------> text channel
+    1, "dm", DM --------------> direct message
+    2, "vc", VC --------------> voice channel
+    3, "group", GroupDM ------> group direct message
+    4, "category", Category --> category channel
+    5, "news", NewsChannel ---> news channel
+    6, "store", StoreChannel -> store channel
+
+{{param}} bot_obj [~/Bot]
+    The bot object
+
+{{prop}} name [str]
+    Name of the channel
+
+{{prop}} type [int]
+    Type of the channel{{bltin}} instance.__dict__()
+{{usage}} dict(instance)
+
+{{pydesc}} __dict__
+
+{{rtn}} [dict]

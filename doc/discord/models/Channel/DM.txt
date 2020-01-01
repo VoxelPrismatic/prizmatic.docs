@@ -1,0 +1,7 @@
+{{cls}} instance = DM(*, last_message_id, type, id, recipients, bot_obj)
+
+{{desc}} Represents a dm channel
+
+{{note}} This class shouldn't be initialized by hand. Don't do that.
+
+{{param}} last_message_id

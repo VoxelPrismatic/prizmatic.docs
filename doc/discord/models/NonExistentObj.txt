@@ -48,9 +48,7 @@ restored.
     Post creation params
 
 {{prop}} ext [list]
-    Provided extras
-
-{{fn}} await instance.undelete()
+    Provided extras{{fn}} await instance.undelete()
 
 {{desc}} Recreates the object that was deleted. This process is not
 perfect, however.

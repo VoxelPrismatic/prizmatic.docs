@@ -1,8 +1,9 @@
 {{cls}} instance = Snow(snowflake)
 
-{{desc}} Represents a snowflake... wonderfully named btw
-000000000000000000000000000000000000000000 00000 00000 000000000000
---------------- TIME STAMP --------------- -wID- -pID- -- INCREM --
+{{desc}}
+    Represents a snowflake... wonderfully named btw
+    000000000000000000000000000000000000000000 00000 00000 000000000000
+    ----------------TIME STAMP---------------- -wID- -pID- --INCREMENT--
 
 {{param}} snowflake [int, str, bytes]
     Represents a Discord snowflake
@@ -32,17 +33,13 @@
     The binary formatted ID, if you need it
 
 {{prop}} dt [datetime.datetime]
-    When the ID was made, as a datetime object
-
-{{fn}} instance.__str__()
+    When the ID was made, as a datetime object{{fn}} instance.__str__()
 
 {{note}} This function should actually be used as `str(instance)`
 
 {{desc}} Turns the snowflake into an str
 
-{{rtn}} [str] The str of the actual ID
-
-{{fn}} instance.__int__()
+{{rtn}} [str] The str of the actual ID{{fn}} instance.__int__()
 
 {{note}} This function should actually be used as `int(instance)`
 

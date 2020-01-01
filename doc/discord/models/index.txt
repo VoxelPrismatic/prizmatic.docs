@@ -1,6 +1,0 @@
-NOTE---
-Almost all of the classes here are initialized internally, and shouldn't be initialized by hand.
-All the classes that have a notice saying to not initialize them are initialized according to Discord's API.\
-Therefore, the input parameters may vary drastically compared to the properties the class has.
----
-Anyway, there are no docs here.

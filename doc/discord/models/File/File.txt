@@ -1,0 +1,28 @@
+DESCRIPTION ---
+    Represnts a file, used for sending files in messages
+
+PARAMS ---
+    loc [str, bytes, file, RawFile, url, RawData]
+    - Some way of getting file data
+    - str: The file name
+    - bytes: Raw Data
+    - file: Must have a read() function
+    - RawFile: A RawFile object from this module
+    - url: A url... duh
+    - RawData: A RawData object from this module
+
+    ?name [str]
+    - Filename, default is random garbage
+
+FUNTIONS ---
+    file = File(file_obj, name)
+    - Create a new File object
+
+    await file.get()
+    - Return the data
+
+    file()
+    - Return the data
+
+    await file.send()
+    - Prepare the data for sending

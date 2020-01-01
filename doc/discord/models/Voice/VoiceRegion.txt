@@ -1,0 +1,5 @@
+{{cls}} instance = VoiceRegion()
+
+{{desc}} Represnts a voice region
+
+{{note}} This class doesn't actually exist yet

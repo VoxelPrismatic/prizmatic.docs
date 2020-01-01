@@ -1,0 +1,41 @@
+{{cls}} instance = Overwrite(*, id, type, allow_int, deny_int, bot_obj)
+
+{{desc}} Represents a permission overwrite
+
+{{param}} id [int, ~/Snow, str]
+    The ID of the overwrited object, eg the role or user ID
+
+{{param}} type [str]
+    Either "role" or "member"
+
+{{param}} allow [int]
+    The allowed permissions integer
+
+{{param}} deny [int]
+    The denied permissions integer
+
+{{param}} bot_obj [~/Bot]
+    The bot object
+
+{{prop}} empty [bool]
+    Whether or not this overwrite does anything
+
+{{prop}} id [int]
+    Target ID
+
+{{prop}} type [str]
+    Either "role" or "member"
+
+{{prop} perms [~/Perms.Perms]
+    The permissions object
+
+{{prop}} bot_obj [~/Bot, None]
+    The bot object, or None
+
+{{prop}} target [Any[~/Role, ~/Member.User]]
+    The target object, will throw an `AttributeError` if bot_obj is None{{bltin}} instance.__dict__()
+{{usage}} dict(instance)
+
+{{pydesc}} __dict__
+
+{{rtn}} [dict]

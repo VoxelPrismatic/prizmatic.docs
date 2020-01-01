@@ -20,11 +20,17 @@ by hand. You can access this class by using `bot.listeners`
     messages except for boost messages
 
 {{prop}} channels [dict]
+{{prop}} vcs [dict]
+{{prop}} dms [dict]
+{{prop}} group_dms [dict]
+{{prop}} categories [dict]
+{{prop}} news_channels [dict]
+{{prop}} store_channels [dict]
 {{prop}} texts [dict]
 {{prop}} guilds [dict]
 {{prop}} emojis [dict]
 {{prop}} roles [dict]
-{{prop}} players [dict]
+{{prop}} players [list]
 {{prop}} users [dict]
 {{prop}} reactions [dict]
 {{prop}} webhooks [dict]
@@ -35,13 +41,33 @@ by hand. You can access this class by using `bot.listeners`
 {{prop}} audits [dict]
 {{prop}} statuses [dict]
     All of these are self explanitory.
-    They are all in this format: {id: instance}
-    None of these are actually dicts, but they are similar enough
+    They are all in this format: {id: instance} except for players, that one
+    is a list because multiple players can have the same ID, as players are
+    just users that are part of a guild and therefore have more data such as
+    nickname or roles.
+    None of these are actually dicts, but they are similar enough. The main
+    difference is that when iterating through the dict, it iterates through
+    the values, not the keys.
 
 {{prop}} objs [dict]
-    A conversion table from catagory to actual object
+    A conversion table from catagory to actual object{{fn}} instance.channel_type(t)
 
-{{fn}} listeners = instance.get(listener_type, ignorer_type)
+{{desc}} Returns a list of channels of a given type
+
+{{param}} t [int]
+    The channel type
+
+{{rtn}} [List[discord.models.Channel]] The list of channels{{fn}} objects = instance.filter(c, **kw)
+
+{{desc}} Filters objects that have attributes matching **kw
+
+{{param}} c [str]
+    Name of the group
+
+{{param}} **kw [kwargs]
+    The attributes to match
+
+{{rtn}} [generator] The list of things{{fn}} listeners = instance.get(listener_type, ignorer_type)
 
 {{desc}} Is a generator representing the listeners that actually listen
 to this event.
@@ -54,29 +80,23 @@ to this event.
     The thing to ignore. If a list, then if the listener is ignoring any
     item in that list, it will be ignored.
 
-{{rtn}} [function] The function listening to the event.
-
-{{fn}} instance.run(listener_type, ignorer_type)
+{{rtn}} [generator] The list of functions listening to the event.{{fn}} instance.run(listener_type, ignorer_type)
 
 {{desc}} Handles the calling of the listeners
 
 {{param}} listener_type [str, list]
     Passed directly to `instance.get()`
 
-{{param}} ignorer_type [str, list]
+{{param}} ignorer_type [str, list[
     Passed directly to `instance.get()`
 
 {{param}} *a, **kw [args, kwargs]
-    What arguments to pass on to the listener
-
-{{fn}} instance.act(j)
+    What arguments to pass on to the listener{{fn}} instance.act(j)
 
 {{desc}} Acts upon a gateway event
 
 {{param}} j [dict]
-    The dict from the gateway event
-
-{{fn}} await instance.make(c, id, url)
+    The dict from the gateway event{{fn}} await instance.make(c, id, url)
 
 {{desc}} Returns an object or creates it from a URL
 
@@ -92,9 +112,7 @@ by hand
 {{param}} url [str]
     Where to find the object
 
-{{rtn}} [any] The object found or made
-
-{{fn}} instance.raw(c, objs, *a, **kw)
+{{rtn}} [any] The object found or made{{fn}} instance.raw(c, objs, *a, **kw)
 
 {{desc}} Returns an object or creates it from provided data
 
@@ -110,9 +128,7 @@ by hand
 {{param}} *a, **kw [args, kwargs]
     Global attributes if the object needs to be created
 
-{{rtn}} [any] The object found or made
-
-{{fn}} instance.raw_edit(c, obj, *a, **kw)
+{{rtn}} [any] The object found or made{{fn}} instance.raw_edit(c, obj, **kw)
 
 {{edit}} Edits an object with provided data
 
@@ -125,12 +141,10 @@ by hand
 {{param}} obj [str, int]
     The ID of the object
 
-{{param}} *a, **kw [args, kwargs]
+{{param}} **kw [kwargs]
     How to edit the object
 
-{{rtn}} [any] The object found or made
-
-{{fn}} instance.find(c, id, url, fmt, **kw)
+{{rtn}} [Any] The object found or made{{fn}} instance.find(c, id, url, fmt, **kw)
 
 {{desc}} Finds an object with a given ID, and returns it. If it doesn't
 exist, then a Raw object is returned instead.

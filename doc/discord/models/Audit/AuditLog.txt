@@ -1,46 +1,57 @@
-CODE---
-{{kw}}class {{cls}}AuditLog 
+{{loc}} discord.models.Audit
 
-DESCRIPTION ---
-    Represents an audit log
+{{cls}} instance = AuditLog(*, too_many_args_to_list_here)
 
-PARAMS ---
-    This class shouldn't be initialized by hand. Don't do that.
+{{desc}} Represents an audit log
 
-FUNCTIONS ---
-    audit_log = AuditLog(webhooks, users, events)
-    DESCRIPTION ---
-        Create a new AuditLog object
-    
-    audit_log.make()
-    DESCRIPTION ---
-        Fully load the audit log, may take a while depending on
-        how many entries, webhooks, and users are in this log
-    
-    audit_log[index]
-    DESCRIPTION ---
-        Get that specific event
-    PARAMS ---
-        index [int]
-        - Index number, as if it were a list
-    RETURNS ---
-        An ||AuditEvent|| object
-    
-    audit_log[event_type]
-    DESCRIPTION ---
-        Filter to that event type
-    PARAMS ---
-        event_type [str]
-        - The event type
-    RETURNS ---
-        A list of ||AuditEvent|| objects
-    
-    audit_log(user_id)
-    DESCRIPTION ---
-        Filter to that user
-    PARAMS ---
-        user_id [int]
-        - The user ID
-    RETURNS ---
-        A list of ||AuditEvent|| objects
----
+{{noinit}}
+
+{{param}} webhooks [List[dict]]
+    A list of webhooks
+
+{{param}} users [List[dict]]
+    A list of users that are in the audit log
+
+{{param}} audit_log_entries [List[dict]]
+    A list of events
+
+{{param}} integrations [List[dict]]
+
+{{param}} bot_obj [~/Bot]
+
+{{prop}} webhooks [List[~/Webhook, dict]]
+    A list of webhooks if `bot_obj` is not `None`, otherwise a list of
+    raw webhooks
+
+{{prop}} users [List[~/Member.User, dict]]
+    A list of users if `bot_obj` is not `None`, otherwise a list of
+    raw users
+
+{{prop}} events [List[~.AuditEvent]]
+    A list of events
+
+{{prop}} integrations [List[~/Semi.SemiIntegration, dict]]
+    A list of integrations if `bot_obj` is not `None`, otherwise a list of
+    raw integrations
+
+{{prop}} bot_obj [~/Bot, None]
+    The bot object{{bltin}} instance.__getitem__(key)
+{{usage}} instance[key]
+
+{{desc}} Either returns a ~.AuditEvent or a ~.AuditSearch object
+
+{{param}} key [int, str, ~/Member.User]
+    If `int`, then it will return that index in `instance.events` or it
+    will filter by user ID if it is a user ID
+    If `str`, then it will filter the events to that event type or by
+    user ID if it is a user ID
+    If `User`, then it will filter by that user
+
+{{rtn}} [~.AuditSearch] The filtered events if `key` is a User, user ID,
+or str
+{{rtn}} [~.AuditEvent] The event if `key` is an index{{bltin}} instance.__dict__()
+{{usage}} dict(instance)
+
+{{pydesc}} __dict__
+
+{{rtn}} [dict]

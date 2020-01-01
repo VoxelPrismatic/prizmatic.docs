@@ -1,0 +1,10 @@
+dir.txt
+__init__.txt
+SemiUser.txt
+SemiIntegration.txt
+OfflineGuild.txt
+SemiStatus.txt
+SemiVoiceState.txt
+SemiInvite.txt
+SemiChannel.txt
+SemiGuild.txt

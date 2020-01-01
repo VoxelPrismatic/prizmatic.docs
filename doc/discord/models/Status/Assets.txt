@@ -26,9 +26,7 @@
     Thumbnail hash
 
 {{prop}} lil_txt [str]
-    Short description
-
-{{fn}} instance.__dict__()
+    Short description{{fn}} instance.__dict__()
 
 {{note}} This function is actually meant to be used as `dict(instance)`
 

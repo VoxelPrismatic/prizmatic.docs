@@ -1,0 +1,8 @@
+DESCRIPTION ---
+    Represents a store channel
+
+PARAMS ---
+    This class shouldn't be initalized by hand. Don't do that.
+
+FUNCTIONS ---
+    None yet
