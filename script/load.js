@@ -1,4 +1,5 @@
 function load(fil) {
+    find("this-here").innerHTML = fil;
     var jumps = find("sect").children
     for(var jmp of jumps)
         if(jmp.id.startsWith("JUMP_"))
@@ -43,7 +44,6 @@ function load(fil) {
     check_for_dupes();
     find("loaded-pages").innerHTML += mkElm("div", findHtml("page"), {id: "DOCS_"+fil, class: "invis"});
     find("loaded-sects").innerHTML += mkElm("div", findHtml("sect"), {id: "SECT_"+fil, class: "invis"});
-    find("this-here").innerHTML = fil;
 }
 
 function maybeload(uri, init = false) {
