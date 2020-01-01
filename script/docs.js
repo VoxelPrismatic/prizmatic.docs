@@ -279,11 +279,11 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\#\/(.+)\//gm,
-        function(m, p1) {
+        /\#\/(.*)"(.*)"(.*)\//gm,
+        function(m, p1, p2, p3) {
             var st = `<button class="sct" onclick="btnload(this.id)"`;
-            st += `id="#${p1}">`;
-            st += "#" + p1 + "</button>";
+            st += `id="JUMP_${p2}">`;
+            st += "#" + p1 + p2 + p3 + "</button>";
             return st;
         }
     ]
