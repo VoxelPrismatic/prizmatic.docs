@@ -1,6 +1,6 @@
-function grab_dirs(lvl) {
+function grab_dirs(lvl = "/prizmatic.docs/doc") {
     var dirs = [];
-    var lines = read(lvl+"/dir.txt").split("\n");
+    var lines = read(lvl + "/dir.txt").split("\n");
     for(var line of lines) {
         if(line.endsWith(".txt")) {
             lnk = lvl+"/"+line;
