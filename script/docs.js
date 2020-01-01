@@ -278,6 +278,14 @@ var docs_regex = [
             st += "</div>";
             return st;
         }
+    ], [
+        /\#\/(.+)\//gm,
+        function(m, p1) {
+            var st = `<button class="sct" onclick="btnload(this.id)"`;
+            st += `id="#${p1}">`;
+            st += "#" + p1 + "</button>";
+            return st;
+        }
     ]
 ]
 
