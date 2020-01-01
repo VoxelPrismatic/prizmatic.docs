@@ -20,6 +20,7 @@ var py_desc = {
 var notes = {};
 var jumps = [];
 var loc = "";
+var here = "";
 var docs_regex = [
     [
         /\{\{loc\}\} (.+?)\n\n+/gm,
@@ -192,8 +193,14 @@ var docs_regex = [
         /dis\.mod\./gm,
         `discord.models.`
     ], [
+        /red\.mod\./gm,
+        `reddit.models.`
+    ], [
+        /mat\.mod\./gm,
+        `riot.models.`
+    ], [
         /\~\//gm, 
-        `discord.models.`
+        here.split(".").slice(0, 2).join(".");
     ], [
         /\~\.\.\.\./gm,
         loc.split(".").slice(0, -3).join(".") + "."
@@ -214,7 +221,6 @@ var docs_regex = [
             var st = `<button class="btn" onclick="btnload(this.id)"`;
             st += `id="${p2}/${p1.replace(/\./gm, "/")}.txt">`;
             var l = p2 + "." + p1;
-            var here = findHtml("this-here").slice(20).split("/").slice(0, -1).join(".");
             if(loc != "" && l.startsWith(loc) && loc == here) {
                 l = "~." + p1;
             }
@@ -281,6 +287,7 @@ function docs_mark(st) {
     props = false;
     params = false;
     loc = findHtml("this-here").slice(20).split("/").slice(0, -1).join(".");
+    here = loc;
     st = st.slice(8); // Removes the "--top--"
     st = st.trim() + "\n\n";
     for(var r of docs_regex)
