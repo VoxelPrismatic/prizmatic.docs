@@ -29,7 +29,7 @@ var docs_regex = [
             return "";
         }
     ], [
-        /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, \n]*)\)\n\n+/gm,
+        /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, \[\]\n]*)\)\n\n+/gm,
         function(m, p1, p2, p3) {
             var st = `<div id="top"></div><div id="${p2}" class="head1">`;
             st += `#] ` + p2 + ` <span class="typ">{{cls}}</span>`;
@@ -41,7 +41,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{subcls\}\} \[(.+)\] (.+?) = (.+?)\(([\w\d*_, ]*)\)\n\n+/gm,
+        /\{\{subcls\}\} \[(.+)\] (.+?) = (.+?)\(([\w\d*_, \[\]\n]*)\)\n\n+/gm,
         function(m, p4, p1, p2, p3) {
             var st = `<div id="top"></div><div id="${p2}" class="head1">`;
             st += `#] ` + p2 + "(" + p4 + ")" + ` <span class="typ">{{cls}}</span>`;
@@ -58,7 +58,7 @@ var docs_regex = [
             return ind(4) + mark_page(trim(p1).replace(/\n */gm, "\n" + ind(4))) + "\n";
         }
     ], [
-        /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n+/gm,
+        /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, \[\]\n]*)\)(.*)\n\n+/gm,
         function(m, p1, p4, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -77,7 +77,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{bltin\}\} (.+?)\.(__[\w\d_]+__)\(([\w\d*_, ]*)\)\n\{\{usage\}\} (.*)\n\n+/gm,
+        /\{\{bltin\}\} (.+?)\.(__[\w\d_]+__)\(([\w\d*_, \[\]\n]*)\)\n\{\{usage\}\} (.*)\n\n+/gm,
         function(m, p4, p2, p3, p5) {
             if(p5 == undefined)
                 p5 = ""
@@ -91,7 +91,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{sepfn\}\} (await )?([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n+/gm,
+        /\{\{sepfn\}\} (await )?([\w\d_]+)\(([\w\d*_, \[\]\n]*)\)(.*)\n\n+/gm,
         function(m, p1, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -113,7 +113,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{clsfn\}\} (.*) = (await )?([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n+/gm,
+        /\{\{clsfn\}\} (.*) = (await )?([\w\d_]+)\(([\w\d*_, \[\]\n]*)\)(.*)\n\n+/gm,
         function(m, p4, p1, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
