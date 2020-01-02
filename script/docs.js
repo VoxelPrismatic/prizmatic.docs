@@ -29,7 +29,7 @@ var docs_regex = [
             return "";
         }
     ], [
-        /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, \n]*)\)\n\n+/gm,
+        /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, \[\]\n]*?)\)\n\n+/gm,
         function(m, p1, p2, p3) {
             var st = `<div id="top"></div><div id="${p2}" class="head1">`;
             st += `#] ` + p2 + ` <span class="typ">{{cls}}</span>`;
@@ -41,7 +41,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{subcls\}\} \[(.+)\] (.+?) = (.+?)\(([\w\d*_, ]*)\)\n\n+/gm,
+        /\{\{subcls\}\} \[(.+)\] (.+?) = (.+?)\(([\w\d*_, \[\]\n]*?)\)\n\n+/gm,
         function(m, p4, p1, p2, p3) {
             var st = `<div id="top"></div><div id="${p2}" class="head1">`;
             st += `#] ` + p2 + "(" + p4 + ")" + ` <span class="typ">{{cls}}</span>`;
@@ -55,10 +55,10 @@ var docs_regex = [
     ], [
         /\{\{desc\}\} ([^{]+)\n\n/gm,
         function(m, p1) {
-            return ind(4) + trim(p1).replace(/\n */gm, "\n" + ind(4)) + "\n";
+            return ind(4) + mark_page(trim(p1).replace(/\n */gm, "\n" + ind(4))) + "\n";
         }
     ], [
-        /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n+/gm,
+        /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, \[\]\n]*?)\)(.*)\n\n+/gm,
         function(m, p1, p4, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -77,7 +77,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{bltin\}\} (.+?)\.(__[\w\d_]+__)\(([\w\d*_, ]*)\)\n\{\{usage\}\} (.*)\n\n+/gm,
+        /\{\{bltin\}\} (.+?)\.(__[\w\d_]+__)\(([\w\d*_, \[\]\n]*?)\)\n\{\{usage\}\} (.*)\n\n+/gm,
         function(m, p4, p2, p3, p5) {
             if(p5 == undefined)
                 p5 = ""
@@ -91,7 +91,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{sepfn\}\} (await )?([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n+/gm,
+        /\{\{sepfn\}\} (await )?([\w\d_]+)\(([\w\d*_, \[\]\n]*?)\)(.*)\n\n+/gm,
         function(m, p1, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -113,7 +113,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{clsfn\}\} (.*) = (await )?([\w\d_]+)\(([\w\d*_, \n]*)\)(.*)\n\n+/gm,
+        /\{\{clsfn\}\} (.*) = (await )?([\w\d_]+)\(([\w\d*_, \[\]\n]*?)\)(.*)\n\n+/gm,
         function(m, p4, p1, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -132,7 +132,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{param\}\} (.+?) \[(.+)\]\n([^{]*)\n*/gm,
+        /\{\{param\}\} (.+?) \[(.+?)\]\n([^{]*)\n*/gm,
         function(m, p1, p2, p3) {
             var st = ""
             if(!params) {
@@ -140,13 +140,14 @@ var docs_regex = [
                 jumps.push(["params", ""]);
                 params = true;
             }
+            p2 = p2.replace(/\n */gm, " ");
             st += `<span class="typ">{{param}}</span>`;
             st += ` <span class="var"><b>${p1}</b></span> [<span class="cls">${p2}</span>]\n`;
-            st += ind(4) + trim(p3).replace(/\n */gm, "\n" + ind(4)) + "\n";
+            st += ind(4) + mark_page(trim(p3).replace(/\n */gm, "\n" + ind(4))) + "\n";
             return st;
         }
     ], [
-        /\{\{prop\}\} (.+?) \[(.+)\]\n([^{]*)\n*/gm, 
+        /\{\{prop\}\} (.+?) \[(.+?)\]\n([^{]*)\n*/gm, 
         function(m, p1, p2, p3) {
             var st = ""
             if(!props) {
@@ -156,7 +157,7 @@ var docs_regex = [
             }
             st += `<span class="typ">{{prop}}</span>`;
             st += ` <span class="var"><b>${p1}</b></span> [<span class="cls">${p2}</span>]\n`;
-            st += ind(4) + trim(p3).replace(/\n */gm, "\n" + ind(4)) + "\n";
+            st += ind(4) + mark_page(trim(p3).replace(/\n */gm, "\n" + ind(4))) + "\n";
             return st;
         }
     ], [
@@ -177,7 +178,7 @@ var docs_regex = [
         /\{\{note\}\} ([^{]+)\n\n/gm,
         function(m, p1) {
             var st = `<div class="note"><b>NOTE ] </b>`
-            st += p1.replace(/\n */gm, " ");
+            st += mark_page(p1.replace(/\n */gm, " "));
             st += `</div>`;
             return st;
         }
@@ -185,7 +186,7 @@ var docs_regex = [
         /\{\{warn\}\} ([^{]+)\n\n/gm,
         function(m, p1) {
             var st = `<div class="warn"><b>WARNING ] </b>`
-            st += p1.replace(/\n */gm, " ");
+            st += mark_page(p1.replace(/\n */gm, " "));
             st += `</div>`;
             return st;
         }
@@ -200,7 +201,7 @@ var docs_regex = [
         `riot.models.`
     ], [
         /\~\//gm, 
-        here.split(".").slice(0, 2).join(".");
+        here.split(".").slice(0, 2).join(".")
     ], [
         /\~\.\.\.\./gm,
         loc.split(".").slice(0, -3).join(".") + "."
@@ -253,6 +254,12 @@ var docs_regex = [
             return `<b>NOTE ] </b>The default value is <span class="code">${p1}</span>`;
         }
     ], [
+        /\{\{reqd\}\}\n+/gm,
+        `<b>NOTE ] </b>This is required`
+    ], [
+        /\{\{optn\}\}\n+/gm,
+        `<b>NOTE ] </b>This is optional`
+    ], [
         /\{\{pydesc\}\} (.+)\n\n+/gm,
         function(m, p1) {
             try {
@@ -266,7 +273,7 @@ var docs_regex = [
         /\{\{noinit\}\}([^{]*)\n\n+/gm,
         function(m, p1) {
             var st = `<div class="note"><b>NOTE ] </b>`;
-            var def = "This class shouldn't be initialized by hand. Don't do that.";
+            var def = "This class shouldn't be initialized by hand. Don't do that";
             if(p1 != undefined) {
                 if(p1.startsWith("+"))
                     st += def + " " + p1.slice(1).trim();
@@ -276,6 +283,14 @@ var docs_regex = [
                 st += def;
             }
             st += "</div>";
+            return st;
+        }
+    ], [
+        /\#\/(.*)"(.*)"(.*)\//gm,
+        function(m, p1, p2, p3) {
+            var st = `<button class="sct" onclick="btnload(this.id)"`;
+            st += `id="JUMP_${p2}">`;
+            st += "#" + p1 + p2 + p3 + "</button>";
             return st;
         }
     ]
@@ -288,6 +303,7 @@ function docs_mark(st) {
     params = false;
     loc = findHtml("this-here").slice(20).split("/").slice(0, -1).join(".");
     here = loc;
+    notes = {}
     st = st.slice(8); // Removes the "--top--"
     st = st.trim() + "\n\n";
     for(var r of docs_regex)
