@@ -1,5 +1,4 @@
 Perms.txt
-dir.txt
 Overwrite.txt
 __init__.txt
 Overwrites.txt

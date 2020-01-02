@@ -1,5 +1,4 @@
 RawData.txt
-dir.txt
 __init__.txt
 RawAny.txt
 RawObjs.txt

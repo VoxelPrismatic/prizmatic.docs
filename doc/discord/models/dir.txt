@@ -2,7 +2,6 @@ Integration.txt
 NonExistentObj.txt
 ClsUtil.txt
 Role.txt
-dir.txt
 Info.txt
 Url.txt
 Widget.txt

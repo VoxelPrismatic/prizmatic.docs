@@ -1,4 +1,3 @@
-dir.txt
 __init__.txt
 ver.txt
 iters.txt

@@ -1,8 +1,10 @@
-{{loc}} discord.models.Channel
-
 {{cls}} instance = Category(*, too_many_args_to_list_here)
 
 {{desc}} Represents a category channel
+
+{{note}} This class can also be an iterable for all the sub channels. See
+#/fn "__next__"()/ *for* more info. Haha I made a pun *for* you again. Ok I
+need to stop making these.
 
 {{noinit}}
 
@@ -32,8 +34,59 @@
 
 {{param}} bot_obj [~/Bot]
     The bot object
+    {{optn}}
 
-{{prop}} overwrites{{fn}} instance.get_channels_by_type(type)
+{{prop}} id [int]
+    The ID of the category
+
+{{prop}} name [str]
+    Name of the category
+
+{{prop}} nsfw [bool]
+    Whether or not the category is marked as NSFW
+
+{{prop}} category_id [int]
+    The ID this category is under
+
+{{prop}} category [~.Category]
+    The category this category is under
+
+{{prop}} type [int]
+    The type of this category, this should always be `4` unless you change
+    it
+
+{{prop}} pos [int]
+    The position of this category
+    {{alias}} position
+
+{{prop}} guild_id [int]
+    The ID of the guild this category belongs to
+
+{{prop}} guild [~/Guild]
+    The guild this category belongs to
+
+{{prop}} overwrites [~/Perms.Overwrites]
+    The overwrites object
+    {{alias}} permission_overwrites
+
+{{prop}} sub_channels [~.AnyChannel]
+    All the sub channels of this category
+
+{{prop}} num_channels [int]
+    Number of sub channels of this category
+
+{{prop}} channels [~.Channel]
+    All the text channels of this category
+
+{{prop}} vcs [~.VC]
+    All the VCs of this category
+
+{{prop}} stores [~.StoreChannel]
+    All the store channels of this category
+
+{{prop}} news [~.NewsChannel]
+    All the news channels of this category. Yes, I know it says `news`, but
+    `newss` or `newses` would be awkward so I am sticking with this{{fn}} instance.get_channels_by_type(type)
 
 {{desc}} Returns a list of channels that this category "owns" given a
 channel type
@@ -131,7 +184,7 @@ nsfw)
     Number of users this vc can hold
     {{norm}} 0
 
-{{rtn}} [~.VC] The new vc{{fn}} await instance.edit(*, too_many_args_to_list_here)
+{{rtn}} [~.VC] The new VC{{fn}} await instance.edit(*, too_many_args_to_list_here)
 
 {{desc}} Edits the object
 
@@ -152,7 +205,11 @@ nsfw)
 {{rtn}} [~.Category] The edited self
 
 {{err}} [TypeError] If any of the {id: perms_intance} pairs has an ID
-that doesn't belong to a user or a role{{bltin}} instance.__list__()
+that doesn't belong to a user or a role{{fn}} await instance.refresh()
+
+{{desc}} Refreshes the category if you think it is out of date
+
+{{rtn}} [~.Category] The edited self{{bltin}} instance.__list__()
 {{usage}} list(instance)
 
 {{desc}} Returns the list of subchannels

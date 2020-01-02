@@ -1,9 +1,4 @@
 py.txt
-dir.txt
-docs.txt
-syntax.txt
-testing.txt
 index.txt
-setup.txt
 md.txt
 discord.dir

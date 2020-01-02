@@ -1,4 +1,3 @@
 VoiceRegion.txt
-dir.txt
 __init__.txt
 VoiceClient.txt

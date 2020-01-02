@@ -1,5 +1,4 @@
 AuditChange.txt
-dir.txt
 __init__.txt
 AuditLog.txt
 AuditEvent.txt

@@ -15,6 +15,7 @@
 
 {{param}} bot_obj [~/Bot]
     The Bot object, so you can access the bot anywhere
+    {{optn}}
 
 {{prop}} new [Any]
     Value after the change

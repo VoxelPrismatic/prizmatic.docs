@@ -1,4 +1,3 @@
-dir.txt
 Timestamps.txt
 __init__.txt
 Party.txt

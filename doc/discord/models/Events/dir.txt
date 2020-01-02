@@ -1,3 +1,2 @@
-dir.txt
 __init__.txt
 Ban.txt

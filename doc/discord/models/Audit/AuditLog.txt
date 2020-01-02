@@ -16,8 +16,11 @@
     A list of events
 
 {{param}} integrations [List[dict]]
+    A list of integrations
 
 {{param}} bot_obj [~/Bot]
+    The bot object
+    {{optn}}
 
 {{prop}} webhooks [List[~/Webhook, dict]]
     A list of webhooks if `bot_obj` is not `None`, otherwise a list of
