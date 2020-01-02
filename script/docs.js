@@ -201,7 +201,7 @@ var docs_regex = [
         `riot.models.`
     ], [
         /\~\//gm, 
-        here.split(".").slice(0, 2).join(".");
+        here.split(".").slice(0, 2).join(".")
     ], [
         /\~\.\.\.\./gm,
         loc.split(".").slice(0, -3).join(".") + "."
