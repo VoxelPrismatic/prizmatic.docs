@@ -254,6 +254,12 @@ var docs_regex = [
             return `<b>NOTE ] </b>The default value is <span class="code">${p1}</span>`;
         }
     ], [
+        /\{\{reqd\}\}\n+/gm,
+        `<b>NOTE ] </b>This is required`
+    ], [
+        /\{\{optn\}\}\n+/gm,
+        `<b>NOTE ] </b>This is optional`
+    ], [
         /\{\{pydesc\}\} (.+)\n\n+/gm,
         function(m, p1) {
             try {
