@@ -2,6 +2,6 @@
 
 {{desc}} Represents a dm channel
 
-{{note}} This class shouldn't be initialized by hand. Don't do that.
+{{noinit}}
 
-{{param}} last_message_id
+{{param}} last_message_id []

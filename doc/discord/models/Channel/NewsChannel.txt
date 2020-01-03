@@ -1,8 +1,7 @@
-DESCRIPTION ---
-    Represents a news/announcements channel
+{{subcls}} [~.Channel] instance = NewsChannel(*, too_many_args_to_list_here)
 
-PARAMS ---
-    This class shouldn't be initialized by hand. Don't do that.
+{{desc}} Represents a NewsChannel
 
-FUNCTIONS ---
-    None yet
+{{noinit}}
+
+{{note}} All the params and props are the same as in ~.Channel

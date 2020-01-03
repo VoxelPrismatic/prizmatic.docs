@@ -1,1 +1,5 @@
+{{cls}} instance = Ban()
 
+{{desc}} Represents a ban
+
+{{note}} This class doesn't actually exist yet'

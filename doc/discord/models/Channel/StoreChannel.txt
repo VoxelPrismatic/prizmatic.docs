@@ -1,8 +1,7 @@
-DESCRIPTION ---
-    Represents a store channel
+{{subcls}} [~.Channel] instance = StoreChannel(*, too_many_args_to_list)
 
-PARAMS ---
-    This class shouldn't be initalized by hand. Don't do that.
+{{desc}} Represents a StoreChannel
 
-FUNCTIONS ---
-    None yet
+{{noinit}}
+
+{{note}} All the params and props are the same as in ~.Channel

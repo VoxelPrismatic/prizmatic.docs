@@ -1,0 +1,2 @@
+{{note}} This file only allows automatic documentation creation. This file will
+#NOT# be included in any of the modules itself
