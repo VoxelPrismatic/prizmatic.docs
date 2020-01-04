@@ -102,7 +102,7 @@ var docs_regex = [
     ], [
         /\{\{desc\}\} ([^{]+)\n\n/gm,
         function(m, p1) {
-            return ind(4) + mark_page(trim(p1).replace(/\n */gm, "\n" + ind(4))) + "\n";
+            return ind(4) + mark_page(trim(p1).replace(/\n */gm, " ") + "\n";
         }
     ], [
         /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, \[\]\n]*?)\)(.*)\n\n+/gm,
