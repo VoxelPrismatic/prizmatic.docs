@@ -319,7 +319,10 @@ function docs_mark(st) {
         st = st.replace(RegExp(n, "gm"), notes[n]);
     
     for(var doc in links_to_docs)
-        st = st.replace(RegExp(doc.replace(/\./gm, "\\."), "gm"), links_to_docs[doc]);
+        st = st.replace(
+            RegExp(doc.replace(/\./gm, "\\."), "gm"), 
+            `<a href="${links_to_docs[doc]}" target="_blank"><button class="btn">${doc}</button></a>`
+        );
     st = st.trim().replace(/\n/gm, "<br>") + "<br>";
     while(find("sect").children.length > 1) {
         var jmp = find("sect").children;
