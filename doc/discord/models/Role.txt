@@ -61,7 +61,9 @@
     The guild that owns this object
 
 {{prop}} bot_obj [discord.models.Bot]
-    The bot object{{fn}} await instance.edit(*, too_many_args_to_list_here)
+    The bot object
+
+{{fn}} await instance.edit(*, too_many_args_to_list_here)
 
 {{note}} This function is asyncronous, so it must be awaited
 
@@ -72,10 +74,10 @@
 {{param}} name [str]
     The new name of the role
 
-{{param}} perms [int, str, discord.models.Perms.Perms]
+{{param}} perms [int, str, ~/Perms.Perms]
     The permissions level for the role
 
-{{param}} color [str, int, discord.models.Color]
+{{param}} color [str, int, ~/Color]
     The color-compatible color
 
 {{param}} hoist [bool]
@@ -92,16 +94,27 @@
     The reason for this change
 
 {{note}} If no params are passed, no data will actually be sent to
-discord. This is to prevent wasted data usage and time{{fn}} instance.__dict__()
+discord. This is to prevent wasted data usage and time
+
+{{fn}} instance.__dict__()
 
 {{note}} This function is actually meant to be used as `dict(instance)`
 
 {{desc}} Returns the send-ready object
 
-{{rtn}} [dict] The send-ready object{{fn}} await instance.delete(reason)
+{{rtn}} [dict] The send-ready object
+
+{{fn}} await instance.delete(reason)
 
 {{note}} This function is asyncronous, so it must be awaited
 
 {{desc}} Deletes the object on discord's end
 
-{{rtn}} [discord.models.NonExistentObj] The deleted object
+{{rtn}} [~/NonExistentObj] The deleted object
+
+{{bltin}} instance.__int__()
+{{usage}} int(instance)
+
+{{desc}} Returns the role ID
+
+{{rtn}} [int]

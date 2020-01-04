@@ -8,7 +8,9 @@
 {{param}} events [List[~.AuditEvent]]
     List of events
 
-{{prop}} events [List[~.AuditEvent]]{{bltin}} instance.__getitem__(key)
+{{prop}} events [List[~.AuditEvent]]
+
+{{bltin}} instance.__getitem__(key)
 {{usage}} instance[key]
 
 {{desc}} Either returns a ~.AuditEvent or a ~.AuditSearch object

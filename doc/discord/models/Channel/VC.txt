@@ -26,6 +26,9 @@ chat so the name "VC" was chosen instead.
 {{param}} guild_id [str, ~/Snow, int]
     The ID of the guild
 
+{{param}} parent_id [str, ~/Snow, int]
+    The category ID
+
 {{param}} bot_obj [~/Bot]
     The bot object
 
@@ -55,33 +58,55 @@ chat so the name "VC" was chosen instead.
 {{prop}} guild [~/Guild]
     The guild itself
 
+{{prop}} snow [~/Snow]
+    The snow object corresponding to the ID
+
+{{prop}} made_at [datetime.datetime]
+    When the channel was made
+
+{{prop}} category_id [int]
+    ID of the category
+
+{{prop}} category [~.Category, None]
+    The category, or None if there isn't one
+
 {{prop}} bot_obj [~/Bot]
-    The bot object{{fn}} await instance.refresh()
+    The bot object
+
+{{fn}} await instance.refresh()
 
 {{desc}} Refreshes the channel if you think it is out of date
 
-{{rtn}} [~.VC] The edited instance{{fn}} await instance.rename(name)
+{{rtn}} [~.VC] The edited instance
+
+{{fn}} await instance.rename(name)
 
 {{desc}} Short for `await instance.edit(name = name)`
 
 {{param}} name [str]
     The new name for the channel
 
-{{rtn}} [~.VC] The edited instance{{fn}} await instance.move(pos)
+{{rtn}} [~.VC] The edited instance
+
+{{fn}} await instance.move(pos)
 
 {{desc}} Short for `await instance.edit(pos = pos)`
 
 {{param}} pos [int]
     The new position for the channel
 
-{{rtn}} [~.VC] The edited instance{{fn}} await instance.move_under(category)
+{{rtn}} [~.VC] The edited instance
+
+{{fn}} await instance.move_under(category)
 
 {{desc}} Short for `await instance.edit(category = category)`
 
 {{param}} category [str, int, ~.Category]
     The new channel category, set to `False` to remove the category
 
-{{rtn}} [~.VC] The edited instance{{fn}} await instance.edit(*, too_many_args_to_list_here)
+{{rtn}} [~.VC] The edited instance
+
+{{fn}} await instance.edit(*, too_many_args_to_list_here)
 
 {{desc}} Edits the channel
 

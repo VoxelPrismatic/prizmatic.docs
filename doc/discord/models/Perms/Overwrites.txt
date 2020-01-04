@@ -9,12 +9,16 @@
     {{norm}} []
 
 {{prop}} overwrites [List[~.Overwrite]]
-    The list of overwrites{{bltin}} instance.__list__()
+    The list of overwrites
+
+{{bltin}} instance.__list__()
 {{usage}} list(instance)
 
 {{desc}} Returns the overwrites
 
-{{rtn}} [List[~.Overwrite]]{{bltin}} instance.__getitem__(index)
+{{rtn}} [List[~.Overwrite]]
+
+{{bltin}} instance.__getitem__(index)
 {{usage}} instance[index]
 
 {{desc}} Treats this class as if it were a dict
@@ -22,12 +26,16 @@
 {{param}} index [int]
     The index into the list of overwrites
 
-{{rtn}} [~.Overwrite] The overwrite object{{bltin}} instance.__iter__()
+{{rtn}} [~.Overwrite] The overwrite object
+
+{{bltin}} instance.__iter__()
 {{usage}} iter(instance)
 
 {{desc}} Creates a generator of channels
 
-{{rtn}} [generator]{{bltin}} instance.__next__()
+{{rtn}} [generator]
+
+{{bltin}} instance.__next__()
 {{usage}} for overwrite in instance: #... code
 
 {{desc}} Allows you to iterate through these overwrites

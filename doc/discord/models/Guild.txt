@@ -170,7 +170,9 @@
     The special guild channels, all names are self explanitory
 
 {{prop}} is_owner [bool]
-    Whether or not the client is the owner of the guild{{loc}} discord.models.Channel
+    Whether or not the client is the owner of the guild
+
+{{loc}} discord.models.Channel
 {{fn}} await instance.make_channel(name, *, topic, overwrites, slowmode,
 nsfw, category)
 
@@ -203,7 +205,9 @@ nsfw, category)
     If None, then it means that there is no category
     {{norm}} None
 
-{{rtn}} [~.Channel] The new channel{{fn}} await instance.make_store(name, *, topic, overwrites, slowmode,
+{{rtn}} [~.Channel] The new channel
+
+{{fn}} await instance.make_store(name, *, topic, overwrites, slowmode,
 nsfw, category)
 
 {{desc}} Creates a store channel under this category
@@ -235,7 +239,9 @@ nsfw, category)
     If None, then it means that there is no category
     {{norm}} None
 
-{{rtn}} [~.StoreChannel] The new channel{{fn}} await instance.make_news(name, *, topic, overwrites, slowmode,
+{{rtn}} [~.StoreChannel] The new channel
+
+{{fn}} await instance.make_news(name, *, topic, overwrites, slowmode,
 nsfw, category)
 
 {{desc}} Creates a news channel under this category
@@ -267,7 +273,9 @@ nsfw, category)
     If None, then it means that there is no category
     {{norm}} None
 
-{{rtn}} [~.NewsChannel] The new channel{{fn}} await instance.make_vc(name, *, bitrate, overwrites, limit,
+{{rtn}} [~.NewsChannel] The new channel
+
+{{fn}} await instance.make_vc(name, *, bitrate, overwrites, limit,
 category)
 
 {{desc}} Creates a voice channel under this category
@@ -294,7 +302,9 @@ category)
     If None, then it means that there is no category
     {{norm}} None
 
-{{rtn}} [~.VC] The new channel{{bltin}} instance.__dict__()
+{{rtn}} [~.VC] The new channel
+
+{{bltin}} instance.__dict__()
 {{usage}} dict(instance)
 
 {{pydesc}} __dict__

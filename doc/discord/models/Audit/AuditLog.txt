@@ -38,7 +38,9 @@
     raw integrations
 
 {{prop}} bot_obj [~/Bot, None]
-    The bot object{{bltin}} instance.__getitem__(key)
+    The bot object
+
+{{bltin}} instance.__getitem__(key)
 {{usage}} instance[key]
 
 {{desc}} Either returns a ~.AuditEvent or a ~.AuditSearch object
@@ -52,7 +54,9 @@
 
 {{rtn}} [~.AuditSearch] The filtered events if `key` is a User, user ID,
 or str
-{{rtn}} [~.AuditEvent] The event if `key` is an index{{bltin}} instance.__dict__()
+{{rtn}} [~.AuditEvent] The event if `key` is an index
+
+{{bltin}} instance.__dict__()
 {{usage}} dict(instance)
 
 {{pydesc}} __dict__

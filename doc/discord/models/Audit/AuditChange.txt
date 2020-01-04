@@ -27,12 +27,16 @@
     The object changed
 
 {{prop}} bot_obj [~/Bot]
-    The Bot object, so you can access the bot anywhere{{bltin}} instance.__dict__()
+    The Bot object, so you can access the bot anywhere
+
+{{bltin}} instance.__dict__()
 {{usage}} dict(instance)
 
 {{pydesc}} __dict__
 
-{{rtn}} [str]{{bltin}} instance.__repr__()
+{{rtn}} [str]
+
+{{bltin}} instance.__repr__()
 {{usage}} repr(instance)
 
 {{pydesc}} __repr__

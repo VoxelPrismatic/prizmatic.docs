@@ -60,12 +60,16 @@
     The reason for those changes
 
 {{prop}} bot_obj [~/Bot]
-    The bot object, so you can access it anywhere{{bltin}} instance.__repr__()
+    The bot object, so you can access it anywhere
+
+{{bltin}} instance.__repr__()
 {{usage}} repr(instance)
 
 {{pydesc}} __repr__
 
-{{rtn}} [str]{{bltin}} instance.__getitem__(index)
+{{rtn}} [str]
+
+{{bltin}} instance.__getitem__(index)
 {{usage}} instance[index]
 
 {{desc}} Treats this class as if it were a list of
@@ -74,12 +78,16 @@ discord.models.Audit.AuditChange objects
 {{param}} index [int]
     That specific change
 
-{{rtn}} [~.AuditChange] That specific change{{bltin}} instance.__list__()
+{{rtn}} [~.AuditChange] That specific change
+
+{{bltin}} instance.__list__()
 {{usage}} list(instance)
 
 {{desc}} Returns the list of changes
 
-{{rtn}} [List[~.AuditChange]]{{bltin}} instance.__dict__()
+{{rtn}} [List[~.AuditChange]]
+
+{{bltin}} instance.__dict__()
 {{usage}} dict(instance)
 
 {{pydesc}} __dict__

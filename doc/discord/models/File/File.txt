@@ -13,11 +13,15 @@
     The file data
 
 {{prop}} name [str]
-    Name of the file{{fn}} await instance.get()
+    Name of the file
+
+{{fn}} await instance.get()
 
 {{desc}} Gets the data if it was from a URL
 
-{{rtn}} [bytes] The data{{fn}} await instance.send()
+{{rtn}} [bytes] The data
+
+{{fn}} await instance.send()
 
 {{pydesc}} __dict__
 

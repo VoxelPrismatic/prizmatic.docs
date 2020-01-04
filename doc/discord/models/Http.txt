@@ -22,7 +22,9 @@ initialize this class.
 
 {{note}} This class contains many functions to interact with discord easily.
 Only the main function will be documented and other smaller functions will
-be documented.{{fn}} await instance.req(*, m, u, t, r, fd, **data)
+be documented.
+
+{{fn}} await instance.req(*, m, u, t, r, fd, **data)
 
 {{note}} This function is asyncronous, so it must be awaited
 

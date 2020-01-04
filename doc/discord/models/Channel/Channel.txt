@@ -92,17 +92,23 @@
 {{prop}} type [int]
     This should always be 0 unless you change it
 
-{{}}{{bltin}} instance.__str__()
+{{}}
+
+{{bltin}} instance.__str__()
 {{usage}} str(instance)
 
 {{desc}} Returns the channel name with a '#' in front
 
-{{rtn}} [str]{{bltin}} instance.__repr__()
+{{rtn}} [str]
+
+{{bltin}} instance.__repr__()
 {{usage}} repr(instance)
 
 {{pydesc}} __repr__
 
-{{rtn}} [str]{{fn}} await instance.edit(*, too_many_args_to_list_here)
+{{rtn}} [str]
+
+{{fn}} await instance.edit(*, too_many_args_to_list_here)
 
 {{desc}} Edits the channel
 
@@ -133,11 +139,15 @@
 
 {{rtn}} [~.Channel] The edited instance
 
-{{err}} [TypeError] If the category or overwrites is invalid{{fn}} await instance.refresh()
+{{err}} [TypeError] If the category or overwrites is invalid
+
+{{fn}} await instance.refresh()
 
 {{desc}} Refreshes the channel if you think it is out of date
 
-{{rtn}} [~.Channel] The edited instance{{fn}} await instance.send(text, *, tts, embed, file)
+{{rtn}} [~.Channel] The edited instance
+
+{{fn}} await instance.send(text, *, tts, embed, file)
 
 {{desc}} Sends a text message to the channel
 
@@ -154,56 +164,76 @@
 {{param}} file [List[~/File.File], ~/File.File, ~/File.Files, file]
     The files you would like to send
 
-{{rtn}} [~/Text.Text] The new text{{fn}} await instance.rename(name)
+{{rtn}} [~/Text.Text] The new text
+
+{{fn}} await instance.rename(name)
 
 {{desc}} Short for `await instance.edit(name = name)`
 
 {{param}} name [str]
     The new name for the channel
 
-{{rtn}} [~.Channel] The edited instance{{fn}} await instance.move(pos)
+{{rtn}} [~.Channel] The edited instance
+
+{{fn}} await instance.move(pos)
 
 {{desc}} Short for `await instance.edit(pos = pos)`
 
 {{param}} pos [int]
     The new position for the channel
 
-{{rtn}} [~.Channel] The edited instance{{fn}} await instance.toggle_nsfw()
+{{rtn}} [~.Channel] The edited instance
+
+{{fn}} await instance.toggle_nsfw()
 
 {{desc}} Short for `await instance.edit(nsfw = not instance.nsfw)`
 
-{{rtn}} [~.Channel] The edited instance{{fn}} await instance.set_nsfw()
+{{rtn}} [~.Channel] The edited instance
+
+{{fn}} await instance.set_nsfw()
 
 {{desc}} Short for `await instance.edit(nsfw = True)`
 
-{{rtn}} [~.Channel] The edited instance{{fn}} await instance.set_sfw()
+{{rtn}} [~.Channel] The edited instance
+
+{{fn}} await instance.set_sfw()
 
 {{desc}} Short for `await instance.edit(nsfw = False)`
 
-{{rtn}} [~.Channel] The edited instance{{fn}} await instance.retopic(topic)
+{{rtn}} [~.Channel] The edited instance
+
+{{fn}} await instance.retopic(topic)
 
 {{desc}} Short for `await instance.edit(topic = topic)`
 
 {{param}} topic [str]
     The new topic for the channel
 
-{{rtn}} [~.Channel] The edited instance{{fn}} await instance.move_under(category)
+{{rtn}} [~.Channel] The edited instance
+
+{{fn}} await instance.move_under(category)
 
 {{desc}} Short for `await instance.edit(category = category)`
 
 {{param}} category [str, int, ~.Category]
     The new channel category, set to `False` to remove the category
 
-{{rtn}} [~.Channel] The edited instance{{fn}} await instance.history(*, limit, before, near, after)
+{{rtn}} [~.Channel] The edited instance
 
-{{desc}} A bunch of messages{{fn}} instance.get_text(id)
+{{fn}} await instance.history(*, limit, before, near, after)
+
+{{desc}} A bunch of messages
+
+{{fn}} instance.get_text(id)
 
 {{desc}} Gets a text given an ID
 
 {{param}} id [int]
     ID of the text
 
-{{rtn}} [~/Text.Text, None] The text, or None if it wasn't found{{fn}} await instance.find_text(id)
+{{rtn}} [~/Text.Text, None] The text, or None if it wasn't found
+
+{{fn}} await instance.find_text(id)
 
 {{desc}} Gets a text given an ID. This is basically the same as
 `instance.get_text(id)` except for this function can also make the text
@@ -213,3 +243,10 @@ object if it wasn't found
     ID of the text
 
 {{rtn}} [~/Text.Text, None] The text, or None if it wasn't found
+
+{{fn}} await instance.delete()
+
+{{desc}} Deletes the object and all corrosponding messages, overwrites,
+etc
+
+{{rtn}} [~/NonExistentObj] The deleted object that can be undeleted

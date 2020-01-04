@@ -237,12 +237,16 @@ scheme, and is supported here too.
     A list of fields in the [name, val, ?inline] format
 
 {{prop}} valid [bool]
-    Whether or not this embed is valid according to the Discord docs{{bltin}} instance.__repr__()
+    Whether or not this embed is valid according to the Discord docs
+
+{{bltin}} instance.__repr__()
 {{usage}} repr(instance)
 
 {{pydesc}} __repr__
 
-{{rtn}} [str]{{fn}} instance.__dict__()
+{{rtn}} [str]
+
+{{fn}} instance.__dict__()
 
 {{note}} This function is actually meant to be used as `dict(instance)`
 
@@ -251,28 +255,36 @@ scheme, and is supported here too.
 {{rtn}} [dict] The send-ready object
 
 {{err}} [ValueError] If the embed is invalid, this saves time and data
-usage by checking locally instead of remotely{{fn}} instance.clear(*args)
+usage by checking locally instead of remotely
+
+{{fn}} instance.clear(*args)
 
 {{desc}} Clears values
 
 {{param}} *args [str]
     What attributes to clear, eg ['title', 'desc']
 
-{{rtn}} [discord.models.Embed] Itself{{fn}} instance.set(*, too_many_args_to_list_here)
+{{rtn}} [discord.models.Embed] Itself
+
+{{fn}} instance.set(*, too_many_args_to_list_here)
 
 {{desc}} Similar to creation, but only overrides given params
 
 {{note}} All parameters are the ones from initialization. That way you
 can edit all the params in one command
 
-{{rtn}} [discord.models.Embed] Itself{{fn}} instance.append_fields(fields)
+{{rtn}} [discord.models.Embed] Itself
+
+{{fn}} instance.append_fields(fields)
 
 {{desc}} Adds fields to the embed
 
 {{param}} fields [List[List[str, str, bool]], List[str, str, bool]]
     Either a single field or a list of fields
 
-{{rtn}} [discord.models.Embed] Itself{{fn}} instance.swap_fields(fields)
+{{rtn}} [discord.models.Embed] Itself
+
+{{fn}} instance.swap_fields(fields)
 
 {{desc}} Swaps a set of fields
 
@@ -281,7 +293,9 @@ can edit all the params in one command
     swap and the value is the new location of the field. This also
     swaps the field currently occupying that location.
 
-{{rtn}} [discord.models.Embed] Itself{{fn}} instance.edit_field(index, field)
+{{rtn}} [discord.models.Embed] Itself
+
+{{fn}} instance.edit_field(index, field)
 
 {{desc}} Edits a field at index
 
@@ -295,21 +309,27 @@ can edit all the params in one command
     - value is 1024 chars max, %N0%
     - inline is False by default
     Any more than 25 fields will be discarded
-    Any invalid fields will silently be discarded{{fn}} instance.remove_fields(indexes)
+    Any invalid fields will silently be discarded
+
+{{fn}} instance.remove_fields(indexes)
 
 {{desc}} Removes fields, starting from 0
 
 {{param}} indexes [int, str, List[int]]
     The indexes to remove. This is 0 based
 
-{{rtn}} [discord.models.Embed] Itself{{fn}} instance.from_dict(emb)
+{{rtn}} [discord.models.Embed] Itself
+
+{{fn}} instance.from_dict(emb)
 
 {{desc}} Converts a dict embed to an actual embed
 
 {{param}} emb [dict]
     A dict compatible object
 
-{{rtn}} The new embed{{fn}} instance.__getitem__(key)
+{{rtn}} The new embed
+
+{{fn}} instance.__getitem__(key)
 
 {{note}} This function is meant to be used as `instance[key]`
 
@@ -319,7 +339,9 @@ it were a dict
 {{param}} key [str]
     The attribute you want
 
-{{rtn}} [Any] The attribute{{fn}} instance.__setitem__(key) = val
+{{rtn}} [Any] The attribute
+
+{{fn}} instance.__setitem__(key) = val
 
 {{note}} This function is meant to be used as `instance[key] = val`
 

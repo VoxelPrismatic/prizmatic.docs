@@ -1,4 +1,4 @@
-{{cls}} instance = NonExistentObj(url, typ, bot, data, edit)
+{{cls}} instance = NonExistentObj(url, typ, bot, data, edit, extras, **kw)
 
 {{desc}} Used for objects that have been deleted, useful for recreating
 objects to get around Discord's no recreation policy. Basically, this is an
@@ -32,6 +32,9 @@ restored.
     Other requests to edit, used in the format [http_method, url, data]. The
     data MUST be a dict.
 
+{{param}} **kw [kwargs]
+    Other params on how to recreate the object
+
 {{prop}} url [str]
     The URL provided
 
@@ -48,7 +51,12 @@ restored.
     Post creation params
 
 {{prop}} ext [list]
-    Provided extras{{fn}} await instance.undelete()
+    Provided extras
+
+{{prop}} kw [dict]
+    Other params on how to recreate the object
+
+{{fn}} await instance.undelete()
 
 {{desc}} Recreates the object that was deleted. This process is not
 perfect, however.

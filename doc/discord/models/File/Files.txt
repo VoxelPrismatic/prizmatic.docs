@@ -1,11 +1,28 @@
-DESCRIPTION ---
-    Represents multiple files
+{{cls}} instance = Files(*objs)
 
-PARAMS ---
-    *file [File, str, bytes, file, RawFile, url, RawData]
-    - The files, see the other class for more info
+{{desc}} Represents multiple files
 
-    NOTE: The name param is unsupported here. Please pass
-          a `File` object if you want to have a name.
+{{param}} file [File, str, bytes, file, RawFile, url, RawData]
+    The files, see ~.File for more info
 
-FUNCTIONS ---
+{{note}} The name param is unsupported here. Please pass a `File` object if
+you want to have a name
+
+{{fn}} await instance.get()
+
+{{desc}} Gets the data if it was from a URL
+
+{{rtn}} [bytes] The data
+
+{{bltin}} instance.__getitem__(index)
+{{usage}} instance[index]
+
+{{desc}} Treats this as if it were a list
+
+{{rtn}} [~.File] The item at that index
+
+{{fn}} await instance.send()
+
+{{pydesc}} __dict__
+
+{{rtn}} [dict]

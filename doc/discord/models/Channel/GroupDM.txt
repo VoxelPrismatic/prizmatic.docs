@@ -1,1 +1,5 @@
+{{cls}} instance = GroupDM()
 
+{{desc}} Represents a Group DM
+
+{{note}} This class doesn't actually exist yet

@@ -14,12 +14,6 @@ need to stop making these.
 {{param}} name [str]
     The name of the category
 
-{{param}} parent_id [int, ~/Snow, str]
-    The catgory's category id, this should normally be None
-
-{{param}} nsfw [bool]
-    Whether or not the category is NSFW, should normally be False
-
 {{param}} guild_id [int, ~/Snow, str]
     ID of the guild
 
@@ -32,6 +26,12 @@ need to stop making these.
 {{param}} position [int]
     The position of this category
 
+{{param}} user_limit [int]
+    Number of users, this should be for VCs, idk
+
+{{param}} bitrate [int]
+    Bitrate for VCs
+
 {{param}} bot_obj [~/Bot]
     The bot object
     {{optn}}
@@ -42,14 +42,8 @@ need to stop making these.
 {{prop}} name [str]
     Name of the category
 
-{{prop}} nsfw [bool]
-    Whether or not the category is marked as NSFW
-
 {{prop}} category_id [int]
     The ID this category is under
-
-{{prop}} category [~.Category]
-    The category this category is under
 
 {{prop}} type [int]
     The type of this category, this should always be `4` unless you change
@@ -86,7 +80,24 @@ need to stop making these.
 
 {{prop}} news [~.NewsChannel]
     All the news channels of this category. Yes, I know it says `news`, but
-    `newss` or `newses` would be awkward so I am sticking with this{{fn}} instance.get_channels_by_type(type)
+    `newss` or `newses` would be awkward so I am sticking with this
+
+{{prop}} limit [int]
+    Number of users, this should be for VCs, idk
+
+{{prop}} bitrate [int]
+    Bitrate for VCs
+
+{{prop}} snow [~/Snow]
+    The Snow object
+
+{{prop}} made_at [datetime.datetime]
+    When this channel was made
+
+{{prop}} bot_obj [~/Bot]
+    The bot object
+
+{{fn}} instance.get_channels_by_type(type)
 
 {{desc}} Returns a list of channels that this category "owns" given a
 channel type
@@ -94,7 +105,9 @@ channel type
 {{param}} type [int]
     The channel type
 
-{{rtn}} [List[~.AnyChannel]] The list of channels{{fn}} await instance.make_channel(name, *, topic, overwrites, slowmode,
+{{rtn}} [List[~.AnyChannel]] The list of channels
+
+{{fn}} await instance.make_channel(name, *, topic, overwrites, slowmode,
 nsfw)
 
 {{desc}} Creates a text channel under this category
@@ -118,7 +131,9 @@ nsfw)
     Whether or not this channel is NSFW
     {{norm}} False
 
-{{rtn}} [~.Channel] The new channel{{fn}} await instance.make_store(name, *, topic, overwrites, slowmode,
+{{rtn}} [~.Channel] The new channel
+
+{{fn}} await instance.make_store(name, *, topic, overwrites, slowmode,
 nsfw)
 
 {{desc}} Creates a store channel under this category
@@ -142,7 +157,9 @@ nsfw)
     Whether or not this channel is NSFW
     {{norm}} False
 
-{{rtn}} [~.StoreChannel] The new channel{{fn}} await instance.make_news(name, *, topic, overwrites, slowmode,
+{{rtn}} [~.StoreChannel] The new channel
+
+{{fn}} await instance.make_news(name, *, topic, overwrites, slowmode,
 nsfw)
 
 {{desc}} Creates a news channel under this category
@@ -166,7 +183,9 @@ nsfw)
     Whether or not this channel is NSFW
     {{norm}} False
 
-{{rtn}} [~.NewsChannel] The new channel{{fn}} await instance.make_vc(name, *, bitrate, overwrites, limit)
+{{rtn}} [~.NewsChannel] The new channel
+
+{{fn}} await instance.make_vc(name, *, bitrate, overwrites, limit)
 
 {{desc}} Creates a voice channel under this category
 
@@ -184,7 +203,9 @@ nsfw)
     Number of users this vc can hold
     {{norm}} 0
 
-{{rtn}} [~.VC] The new VC{{fn}} await instance.edit(*, too_many_args_to_list_here)
+{{rtn}} [~.VC] The new VC
+
+{{fn}} await instance.edit(*, too_many_args_to_list_here)
 
 {{desc}} Edits the object
 
@@ -205,28 +226,44 @@ nsfw)
 {{rtn}} [~.Category] The edited self
 
 {{err}} [TypeError] If any of the {id: perms_intance} pairs has an ID
-that doesn't belong to a user or a role{{fn}} await instance.refresh()
+that doesn't belong to a user or a role
+
+{{fn}} await instance.refresh()
 
 {{desc}} Refreshes the category if you think it is out of date
 
-{{rtn}} [~.Category] The edited self{{bltin}} instance.__list__()
+{{rtn}} [~.Category] The edited self
+
+{{bltin}} instance.__list__()
 {{usage}} list(instance)
 
 {{desc}} Returns the list of subchannels
 
-{{rtn}} [List[~.AnyChannel]]{{bltin}} instance.__iter__()
+{{rtn}} [List[~.AnyChannel]]
+
+{{bltin}} instance.__iter__()
 {{usage}} iter(instance)
 
 {{desc}} Creates a generator of channels
 
-{{rtn}} [generator]{{bltin}} instance.__next__()
+{{rtn}} [generator]
+
+{{bltin}} instance.__next__()
 {{usage}} for channel in instance: #... code
 
 {{desc}} Allows you to iterate through this category's sub-channels
 
-{{rtn}} [~.AnyChannel]{{bltin}} instance.__dict__()
+{{rtn}} [~.AnyChannel]
+
+{{bltin}} instance.__dict__()
 {{usage}} dict(instance)
 
 {{pydesc}} __dict__
 
 {{rtn}} [dict]
+
+{{fn}} await instance.delete()
+
+{{desc}} Deletes the object
+
+{{rtn}} [~/NonExistentObj] The deleted object that can be undeleted

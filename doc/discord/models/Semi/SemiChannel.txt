@@ -22,7 +22,9 @@
     Name of the channel
 
 {{prop}} type [int]
-    Type of the channel{{bltin}} instance.__dict__()
+    Type of the channel
+
+{{bltin}} instance.__dict__()
 {{usage}} dict(instance)
 
 {{pydesc}} __dict__

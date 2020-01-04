@@ -50,14 +50,18 @@ by hand. You can access this class by using `bot.listeners`
     the values, not the keys.
 
 {{prop}} objs [dict]
-    A conversion table from catagory to actual object{{fn}} instance.channel_type(t)
+    A conversion table from catagory to actual object
+
+{{fn}} instance.channel_type(t)
 
 {{desc}} Returns a list of channels of a given type
 
 {{param}} t [int]
     The channel type
 
-{{rtn}} [List[discord.models.Channel]] The list of channels{{fn}} objects = instance.filter(c, **kw)
+{{rtn}} [List[discord.models.Channel]] The list of channels
+
+{{fn}} objects = instance.filter(c, **kw)
 
 {{desc}} Filters objects that have attributes matching **kw
 
@@ -67,7 +71,9 @@ by hand. You can access this class by using `bot.listeners`
 {{param}} **kw [kwargs]
     The attributes to match
 
-{{rtn}} [generator] The list of things{{fn}} listeners = instance.get(listener_type, ignorer_type)
+{{rtn}} [generator] The list of things
+
+{{fn}} listeners = instance.get(listener_type, ignorer_type)
 
 {{desc}} Is a generator representing the listeners that actually listen
 to this event.
@@ -80,7 +86,9 @@ to this event.
     The thing to ignore. If a list, then if the listener is ignoring any
     item in that list, it will be ignored.
 
-{{rtn}} [generator] The list of functions listening to the event.{{fn}} instance.run(listener_type, ignorer_type)
+{{rtn}} [generator] The list of functions listening to the event.
+
+{{fn}} instance.run(listener_type, ignorer_type)
 
 {{desc}} Handles the calling of the listeners
 
@@ -91,12 +99,16 @@ to this event.
     Passed directly to `instance.get()`
 
 {{param}} *a, **kw [args, kwargs]
-    What arguments to pass on to the listener{{fn}} instance.act(j)
+    What arguments to pass on to the listener
+
+{{fn}} instance.act(j)
 
 {{desc}} Acts upon a gateway event
 
 {{param}} j [dict]
-    The dict from the gateway event{{fn}} await instance.make(c, id, url)
+    The dict from the gateway event
+
+{{fn}} await instance.make(c, id, url)
 
 {{desc}} Returns an object or creates it from a URL
 
@@ -112,7 +124,9 @@ by hand
 {{param}} url [str]
     Where to find the object
 
-{{rtn}} [any] The object found or made{{fn}} instance.raw(c, objs, *a, **kw)
+{{rtn}} [any] The object found or made
+
+{{fn}} instance.raw(c, objs, *a, **kw)
 
 {{desc}} Returns an object or creates it from provided data
 
@@ -128,7 +142,9 @@ by hand
 {{param}} *a, **kw [args, kwargs]
     Global attributes if the object needs to be created
 
-{{rtn}} [any] The object found or made{{fn}} instance.raw_edit(c, obj, **kw)
+{{rtn}} [any] The object found or made
+
+{{fn}} instance.raw_edit(c, obj, **kw)
 
 {{edit}} Edits an object with provided data
 
@@ -144,7 +160,9 @@ by hand
 {{param}} **kw [kwargs]
     How to edit the object
 
-{{rtn}} [Any] The object found or made{{fn}} instance.find(c, id, url, fmt, **kw)
+{{rtn}} [Any] The object found or made
+
+{{fn}} instance.find(c, id, url, fmt, **kw)
 
 {{desc}} Finds an object with a given ID, and returns it. If it doesn't
 exist, then a Raw object is returned instead.

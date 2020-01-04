@@ -67,19 +67,31 @@
     Url of the emoji
 
 {{prop}} bot_obj [~/Bot]
-    Bot object{{bltin}} instance.__str__()
+    Bot object
+
+{{bltin}} instance.__str__()
 {{usage}} str(instance)
 
 {{desc}} Returns the sendable name, <:name:id>
 
-{{rtn}} [str]{{bltin}} instance.__repr__()
+{{rtn}} [str]
+
+{{bltin}} instance.__repr__()
 {{usage}} repr(instance)
 
 {{pydesc}} __repr__
 
-{{rtn}} [str]{{bltin}} instance.__dict__()
+{{rtn}} [str]
+
+{{bltin}} instance.__dict__()
 {{usage}} dict(instance)
 
 {{pydesc}} __dict__
 
 {{rtn}} [dict]
+
+{{fn}} await instance.refresh()
+
+{{desc}} Refreshes the emoji if you think it is out of date
+
+{{rtn}} [~.Emoji] The edited instance

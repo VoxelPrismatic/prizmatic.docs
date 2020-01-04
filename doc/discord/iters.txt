@@ -16,7 +16,9 @@ USAGE ---
 
     This is a parameter class that forms a list of all consecutive
     arguments that match its class parameter. It is mainly used with
-    commands for arguments and things.DESCRIPTION ---
+    commands for arguments and things.
+
+DESCRIPTION ---
     Has a default value but can be changed
 
 PARAMS ---
@@ -34,7 +36,9 @@ USAGE ---
 
     This is a parameter class that forms an optional argument and will not
     break when an invalid param is passed [when the command is called]. It is
-    mainly used with commands for arguments and things.DESCRIPTION ---
+    mainly used with commands for arguments and things.
+
+DESCRIPTION ---
     Can be any of these values
 
 PARAMS ---
@@ -52,7 +56,9 @@ USAGE ---
 
     This is a parameter class that forms an argument that can have multiple
     forms and will not break as often on a command call. It is mainly used
-    with commands for arguments and things.DESCRIPTION ---
+    with commands for arguments and things.
+
+DESCRIPTION ---
     Allows for equations
 
 PARAMS ---

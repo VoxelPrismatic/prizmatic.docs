@@ -33,7 +33,9 @@
     The bot object, or None
 
 {{prop}} target [Any[~/Role, ~/Member.User]]
-    The target object, will throw an `AttributeError` if bot_obj is None{{bltin}} instance.__dict__()
+    The target object, will throw an `AttributeError` if bot_obj is None
+
+{{bltin}} instance.__dict__()
 {{usage}} dict(instance)
 
 {{pydesc}} __dict__

@@ -14,7 +14,9 @@
     The ID of the party
 
 {{prop}} size [int]
-    The size of the party{{fn}} instance.__dict__()
+    The size of the party
+
+{{fn}} instance.__dict__()
 
 {{note}} This function is actually meant to be used as `dict(instance)`
 
