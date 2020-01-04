@@ -63,6 +63,8 @@ var docs_regex = [
             if(loc != "" && l.startsWith(loc) && loc == here) {
                 l = "~." + p1;
             }
+            if(l.startsWith("~.models."))
+                l = p2 + ".models." + p1;
             st += l;
             st += "</button>";
             return st;
