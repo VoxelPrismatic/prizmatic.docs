@@ -29,6 +29,45 @@ var links_to_docs = {
 };
 var docs_regex = [
     [
+        /dis\.mod\./gm,
+        `discord.models.`
+    ], [
+        /red\.mod\./gm,
+        `reddit.models.`
+    ], [
+        /mat\.mod\./gm,
+        `riot.models.`
+    ], [
+        /\~\//gm, 
+        here.split(".").slice(0, 2).join(".")
+    ], [
+        /\~\.\.\.\./gm,
+        loc.split(".").slice(0, -3).join(".") + "."
+    ], [
+        /\~\.\.\./gm,
+        loc.split(".").slice(0, -2).join(".") + "."
+    ], [
+        /\~\.\./gm,
+        loc.split(".").slice(0, -1).join(".") + "."
+    ], [
+        /\~\./gm,
+        loc + "."
+    ], [
+        /(discord|reddit|matrix)\.([.\w_]+)/gm, 
+        function(m, p2, p1) {
+            if(p1 == "discord" && p1.startsWith("gg"))
+                return "discord." + p1;
+            var st = `<button class="btn" onclick="btnload(this.id)"`;
+            st += `id="${p2}/${p1.replace(/\./gm, "/")}.txt">`;
+            var l = p2 + "." + p1;
+            if(loc != "" && l.startsWith(loc) && loc == here) {
+                l = "~." + p1;
+            }
+            st += l;
+            st += "</button>";
+            return st;
+        }
+    ], [
         /\{\{loc\}\} (.+?)\n\n+/gm,
         function(m, p1) {
             loc = p1;
@@ -194,45 +233,6 @@ var docs_regex = [
             var st = `<div class="warn"><b>WARNING ] </b>`
             st += mark_page(p1.replace(/\n */gm, " "));
             st += `</div>`;
-            return st;
-        }
-    ], [
-        /dis\.mod\./gm,
-        `discord.models.`
-    ], [
-        /red\.mod\./gm,
-        `reddit.models.`
-    ], [
-        /mat\.mod\./gm,
-        `riot.models.`
-    ], [
-        /\~\//gm, 
-        here.split(".").slice(0, 2).join(".")
-    ], [
-        /\~\.\.\.\./gm,
-        loc.split(".").slice(0, -3).join(".") + "."
-    ], [
-        /\~\.\.\./gm,
-        loc.split(".").slice(0, -2).join(".") + "."
-    ], [
-        /\~\.\./gm,
-        loc.split(".").slice(0, -1).join(".") + "."
-    ], [
-        /\~\./gm,
-        loc + "."
-    ], [
-        /(discord|reddit|matrix)\.([.\w_]+)/gm, 
-        function(m, p2, p1) {
-            if(p1 == "discord" && p1.startsWith("gg"))
-                return "discord." + p1;
-            var st = `<button class="btn" onclick="btnload(this.id)"`;
-            st += `id="${p2}/${p1.replace(/\./gm, "/")}.txt">`;
-            var l = p2 + "." + p1;
-            if(loc != "" && l.startsWith(loc) && loc == here) {
-                l = "~." + p1;
-            }
-            st += l;
-            st += "</button>";
             return st;
         }
     ], [
