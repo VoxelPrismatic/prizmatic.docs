@@ -21,6 +21,12 @@ var notes = {};
 var jumps = [];
 var loc = "";
 var here = "";
+let py_site = "https://docs.python.org/3/library/";
+let ahttp_site = "https://docs.aiohttp.org/en/stable/";
+var links_to_docs = {
+    "aiohttp.ClientSession": ahttp_site + "client_reference.html#client-session",
+    "datetime.datetime": py_site + "datetime.html#datetime-objects",
+};
 var docs_regex = [
     [
         /\{\{loc\}\} (.+?)\n\n+/gm,
@@ -311,6 +317,12 @@ function docs_mark(st) {
     var keys = notes.constructor.keys(notes);
     for(var n of keys)
         st = st.replace(RegExp(n, "gm"), notes[n]);
+    
+    for(var doc in links_to_docs)
+        st = st.replace(
+            RegExp(doc.replace(/\./gm, "\\."), "gm"), 
+            `<a href="${links_to_docs[doc]}" target="_blank"><button class="btn">${doc}</button></a>`
+        );
     st = st.trim().replace(/\n/gm, "<br>") + "<br>";
     while(find("sect").children.length > 1) {
         var jmp = find("sect").children;
