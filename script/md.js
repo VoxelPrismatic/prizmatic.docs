@@ -138,9 +138,9 @@ function mk_table(st) {
         for(var col of row) {
             col_num += 1;
             if(row_num == 0)
-                str += mkElm("th", mark_page(col), {style: "text-align: "+table_aligns[col_num]});
+                str += Elm("th", mark_page(col), {style: "text-align: "+table_aligns[col_num]});
             else
-                str += mkElm("td", mark_page(col), {style: "text-align: "+table_aligns[col_num]});
+                str += Elm("td", mark_page(col), {style: "text-align: "+table_aligns[col_num]});
         }
         str += "</tr>";
     }
