@@ -14,7 +14,7 @@ function loadDoc(fileName, append = true) {
     remJumps();
     
     try {
-        find(fil).className = "lnk sel";
+        find(file_name).className = "lnk sel";
     } catch(err) {
         console.error(err);
         console.log(file_name);
@@ -26,7 +26,7 @@ function loadDoc(fileName, append = true) {
         setHtml("sect", findHtml("SECT_" + file_name));
     } catch(err) {
         try {
-            var txt = read(fil);
+            var txt = read(file_name);
             
         } catch(err) {
             console.error(err);
@@ -53,7 +53,7 @@ function loadDoc(fileName, append = true) {
         if(!(txt.startsWith("--top--\n")))
             txt = "--top--\n" + txt;
         addHtml("cached-pages", Elm(
-            "div", txt, {id: "RAW_" + fil, class: "invis"}
+            "div", txt, {id: "RAW_" + file_name, class: "invis"}
         ));
         var mark = mark_page(txt);
         mark = mark.replace(/<span><\/span>/gm, "");
