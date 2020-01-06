@@ -14,8 +14,8 @@ function regex(st, id = "filter_docs") {
     }
     var re = "(";
     for(var ch of st) {
-        var lc = l.toLowerCase().charCodeAt(0).toString(16);
-        var uc = l.toUpperCase().charCodeAt(0).toString(16);
+        var lc = ch.toLowerCase().charCodeAt(0).toString(16);
+        var uc = ch.toUpperCase().charCodeAt(0).toString(16);
         while(lc.length < 4)
             lc = "0" + lc;
         while(uc.length < 4)
