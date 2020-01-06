@@ -1,3 +1,5 @@
+// Extra functions
+
 function ind(num) {
     var st = "";
     for(var i = 0; i < num; i++)
@@ -8,25 +10,33 @@ function ind(num) {
 function mkJmp(nam, show = "") {
     if(show == "")
         show = nam;
-    return `<div class="lnk" id="JUMP_${nam}" onclick="jump(this);">#${show}</div>`;
+    var st = `<div class="lnk" id="JUMP_${nam}"`;
+    st += `onclick="jump(this);">#${show}</div>`;
+    return st;
 }
 
+
+// Set up vars
 var props = false;
 var params = false;
+
 var py_desc = {
     "__repr__": "Returns the 'Python Correct' name string",
     "__dict__": "Returns the 'send-ready' object",
 };
+
 var notes = {};
 var jumps = [];
 var loc = "";
 var here = "";
+
 let py_site = "https://docs.python.org/3/library/";
 let ahttp_site = "https://docs.aiohttp.org/en/stable/";
 var links_to_docs = {
     "aiohttp.ClientSession": ahttp_site + "client_reference.html#client-session",
     "datetime.datetime": py_site + "datetime.html#datetime-objects",
 };
+
 var docs_regex = [
     [
         /dis\.mod\./gm,
@@ -52,23 +62,6 @@ var docs_regex = [
     ], [
         /\~\./gm,
         loc + "."
-    ], [
-        /(discord|reddit|matrix)\.([.\w_]+)/gm, 
-        function(m, p2, p1) {
-            if(p1 == "discord" && p1.startsWith("gg"))
-                return "discord." + p1;
-            var st = `<button class="btn" onclick="btnload(this.id)"`;
-            st += `id="${p2}/${p1.replace(/\./gm, "/")}.txt">`;
-            var l = p2 + "." + p1;
-            if(loc != "" && l.startsWith(loc) && loc == here) {
-                l = "~." + p1;
-            }
-            if(l.startsWith("~.models."))
-                l = p2 + ".models." + p1;
-            st += l;
-            st += "</button>";
-            return st;
-        }
     ], [
         /\{\{loc\}\} (.+?)\n\n+/gm,
         function(m, p1) {
@@ -281,7 +274,8 @@ var docs_regex = [
         /\{\{noinit\}\}([^{]*)\n\n+/gm,
         function(m, p1) {
             var st = `<div class="note"><b>NOTE ] </b>`;
-            var def = "This class shouldn't be initialized by hand. Don't do that";
+            var def = 
+                "This class shouldn't be initialized by hand. Don't do that. ";
             if(p1 != undefined) {
                 if(p1.startsWith("+"))
                     st += def + " " + p1.slice(1).trim();
@@ -296,9 +290,26 @@ var docs_regex = [
     ], [
         /\#\/(.*)"(.*)"(.*)\//gm,
         function(m, p1, p2, p3) {
-            var st = `<button class="sct" onclick="btnload(this.id)"`;
+            var st = `<button class="sct" onclick="loadBtn(this.id)"`;
             st += `id="JUMP_${p2}">`;
             st += "#" + p1 + p2 + p3 + "</button>";
+            return st;
+        }
+    ], [
+        /(discord|reddit|matrix)\.([.\w_]+)/gm, 
+        function(m, p2, p1) {
+            if(p1 == "discord" && p1.startsWith("gg"))
+                return "discord." + p1;
+            var st = `<button class="btn" onclick="loadBtn(this.id)"`;
+            st += `id="${p2}/${p1.replace(/\./gm, "/")}.txt">`;
+            var l = p2 + "." + p1;
+            if(loc != "" && l.startsWith(loc) && loc == here) {
+                l = "~." + p1;
+            }
+            if(l.startsWith("~.models."))
+                l = p2 + ".models." + p1;
+            st += l;
+            st += "</button>";
             return st;
         }
     ]

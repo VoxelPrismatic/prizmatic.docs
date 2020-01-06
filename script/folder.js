@@ -1,21 +1,21 @@
-function folder(id, go_back = true) {
-    ls = find(id).children;
-    if(ls.length != 0) {
-        var elem = ls[ls.length-1];
-        var h = elem.innerHTML;
-        elem.remove();
-        docs(h, go_back);
-    }
-}
-
 function folder_back() {
-    find("fwd-page").innerHTML += `<span>${findHtml("this-here")}</span>`;
-    folder("back-page", false);
+    id = prev_pages.slice(-1)[0];
+    next_pages.push(id);
+    loadDoc(id, false);
 }
 
 function folder_prev() {
-    find("next-page").innerHTML += `<span>${findHtml("this-here")}</span>`;
-    folder("prev-page");
+    var stuff = find("nav").children;
+    var found = false;
+    for(thing of stuff) {
+        if(found) {
+            loadDoc(thing.id);
+            break;
+        }
+        if(thing.className == "lnk sel") {
+            found = true;
+        }
+    }
 }
 
 function folder_up() {
@@ -24,10 +24,25 @@ function folder_up() {
 }
 
 function folder_next() {
-    find("prev-page").innerHTML += `<span>${findHtml("this-here")}</span>`;
-    folder("next-page");
+    var stuffs = find("nav").children;
+    var stuff = [];
+    for(thing in stuffs)
+        stuff.push(thing)
+    var found = false;
+    stuff.reverse()
+    for(thing of stuff) {
+        if(found) {
+            loadDoc(thing.id);
+            break;
+        }
+        if(thing.className == "lnk sel") {
+            found = true;
+        }
+    }
 }
 
 function folder_fwd() {
-    folder("fwd-page");
+    id = next_pages.slice(-1)[0];
+    prev_pages.push(id);
+    loadDoc(id, false);
 }
