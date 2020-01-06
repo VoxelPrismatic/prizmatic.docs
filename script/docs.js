@@ -63,6 +63,7 @@ var docs_regex = [
         /\~\./gm,
         function(m) {
             console.log("Location: " + loc);
+            console.log("This here: " + here);
             return loc + "."
         }
     ], [
@@ -313,7 +314,7 @@ var docs_regex = [
                 l = "~." + p1;
             }
             if(l.startsWith("~.models."))
-                l = p2 + p1;
+                l = p2 + "." + p1;
             st += l;
             st += "</button>";
             return st;
