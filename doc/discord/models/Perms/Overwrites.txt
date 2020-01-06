@@ -1,5 +1,3 @@
-{{loc}} discord.models.Perms
-
 {{cls}} instance = Overwrites(overwrites)
 
 {{desc}} Represents a list of overwrites with some extra features
