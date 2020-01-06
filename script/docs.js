@@ -191,7 +191,9 @@ var docs_regex = [
             p2 = p2.replace(/\n */gm, " ");
             st += `<span class="typ">{{param}}</span>`;
             st += ` <span class="var"><b>${p1}</b></span> [<span class="cls">${p2}</span>]\n`;
-            st += ind(4) + mark_page(trim(p3).replace(/\n */gm, "\n" + ind(4))) + "\n";
+            if(p3 != undefined)
+                st += ind(4) + mark_page(trim(p3).replace(/\n */gm, "\n" + ind(4)))
+            st += "\n";
             return st;
         }
     ], [
@@ -205,7 +207,9 @@ var docs_regex = [
             }
             st += `<span class="typ">{{prop}}</span>`;
             st += ` <span class="var"><b>${p1}</b></span> [<span class="cls">${p2}</span>]\n`;
-            st += ind(4) + mark_page(trim(p3).replace(/\n */gm, "\n" + ind(4))) + "\n";
+            if(p3 != undefined)
+                st += ind(4) + mark_page(trim(p3).replace(/\n */gm, "\n" + ind(4)))
+            st += "\n";
             return st;
         }
     ], [
