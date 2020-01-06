@@ -25,7 +25,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
                 file = lvl + "/" + line;
                 addHtml("nav", Elm(
                     "div", short, 
-                    {id: file, onclick: "docs(this);", class: "lnk"}
+                    {id: file, onclick: "loadDoc(this);", class: "lnk"}
                 ));
             }
         } else if(line.endsWith(".dir")) {
