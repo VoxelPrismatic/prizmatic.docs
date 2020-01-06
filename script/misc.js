@@ -30,7 +30,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
             }
         } else if(line.endsWith(".dir")) {
             line = line.slice(0, -4);
-            dirs.push(...grab_dirs(lvl + "/" + line)))
+            dirs.push(...grab_dirs(lvl + "/" + line))
         }
     }
     return dirs;
