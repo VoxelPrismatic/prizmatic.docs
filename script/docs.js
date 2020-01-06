@@ -215,7 +215,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{note\}\} ([^{]+)\n\n/gm,
+        /\{\{note\}\} ([^{]+)\n\n+/gm,
         function(m, p1) {
             var st = `<div class="note"><b>NOTE ] </b>`
             st += mark_page(p1.replace(/\n */gm, " "));
@@ -278,7 +278,7 @@ var docs_regex = [
                 "This class shouldn't be initialized by hand. Don't do that. ";
             if(p1 != undefined) {
                 if(p1.startsWith("+"))
-                    st += def + " " + p1.slice(1).trim();
+                    st += def + " " + p1.replace(/\n */gm, " ").slice(1).trim();
                 else
                     st += p1;
             } else {
