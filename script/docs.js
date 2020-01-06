@@ -61,7 +61,10 @@ var docs_regex = [
         loc.split(".").slice(0, -1).join(".") + "."
     ], [
         /\~\./gm,
-        loc + "."
+        function(m) {
+            console.log(loc);
+            return loc + "."
+        }
     ], [
         /\{\{loc\}\} (.+?)\n\n+/gm,
         function(m, p1) {
