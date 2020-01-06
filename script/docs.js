@@ -209,6 +209,10 @@ var docs_regex = [
         function(m, p1, p2) {
             if(p2 == undefined)
                 p2 = " ";
+            if(p2 == "]") {
+                p1 += "]";
+                p2 = "";
+            }
             p2 = p2.trim();
             var st = `<span class="typ">{{rtn}}</span>`;
             st += ` [<span class="cls">${p1}</span>] ${p2}\n`;
