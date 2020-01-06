@@ -16,21 +16,22 @@
     </head>
     <body>
         <!-- SCRIPTS -->
-        <script type="text/javascript" src="script/read.js"></script>
-        <script type="text/javascript" src="script/find.js"></script>
-        <script type="text/javascript" src="script/swap.js"></script>
-        <script type="text/javascript" src="script/other.js"></script>
-        <script type="text/javascript" src="script/grab.js"></script>
-        <script type="text/javascript" src="script/load.js"></script>
         <script type="text/javascript" src="script/docs.js"></script>
-        <script type="text/javascript" src="script/md.js"></script>
+        <script type="text/javascript" src="script/finder.js"></script>
         <script type="text/javascript" src="script/folder.js"></script>
-        <script type="text/javascript" src="script/py-syntax.js"></script>
+        <script type="text/javascript" src="script/loader.js"></script>
+        <script type="text/javascript" src="script/md.js"></script>
+        <script type="text/javascript" src="script/misc.js"></script>
+        <script type="text/javascript" src="script/py_re.js"></script>
+        <script type="text/javascript" src="script/reader.js"></script>
+        <script type="text/javascript" src="script/run.js"></script>
+        <script type="text/javascript" src="script/searcher.js"></script>
         
         <!-- MAIN PAGE HERE -->
         <div class="content">
             <!-- NAV BAR -->
             <div class="nav" style="min-height: 5vh;">
+                <!-- | [DOCS] | [FILE] | [JUMP] | [FIND] | -->
                 <button class="tab tabbed" id="docs" onclick="btn(this, 'page');">[DOCS]</button>
                 <button class="tab" id="swap" onclick="btn(this, 'nav');">[FILE]</button>
                 <button class="tab" id="jump" onclick="btn(this, 'sect');">[JUMP]</button>
@@ -39,7 +40,7 @@
             
             <!-- DOC PAGE -->
             <div id="page" class="page" style="display: block;">
-                JUST A SEC... [LOADING FILES]
+                JUST A SEC... [LOADING DIRECTORY]
             </div>
             
             <!-- FILES PAGE -->
@@ -59,19 +60,22 @@
             <!-- SEARCH PAGE -->
             <div id="search" class="page" style="display: none; text-align: center;">
                 <textarea id="filter_text" placeholder="Find in docs, you can also use /RegEx/"></textarea>
-                <button class="tab" onclick="find_in_docs(findVal('filter_text'))">[OK]</button>
+                <button class="tab" onclick="find_in_docs(findVal('filter_text'))" id="ok_btn">[OK]</button>
             </div>
             
             <!-- FOOTER -->
             <div id="src" class="src">
                 <a id="edit_url">[EDIT]</a> // <a id="page_url">[LINK]</a>
             </div>
+            
+            <!-- EXPLORER -->
             <div class="folder">
-                <button class="tab" id="back_btn" onclick="folder_back();"><b>&lt;--</b></button>
-                <button class="tab" id="prev_btn" onclick="folder_prev();"><b>&lt;</b></button>
-                <button class="tab" id="up_btn" onclick="folder_up();"><b>&Lambda;</b></button>
-                <button class="tab" id="next_btn" onclick="folder_next();"><b>&gt;</b></button>
-                <button class="tab" id="fwd_btn" onclick="folder_fwd();"><b>--&gt;</b></button>
+                <!-- | <- | < | ^ | > | -> | -->
+                <button class="tab" id="back_btn" onclick="folder_back();"><b>&gt;-</b></button>
+                <button class="tab" id="prev_btn" onclick="folder_prev();">&lt;</button>
+                <button class="tab" id="up_btn" onclick="folder_up();">^</button>
+                <button class="tab" id="next_btn" onclick="folder_next();">&gt;</button>
+                <button class="tab" id="fwd_btn" onclick="folder_fwd();"><b>-&gt;</b></button>
             </div>
         </div>
         
@@ -84,11 +88,7 @@
             <div id="file"></div>
             <div id="this-here"></div>
             <div id="highlighter"></div>
-            <div id="back-page"></div>
             <div id="up-page"></div>
-            <div id="fwd-page"></div>
-            <div id="prev-page"></div>
-            <div id="next-page"></div>
         </div>
         
         
