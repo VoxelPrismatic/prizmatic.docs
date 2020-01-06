@@ -4,19 +4,19 @@
 
 {{note}} This class shouldn't be initialized by hand. Don't do that.
 
-{{param}} id [str, discord.Snow]
+{{param}} id [str, ~/Snow]
     ID of the message
 
-{{param}} channel_id [str, disxord.Snow]
+{{param}} channel_id [str, ~/Snow]
     The Channel ID
 
-{{param}} guild_id [str, discord.Snow, NoneType]
+{{param}} guild_id [str, ~/Snow, None]
     The Guild ID, or None if it is in DMs
 
 {{param}} content [str]
     The content of the message
 
-{{param}} member [discord.Player, discord.User]
+{{param}} member [~/Member.Player, ~/Member.User]
     The player or user that sent the message. If a user, then the user
     either left the guild or sent the message in DMs.
 
