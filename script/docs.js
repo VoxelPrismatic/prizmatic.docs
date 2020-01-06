@@ -258,19 +258,19 @@ var docs_regex = [
     ], [
         /\{\{alias\}\} ([\w\d_]+)\n+/gm,
         function(m, p1) {
-            return `<b>NOTE ] </b>An alias resides under '${p1}'</div>`;
+            return `\\!1<b>NOTE ] </b>An alias resides under '${p1}'</div>`;
         }
     ], [
         /\{\{norm\}\} (.+)\n+/gm,
         function(m, p1) {
-            return `<b>NOTE ] </b>The default value is <span class="code">${p1}</span>`;
+            return `\\!1<b>NOTE ] </b>The default value is <span class="code">${p1}</span>`;
         }
     ], [
         /\{\{reqd\}\}\n+/gm,
-        `<b>NOTE ] </b>This is required`
+        `\\!1<b>NOTE ] </b>This is required`
     ], [
         /\{\{optn\}\}\n+/gm,
-        `<b>NOTE ] </b>This is optional`
+        `\\!1<b>NOTE ] </b>This is optional`
     ], [
         /\{\{pydesc\}\} (.+)\n\n+/gm,
         function(m, p1) {
@@ -338,10 +338,17 @@ function docs_mark(st) {
     st = st.trim() + "\n\n";
     for(var r of docs_regex)
         st = st.replace(r[0], r[1]);
+    var st2 = "";
+    for(var i = 0; i < st.length - 1; i += 1) {
+        if(st.slice(i, i + 2) == "\\!") {
+            st2 = st2.slice(0, "-" + st[i + 2]);
+            continue;
+        }
+        st2 += st[i];
+    }
     var keys = notes.constructor.keys(notes);
     for(var n of keys)
         st = st.replace(RegExp(n, "gm"), notes[n]);
-    
     for(var doc in links_to_docs)
         st = st.replace(
             RegExp(doc.replace(/\./gm, "\\."), "gm"), 
