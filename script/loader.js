@@ -93,6 +93,7 @@ function loadDoc(fileName, append = true) {
     try {
         find(file_name).className = "lnk sel";
     } catch(err) {
+        console.log("Error occurred in 
         console.error(err);
     }
     
@@ -153,11 +154,11 @@ function loadBtn(url) {
             url = url.slice(3);
             here = here.split("/").slice(0, -1).join("/");
         }
-        loadDoc(here + "/" + url.replace(/\.\//gm, ""), true);
+        loadDoc(here + "/" + url.replace(/\.\//gm, ""));
     } else if(url.startsWith("~/")) {
-        loadDoc("prizmatic.doc/doc" + url.slice(1), true);
+        loadDoc("prizmatic.doc/doc" + url.slice(1));
     } else {
-        loadDoc(url, true);
+        loadDoc(url);
     }
 }
 
