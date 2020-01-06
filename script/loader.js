@@ -93,7 +93,6 @@ function loadDoc(fileName, append = true) {
     try {
         find(file_name).className = "lnk sel";
     } catch(err) {
-        console.log("Error occurred in 
         console.error(err);
     }
     
