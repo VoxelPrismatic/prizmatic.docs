@@ -80,17 +80,17 @@ function loadDoc(fileName, append = true) {
     }
     
     var url = "https://github.com/VoxelPrismatic/prizmatic.docs/edit/master/doc/";
-    find("edit_url").href = url + id.split("/").slice(3).join("/");
+    find("edit_url").href = url + file_name.split("/").slice(3).join("/");
     var high = find("page_url").href.split("&")[1]
     find("page_url").href = find("page_url").href.split("?")[0] + "?" +
-                            id.split("/").slice(3).join("/") + "#top";
+                            file_name.split("/").slice(3).join("/") + "#top";
     if(high != undefined)
         find("page_url").href += "&" + high;
     for(var thing of things)
         if(thing.className == "lnk sel")
             thing.className = "lnk";
     try {
-        find(id).className = "lnk sel";
+        find(file_name).className = "lnk sel";
     } catch(err) {
         console.error(err);
     }
