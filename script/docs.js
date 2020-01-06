@@ -307,7 +307,7 @@ var docs_regex = [
                 l = "~." + p1;
             }
             if(l.startsWith("~.models."))
-                l = p2 + ".models." + p1;
+                l = p2 + p1;
             st += l;
             st += "</button>";
             return st;
