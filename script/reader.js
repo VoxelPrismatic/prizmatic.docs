@@ -4,8 +4,7 @@ function read(filename, aio = false) {
         if (this.readyState == 4 && this.status == 200) {
             var resp = f.responseText;
             resp = resp.trim() + "\n"
-            while(resp.search(/\n +\n/gm) != -1)
-                resp = resp.replace(/\n +\n/gm, "\n\n");
+            resp = resp.replace(/ *\n/gm, "\n");
             resp = resp.replace(/  /gm, "\u200b \u200b \u200b");
             setHtml("file", resp)
         }
