@@ -62,7 +62,7 @@ var docs_regex = [
     ], [
         /\~\./gm,
         function(m) {
-            console.log(loc);
+            console.log("Location: " + loc);
             return loc + "."
         }
     ], [
