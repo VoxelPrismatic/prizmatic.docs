@@ -237,7 +237,7 @@ var docs_regex = [
         /\{\{note\}\} ([^{]+)\n\n+/gm,
         function(m, p1) {
             var st = `<div class="note"><b>NOTE ] </b>`
-            st +==p1.replace(/\n */gm, " ");
+            st += p1.replace(/\n */gm, " ");
             st += `</div>`;
             return st;
         }
