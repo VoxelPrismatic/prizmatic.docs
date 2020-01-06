@@ -1,6 +1,6 @@
 url = document.URL;
 if(url.includes("?")) {
-    maybeload(url.split("?")[1]);
+    loadUri(url);
 } else {
     loadDoc("/prizmatic.docs/doc/index.txt");
 }
