@@ -52,7 +52,7 @@ var docs_regex = [
         function(m) {
             console.log("Location: " + loc);
             console.log("This here: " + here);
-            return here.split(".").slice(0, 2).join(".")
+            return here.split(".").slice(0, 2).join(".") + ".";
         }
     ], [
         /\~\.\.\.\./gm,
