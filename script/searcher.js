@@ -77,7 +77,7 @@ function find_text(re, parent = find("page")) {
         if(c == ">" && intag) {
             intag -= 1;
             ttl += ">";
-            st = st.replace(re, `<span class="find">$1</span>`;
+            st = st.replace(re, `<span class="find">$1</span>`);
             ttl += st;
             st = "";
             continue;
