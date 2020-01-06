@@ -150,7 +150,7 @@ function find_in_docs(thing) {
             aio.then(function(txt) {
                 addHtml("cached-pages", Elm(
                     "div", txt, {id: "RAW_" + id, class: "invis"}
-                );
+                ));
             });
         }
         var text = findHtml("RAW_" + page.id)
