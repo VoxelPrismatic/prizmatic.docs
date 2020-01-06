@@ -159,7 +159,6 @@ function loadBtn(url) {
     } else {
         loadDoc(url, true);
     }
-    find("back-page").innerHTML += `<span>${url}</span>`;
 }
 
 function jump(elem) {
