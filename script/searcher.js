@@ -33,7 +33,7 @@ function highlight(phrase) {
         return;
         throw "Thrown to stop highlighting";
     }
-    find_text(regex(phase));
+    find_text(regex(phrase));
     
     find("docs").click();
     ls = find(".find");
