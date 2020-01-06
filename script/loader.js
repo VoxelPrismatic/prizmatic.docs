@@ -55,9 +55,10 @@ function loadDoc(fileName, append = true) {
         addHtml("cached-pages", Elm(
             "div", txt, {id: "RAW_" + file_name, class: "invis"}
         ));
-        var mark = mark_page(txt);
+        setHtml("page", mark_page(txt));
+        var mark = findHtml("page");
         mark = mark.replace(/<span><\/span>/gm, "");
-        mark = mark.replace(/(<br>){2,}/gm, "<br>");
+        mark = mark.replace(/(<br>){3,}/gm, "<br><br>");
         setHtml("page", mark);
         
         // Section
