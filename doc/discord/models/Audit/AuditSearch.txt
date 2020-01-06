@@ -1,4 +1,3 @@
-{{loc}} discord.models.Audit
 {{cls}} instance = AuditSearch(events)
 
 {{desc}} Represents an audit log search
@@ -15,7 +14,7 @@
 
 {{desc}} Either returns a ~.AuditEvent or a ~.AuditSearch object
 
-{{param}} key [int, str, discord.models.Member.User]
+{{param}} key [int, str, ~/Member.User]
     If `int`, then it will return that index in `instance.events` or it
     will filter by user ID if it is a user ID
     If `str`, then it will filter the events to that event type or by
