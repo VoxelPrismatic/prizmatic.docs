@@ -360,6 +360,8 @@ function docs_mark(st) {
         }
         st2 += st[i];
     }
+    st2 = st2.replace(/\\!\d/gm, "");
+    st = st2;
     var keys = notes.constructor.keys(notes);
     for(var n of keys)
         st = st.replace(RegExp(n, "gm"), notes[n]);
