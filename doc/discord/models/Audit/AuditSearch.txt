@@ -23,4 +23,5 @@
 
 {{rtn}} [~.AuditSearch] The filtered events if `key`
 is a User, user ID, or str
+
 {{rtn}} [~.AuditEvent] The event if `key` is an index
