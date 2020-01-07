@@ -132,12 +132,16 @@ function collall() {
         return;
     var child = elem.children;
     for(var c of child) {
-        if(c.className == "collapser collopen") {
+        if(c.className == "collapser collopen")) {
             collapser(c);
         }
-        collall(c);
+        if(c.className.includes("collapser")) {
+           collall(c);
+        }
     }
-    collapser(elem);
+    if(c.className.includes("collapser")) {
+       collapser(c);
+    }
 }
 
 prev_pages = [];
