@@ -48,7 +48,6 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
             layout += b + "</div>";
         }
     }
-    console.log(layout);
     if(lvl != "/prizmatic.docs/doc")
         return [dirs, layout];
     setHtml("nav", layout);
