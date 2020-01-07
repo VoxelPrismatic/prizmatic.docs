@@ -132,7 +132,7 @@ function collall() {
         return;
     var child = elem.children;
     for(var c of child) {
-        if(c.className == "collapser collopen")) {
+        if(c.className == "collapser collopen") {
             collapser(c);
         }
         if(c.className.includes("collapser")) {
