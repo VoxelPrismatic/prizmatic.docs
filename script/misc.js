@@ -39,7 +39,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
             layout += Elm(
                 "div", lvl.slice(19) + "/" + line, 
                 {id: "DROP_" + lvl + "/" + line, class: "collapser", onclick: "collapser()", 
-                 onmouseover: "setcoll(this)", onmouseout: "unsetcoll(this)"},
+                 onmouseover: "setcoll(this)", onmouseout: "unsetcoll(this)", ondblclick: "collall()"},
                 false
             )
             var a = [];
@@ -108,8 +108,9 @@ function unsetcoll(elem) {
     globalThis.hover_collapsable = ls;
 }
 
-function collapser() {
-    var elem = globalThis.hover_collapsable[0];
+function collapser(elem = undefined) {
+    if(elem == undefined)
+        var elem = globalThis.hover_collapsable[0];
     if(elem == undefined || elem.className.includes("lnk"))
         return;
     var disp = "block";
@@ -123,7 +124,19 @@ function collapser() {
         child.style.display = disp;
     }
     elem.className = name;
-    globalThis.hover_collapsable = [];
+}
+
+function collall() {
+    var elem = globalThis.hover_collapsable[0];
+    if(elem == undefined || elem.className.includes("lnk"))
+        return;
+    var child = elem.children;
+    for(var c of child) {
+        if(c.className == "collapser collopen") {
+            collapser(c);
+        }
+        collall(c);
+    }
 }
 
 prev_pages = [];
