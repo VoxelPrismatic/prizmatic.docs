@@ -1,5 +1,13 @@
+function rem_sel(parent) {
+    var children = parent.children;
+    for(var child of children) {
+        if(child.className == "lnk sel")
+            child.className = "lnk";
+        rem_sel(child);
+    }
+}
+
 function loadDoc(fileName, append = true) {
-    
     var file_name = "";
     if(fileName.id != undefined)
         file_name = fileName.id;
@@ -86,10 +94,7 @@ function loadDoc(fileName, append = true) {
                             file_name.split("/").slice(3).join("/") + "#top";
     if(high != undefined)
         find("page_url").href += "&" + high;
-    var things = find("nav").children;
-    for(var thing of things)
-        if(thing.className == "lnk sel")
-            thing.className = "lnk";
+    rem_sel(find("nav"))
     try {
         find(file_name).className = "lnk sel";
     } catch(err) {
