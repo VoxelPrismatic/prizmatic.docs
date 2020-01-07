@@ -7,7 +7,7 @@ function remJumps() {
     }
 }
 
-var hover_collapsable = [];
+var hover_collapsable = null;
 
 function grab_dirs(lvl = "/prizmatic.docs/doc") {
     var dirs = [];
@@ -31,7 +31,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
                 layout += Elm(
                     "div", short, 
                     {id: file, onclick: "loadDoc(this);", class: "lnk",
-                     onmouseover: "setcoll(this)", onmouseout: "unsetcoll(this)"}
+                     onmouseover: "setcoll(this)"}
                 )
             }
         } else if(line.endsWith(".dir")) {
@@ -39,7 +39,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
             layout += Elm(
                 "div", lvl.slice(19) + "/" + line, 
                 {id: "DROP_" + lvl + "/" + line, class: "collapser", onclick: "collapser()", 
-                 onmouseover: "setcoll(this)", onmouseout: "unsetcoll(this)"},
+                 onmouseover: "setcoll(this)"},
                 false
             )
             var a = [];
@@ -89,38 +89,15 @@ function check_for_dupes() {
 }
 
 function setcoll(elem) {
-    globalThis.hover_collapsable.push(elem);
-    var elm2 = globalThis.hover_collapsable[0]
-    if(elm2.className.includes("collapser")) {
-        elm2.className += " collhover";
+    globalThis.hover_collapsable = elem;
+    if(elem.className.includes("collapser")) {
+        elem.className += " collhover";
     }
 }
 
-function unsetcoll(elem) {
-    var thing = globalThis.hover_collapsable;
-    thing.reverse();
-    var ls = [];
-    var found = false;
-    for(var item of thing) {
-        if(!found && item.id == elem.id) {
-            found = true;
-            continue;
-        }
-        ls.push(item);
-    }
-    ls.reverse();
-    globalThis.hover_collapsable = ls;
-    var elm2 = globalThis.hover_collapsable[0]
-    if(elm2.className.includes("collapser")) {
-        elm2.className = elm2.className.replace("collhover", "");
-    }
-}
-
-function collapser(elem = undefined) {
+function collapser(elem = globalThis.hover_collapsable) {
     console.log(globalThis.hover_collapsable);
-    if(elem == undefined)
-        var elem = globalThis.hover_collapsable[0];
-    if(elem == undefined || elem.className.includes("lnk"))
+    if(elem == undefined || elem == null|| elem.className.includes("lnk"))
         return;
     var disp = "block";
     var name = "collapser collopen";
