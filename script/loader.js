@@ -65,7 +65,7 @@ function loadDoc(fileName, append = true) {
         setHtml("page", mark_page(txt));
         var mark = findHtml("page");
         mark = mark.replace(/<span><\/span>/gm, "");
-        mark = mark.replace(/(<br>[ \u200b]*){3,}/gm, "<br><br>");
+        mark = mark.replace(/(<br>[ \u200b]*){2}/gm, "<br>");
         setHtml("page", mark);
         
         // Section
