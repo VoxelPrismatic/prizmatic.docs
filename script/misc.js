@@ -7,6 +7,8 @@ function remJumps() {
     }
 }
 
+var hover_collapsable = [];
+
 function grab_dirs(lvl = "/prizmatic.docs/doc") {
     var dirs = [];
     var layout = "";
@@ -35,7 +37,8 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
             line = line.slice(0, -4);
             layout += Elm(
                 "div", lvl + "/" + line, 
-                {id: "DROP_" + lvl + "/" + line, class: "collapser", onclick: "collapser(this)"},
+                {id: "DROP_" + lvl + "/" + line, class: "collapser", onclick: "collapser()", 
+                 onmouseover: "setcoll(this)", onmouseout: "unsetcoll(this)"},
                 false
             )
             var a = [];
@@ -85,7 +88,28 @@ function check_for_dupes() {
     }
 }
 
-function collapser(elem) {
+function setcoll(elem) {
+    globalThis.hover_collapsable.push(elem);
+}
+
+function unsetcoll(elem) {
+    var thing = globalThis.hover_collapsable;
+    thing.reverse();
+    var ls = [];
+    var found = false;
+    for(var item of thing) {
+        if(!found && item.id == elem.id) {
+            found = true;
+            continue;
+        }
+        ls.push(item);
+    }
+    ls.reverse();
+    globalThis.hover_collapsable = ls;
+}
+
+function collapser() {
+    var elem = globalThis.hover_collapsable.slice(-1)[0];
     var disp = "block";
     var name = "collapser collopen";
     if(elem.className == name) {
@@ -97,6 +121,7 @@ function collapser(elem) {
         child.style.display = disp;
     }
     elem.className = name;
+    globalThis.hover_collapsable = [];
 }
 
 prev_pages = [];
