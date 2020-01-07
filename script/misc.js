@@ -7,8 +7,6 @@ function remJumps() {
     }
 }
 
-var hover_collapsable = null;
-
 function grab_dirs(lvl = "/prizmatic.docs/doc") {
     var dirs = [];
     var layout = "";
@@ -89,14 +87,22 @@ function check_for_dupes() {
 }
 
 function setcoll(elem) {
-    globalThis.hover_collapsable = elem;
+    colldesel();
     if(elem.className.includes("collapser")) {
         elem.className += " collhover";
     }
 }
 
-function collapser(elem = globalThis.hover_collapsable) {
-    console.log(globalThis.hover_collapsable);
+function colldesel(elem = find("nav")) {
+    var ch = elem.children;
+    for(var c of ch) {
+        if(c.className.includes("collhover"))
+            c.className = c.className.replace("collhover", "");
+        colldesel(c);
+    }
+}
+
+function collapser(elem) {
     if(elem == undefined || elem == null|| elem.className.includes("lnk"))
         return;
     var disp = "block";
