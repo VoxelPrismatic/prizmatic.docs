@@ -35,7 +35,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
             line = line.slice(0, -4);
             layout += Elm(
                 "div", lvl + "/" + line + "V", 
-                {id: "DROP_" + lvl + "/" + line, class: "lnk", onclick: "collapser(this)", class: "collapser"},
+                {id: "DROP_" + lvl + "/" + line, class: "collapser", onclick: "collapser(this)"},
                 false
             )
             var a = [];
@@ -53,7 +53,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
     for(var collapse of collapsers) {
         var items = collapse.children;
         for(var item of items)
-            item.display = "none";
+            item.style.display = "none";
     }
     return dirs;
 }
@@ -87,10 +87,10 @@ function check_for_dupes() {
 
 function collapser(elem) {
     var disp = "block";
-    var name = "lnk sel";
-    if(elem.id == "lnk sel") {
+    var name = "collapser collopen";
+    if(elem.id == name) {
         disp = "none";
-        name = "lnk";
+        name = "collapser";
     }
     var thing = elem.children;
     for(var child of thing) {
