@@ -38,6 +38,8 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
                 {id: "DROP_" + lvl + "/" + line, class: "lnk", onclick: "collapser(this)"},
                 false
             )
+            var a = [];
+            var b = "";
             [a, b] = grab_dirs(lvl + "/" + line);
             dirs.push(...a)
             layout += b + "</div>";
