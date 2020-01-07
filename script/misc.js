@@ -90,6 +90,12 @@ function check_for_dupes() {
 
 function setcoll(elem) {
     globalThis.hover_collapsable.push(elem);
+    var elm2 = globalThis.hover_collapsable[0]
+    if(elm2.className.includes("collapser")) {
+        elm2.style.backgroundColor = "#00ffff11";
+        elm2.style.color = "#aaffff";
+        elm2.style.borderColor = "#aaffff88";
+    }
 }
 
 function unsetcoll(elem) {
