@@ -68,11 +68,13 @@ function findVal(ids) {
 }
 
 //Make Element
-function Elm(typ, txt, params = {}) {
+function Elm(typ, txt, params = {}, end = true) {
     var str = "<" + typ;
     for(var key of params.constructor["entries"](params))
         str += ` ${key[0]}="${key[1]}"`;
-    str += `>${txt}</${typ}>`;
+    str += `>${txt}`
+    if(end)
+        str += `</${typ}>`;
     return str;
 }
 
