@@ -35,8 +35,7 @@ body {
     }
     min-height: 3vh;
     &::before {
-        content: "V";
-        float: right;
+        content: "[V]  ";
         font-weight: bold;
     }
 } .collopen {
@@ -44,12 +43,10 @@ body {
     .section(#ffffff88);
     color: #ffffff;
     &:hover {
-        .section(#cccccc88);
-        color: #cccccc;
+        background-color: #ffffff44;
     }
     &::before {
-        content: "\039b"; // Lambda
-        float: right;
+        content: "[\039b]  "; // Lambda
         font-weight: bold;
     }
 } .sel {
