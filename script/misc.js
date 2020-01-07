@@ -9,6 +9,9 @@ function remJumps() {
 
 function grab_dirs(lvl = "/prizmatic.docs/doc") {
     var dirs = [];
+    var layout = "";
+    if(lvl == "/prizmatic.docs/doc")
+        layout = findHtml("nav");
     var lines = read(lvl + "/dir.txt").split("\n");
     for(var line of lines) {
         if(line == "dir.txt")
@@ -23,22 +26,24 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
             } else {
                 name = short.slice(15);
                 var file = lvl + "/" + line;
-                addHtml("nav", Elm(
+                layout += Elm(
                     "div", short, 
                     {id: file, onclick: "loadDoc(this);", class: "lnk"}
-                ));
+                )
             }
         } else if(line.endsWith(".dir")) {
             line = line.slice(0, -4);
-            addHtml("nav", Elm(
+            layout += Elm(
                 "div", lvl + "/" + line + "V", 
                 {id: "DROP_" + lvl + "/" + line, class: "lnk", onclick: "collapser(this)"},
                 false
-            ));
+            )
             dirs.push(...grab_dirs(lvl + "/" + line))
-            addHtml("</div>");
+            layout += "</div>";
         }
     }
+    if(lvl == "/prizmatic.docs/doc")
+        setHtml("nav", layout);
     return dirs;
 }
 
