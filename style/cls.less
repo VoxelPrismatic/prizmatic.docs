@@ -24,6 +24,23 @@ body {
         .section(#00ff00);
     }
     min-height: 3vh;
+} .collapser {
+    .border(#004488);
+    color: #0088ff;
+    display: block;
+    .align(left);
+    &:hover {
+        .section(#00880044);
+    }
+    min-height: 3vh;
+} .collopen {
+    .collapser();
+    .section(#0088ff44);
+    color: #0088ff;
+    &:hover {
+        .section(#ff008844);
+        color: #ff0088;
+    }
 } .sel {
     .lnk();
     .section(#00ffff);
