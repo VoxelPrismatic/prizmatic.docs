@@ -130,7 +130,7 @@ function loadUri(uri, init = false) {
         ));
         let issues = "https://github.com/VoxelPrismatic/prizmatic.docs/issues/new";
         addHtml("page", Elm(
-            "div", `You can always send a bug report over at <a href="${issues}" rel="_blank">` +
+            "div", `You can always send a bug report over at <a href="${issues}" target="_blank">` +
             "issues</a>"
         ));
     }
