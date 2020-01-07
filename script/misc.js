@@ -117,6 +117,7 @@ function unsetcoll(elem) {
 }
 
 function collapser(elem = undefined) {
+    console.log(globalThis.hover_collapsable);
     if(elem == undefined)
         var elem = globalThis.hover_collapsable[0];
     if(elem == undefined || elem.className.includes("lnk"))
