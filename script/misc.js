@@ -86,11 +86,23 @@ function check_for_dupes() {
     }
 }
 
+function collsel(elem = find("nav")) {
+    var ch = elem.children;
+    var itm = null;
+    for(var c of ch) {
+        if(c.className.includes("collhover"))
+            itm = null;
+        var tmp = collsel(c);
+        if(tmp != null) 
+            return itm
+    }
+    return itm;
+}
+    
+
 function setcoll(elem) {
     colldesel();
-    if(elem.className.includes("collapser")) {
-        elem.className += " collhover";
-    }
+    
 }
 
 function colldesel(elem = find("nav")) {
