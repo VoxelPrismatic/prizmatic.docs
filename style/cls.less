@@ -25,8 +25,8 @@ body {
     }
     min-height: 3vh;
 } .collapser {
-    .section(#ff880044);
-    color: #ff8800;
+    .section(#0088ff44);
+    color: #0088ff;
     display: block;
     .align(left);
     &:hover {
@@ -34,19 +34,19 @@ body {
         color: #00ff00;
     }
     min-height: 3vh;
-    &:after {
+    &::before {
         content: "V";
         float: right;
     }
 } .collopen {
     .collapser();
-    .section(#ffff0044);
-    color: #ffff00;
+    .section(#8800ff44);
+    color: #8800ff;
     &:hover {
         .section(#ff008844);
         color: #ff0088;
     }
-    &:after {
+    &::before {
         content: "\039b"; // Lambda
         float: right;
     }
