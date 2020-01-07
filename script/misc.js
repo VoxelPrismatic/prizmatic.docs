@@ -110,7 +110,7 @@ function unsetcoll(elem) {
 
 function collapser() {
     var elem = globalThis.hover_collapsable[0];
-    if(elem.className.includes("lnk"))
+    if(elem == undefined || elem.className.includes("lnk"))
         return;
     var disp = "block";
     var name = "collapser collopen";
