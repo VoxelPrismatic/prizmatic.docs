@@ -344,9 +344,12 @@ function docs_mark(st) {
     loc = "";
     props = false;
     params = false;
-    globalThis.loc = findHtml("this-here").split("/prizmatic.docs/doc/")[0].
-                     split("/").slice(0, -1).join(".");
-    globalThis.here = loc;
+    var tmp = findHtml("this-here").split("/prizmatic.docs/doc/")[0]
+    while(tmp[0] == "")
+        tmp = tmp.slice(1);
+    tmp[0] = tmp[0].split("/").slice(0, -1).join(".");
+    globalThis.loc = tmp[0];
+    globalThis.here = tmp[0];
     notes = {}
     if(st.startsWith("--top--"))
         st = st.slice(8); // Removes the "--top--"
