@@ -88,7 +88,7 @@ function check_for_dupes() {
 function collapser(elem) {
     var disp = "block";
     var name = "collapser collopen";
-    if(elem.id == name) {
+    if(elem.className == name) {
         disp = "none";
         name = "collapser";
     }
