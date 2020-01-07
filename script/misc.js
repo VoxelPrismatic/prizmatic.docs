@@ -22,7 +22,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
                 short = link.slice(20);
             } else {
                 name = short.slice(15);
-                file = lvl + "/" + line;
+                var file = lvl + "/" + line;
                 addHtml("nav", Elm(
                     "div", short, 
                     {id: file, onclick: "loadDoc(this);", class: "lnk"}
@@ -30,15 +30,21 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
             }
         } else if(line.endsWith(".dir")) {
             line = line.slice(0, -4);
+            addHtml("nav", Elm(
+                "div", lvl + "/" + line + "V", 
+                {id: "DROP_" + lvl + "/" + line, class: "lnk", onclick: "collapser(this)"},
+                false
+            ));
             dirs.push(...grab_dirs(lvl + "/" + line))
+            addHtml("</div>");
         }
     }
     return dirs;
 }
 
 function btn(elem, id) {
-    btns = find(".tab");
-    for(el of btns)
+    var btns = find(".tab");
+    for(var el of btns)
         el.className = "tab";
     elem.className = "tab tabbed";
     pages = find(".page");
@@ -61,6 +67,20 @@ function check_for_dupes() {
             ls.push(btn.id);
         }
     }
+}
+
+function collapser(elem) {
+    var disp = "block";
+    var name = "lnk sel";
+    if(elem.id == "lnk sel") {
+        disp = "none";
+        name = "lnk";
+    }
+    var thing = elem.children;
+    for(var child in thing) {
+        child.style.display = disp;
+    }
+    elem.className = name;
 }
 
 prev_pages = [];
