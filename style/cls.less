@@ -26,12 +26,14 @@ body {
     min-height: 3vh;
 } .collapser {
     .section(#cccccc88);
+    border-color: #cccccc88;
     color: #cccccc;
     display: block;
     .align(left);
     &:hover {
         .section(#ffffff88);
         color: #ffffff;
+        border-color: #ffffff88;
         background-color: #ffffff05;
     }
     min-height: 3vh;
@@ -43,11 +45,16 @@ body {
     .collapser();
     .section(#ffffff88);
     color: #ffffff;
+    border-color: #ffffff88;
     background-color: #ffffff05;
     &::before {
         content: "[\039b]  "; // Lambda
         font-weight: bold;
     }
+} .colhover {
+    background-color: #00ffff11;
+    color: #aaffff;
+    border-color: #aaffff88;
 } .sel {
     .lnk();
     .section(#00ffff);
