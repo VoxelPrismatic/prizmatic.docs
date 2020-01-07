@@ -108,8 +108,12 @@ function loadDoc(fileName, append = true) {
 }
 
 function loadUri(uri, init = false) {
-    if (!(uri.startsWith("/prizmatic.docs/doc/")));
-          uri = "/prizmatic.docs/doc/" + uri;
+    if (!(uri.startsWith("/prizmatic.docs/doc/"))) {
+        for(var module of ["discord", "reddit", "riot"])
+            if(uri.includes(module))
+                init = true;
+        uri = "/prizmatic.docs/doc/" + uri;
+    }
     var url = uri.replace(/\/\//gm, "/").split("#")[0].split("&")[0];
     if(url.endsWith("/") && !init)
         url += "index.txt";
