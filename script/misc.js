@@ -92,9 +92,7 @@ function setcoll(elem) {
     globalThis.hover_collapsable.push(elem);
     var elm2 = globalThis.hover_collapsable[0]
     if(elm2.className.includes("collapser")) {
-        elm2.style.backgroundColor = "#00ffff11";
-        elm2.style.color = "#aaffff";
-        elm2.style.borderColor = "#aaffff88";
+        elm2.className += " collhover";
     }
 }
 
@@ -112,6 +110,10 @@ function unsetcoll(elem) {
     }
     ls.reverse();
     globalThis.hover_collapsable = ls;
+    var elm2 = globalThis.hover_collapsable[0]
+    if(elm2.className.includes("collapser")) {
+        elm2.className = elm2.className.replace("collhover", "");
+    }
 }
 
 function collapser(elem = undefined) {
