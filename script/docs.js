@@ -344,7 +344,7 @@ function docs_mark(st) {
     loc = "";
     props = false;
     params = false;
-    var tmp = findHtml("this-here").split("/prizmatic.docs/doc/")[0]
+    var tmp = findHtml("this-here").split("/prizmatic.docs/doc/")
     while(tmp[0] == "")
         tmp = tmp.slice(1);
     tmp[0] = tmp[0].split("/").slice(0, -1).join(".");
