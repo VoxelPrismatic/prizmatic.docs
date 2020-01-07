@@ -39,7 +39,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
             layout += Elm(
                 "div", lvl.slice(19) + "/" + line, 
                 {id: "DROP_" + lvl + "/" + line, class: "collapser", onclick: "collapser()", 
-                 onmouseover: "setcoll(this)", onmouseout: "unsetcoll(this)", ondblclick: "collall()"},
+                 onmouseover: "setcoll(this)", onmouseout: "unsetcoll(this)"},
                 false
             )
             var a = [];
