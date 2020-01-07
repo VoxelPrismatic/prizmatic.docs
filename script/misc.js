@@ -109,7 +109,7 @@ function unsetcoll(elem) {
 }
 
 function collapser() {
-    var elem = globalThis.hover_collapsable.slice(-1)[0];
+    var elem = globalThis.hover_collapsable[0];
     var disp = "block";
     var name = "collapser collopen";
     if(elem.className == name) {
