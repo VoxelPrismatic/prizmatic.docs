@@ -144,8 +144,8 @@ function loadUri(uri, init = false) {
 
 function loadBtn(url) {
     var here = findHtml("this-here");
-    if(url.startsWith("/prizmatic.docs/doc/"))
-        url = url.slice(20);
+    if(!url.startsWith("/prizmatic.docs/doc/"))
+        url = "/prizmatic.docs/doc/" + url;
     if(url.startsWith("./")) {
         loadDoc(here.split("/").slice(0, -1).join("/") +"/" + url.replace(/\.\//gm, ""), true);
     } else if(url.startsWith("../")) {
