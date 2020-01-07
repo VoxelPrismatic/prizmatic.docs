@@ -30,7 +30,8 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
                 var file = lvl + "/" + line;
                 layout += Elm(
                     "div", short, 
-                    {id: file, onclick: "loadDoc(this);", class: "lnk"}
+                    {id: file, onclick: "loadDoc(this);", class: "lnk",
+                     onmouseover: "setcoll(this)", onmouseout: "unsetcoll(this)"}
                 )
             }
         } else if(line.endsWith(".dir")) {
@@ -109,6 +110,8 @@ function unsetcoll(elem) {
 
 function collapser() {
     var elem = globalThis.hover_collapsable[0];
+    if(elem.className.includes("lnk"))
+        return;
     var disp = "block";
     var name = "collapser collopen";
     if(elem.className == name) {
