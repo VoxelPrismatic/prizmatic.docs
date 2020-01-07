@@ -38,12 +38,14 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
                 {id: "DROP_" + lvl + "/" + line, class: "lnk", onclick: "collapser(this)"},
                 false
             )
-            dirs.push(...grab_dirs(lvl + "/" + line))
-            layout += "</div>";
+            [a, b] = grab_dirs(lvl + "/" + line);
+            dirs.push(...a)
+            layout += b + "</div>";
         }
     }
-    if(lvl == "/prizmatic.docs/doc")
-        setHtml("nav", layout);
+    if(lvl != "/prizmatic.docs/doc")
+        return [dirs, layout];
+    setHtml("nav", layout);
     return dirs;
 }
 
