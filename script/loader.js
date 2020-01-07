@@ -128,9 +128,9 @@ function loadUri(uri, init = false) {
             "div", "An unknown error occured, check console for details", 
             {class: "warn"}
         ));
-        let issues = "https://github.com/prizmatic.docs/issues";
+        let issues = "https://github.com/VoxelPrismatic/prizmatic.docs/issues/new";
         addHtml("page", Elm(
-            "div", `You can always send a bug report over at <a href="${issues}">` +
+            "div", `You can always send a bug report over at <a href="${issues}" rel="_blank">` +
             "issues</a>"
         ));
     }
