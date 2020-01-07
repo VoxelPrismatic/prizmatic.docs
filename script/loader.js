@@ -21,7 +21,6 @@ function loadDoc(fileName, append = true) {
     }
     
     try {
-        var things = find("nav").children;
         setHtml("page", findHtml("DOCS_" + file_name));
         setHtml("sect", findHtml("SECT_" + file_name));
     } catch(err) {
@@ -87,6 +86,7 @@ function loadDoc(fileName, append = true) {
                             file_name.split("/").slice(3).join("/") + "#top";
     if(high != undefined)
         find("page_url").href += "&" + high;
+    var things = find("nav").children;
     for(var thing of things)
         if(thing.className == "lnk sel")
             thing.className = "lnk";
