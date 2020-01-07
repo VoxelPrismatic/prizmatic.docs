@@ -37,8 +37,8 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
         } else if(line.endsWith(".dir")) {
             line = line.slice(0, -4);
             layout += Elm(
-                "div", lvl + "/" + line, 
-                {id: "DROP_" + lvl.slice(19) + "/" + line, class: "collapser", onclick: "collapser()", 
+                "div", lvl.slice(19) + "/" + line, 
+                {id: "DROP_" + lvl + "/" + line, class: "collapser", onclick: "collapser()", 
                  onmouseover: "setcoll(this)", onmouseout: "unsetcoll(this)"},
                 false
             )
