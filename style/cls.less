@@ -34,6 +34,10 @@ body {
         color: #00ff00;
     }
     min-height: 3vh;
+    &:after {
+        content: "V";
+        float: right;
+    }
 } .collopen {
     .collapser();
     .section(#ffff0044);
@@ -41,6 +45,10 @@ body {
     &:hover {
         .section(#ff008844);
         color: #ff0088;
+    }
+    &:after {
+        content: "\039b"; // Lambda
+        float: right;
     }
 } .sel {
     .lnk();
