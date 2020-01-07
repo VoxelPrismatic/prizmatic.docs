@@ -137,6 +137,7 @@ function collall() {
         }
         collall(c);
     }
+    collapser(elem);
 }
 
 prev_pages = [];
