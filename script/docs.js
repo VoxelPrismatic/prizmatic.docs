@@ -344,8 +344,9 @@ function docs_mark(st) {
     loc = "";
     props = false;
     params = false;
-    loc = findHtml("this-here").slice(20).split("/").slice(0, -1).join(".");
-    here = loc;
+    globalThis.loc = findHtml("this-here").split("/prizmatic.docs/doc/")[0].
+                     split("/").slice(0, -1).join(".");
+    globalThis.here = loc;
     notes = {}
     if(st.startsWith("--top--"))
         st = st.slice(8); // Removes the "--top--"
