@@ -16,20 +16,15 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
     for(var line of lines) {
         if(line == "dir.txt")
             continue;
-        var shown = "<sub>" + lvl.slice(19) + "/" + ;
+        var shown = "<sub>" + lvl.slice(19) + "/";
         var end = line.replace(".txt", ".py").split("/").slice(-1)[0];
         end = "/</sub><b>" + end + "</b>";
         shown += lvl.split("/").slice(0, -1).join("/") + end;
+        var file = lvl + "/" + line;
         if(line.endsWith(".txt")) {
-            var link = lvl + "/" + line;
-            var short = link.slice(20);
-            dirs.push(link);
-            if(link.endsWith("index.txt")) {
-                link = link.replace("index.txt", "");
-                short = link.slice(20);
-            } else {
-                name = short.slice(15);
-                var file = lvl + "/" + line;
+            dirs.push(file);
+            if(!(line.endsWith("index.txt") || line.endsWith("__init__.txt") ||
+                 line.endsWith("dir.txt"))) {
                 layout += Elm(
                     "div", shown, 
                     {id: file, onclick: "collapser(this);", class: "lnk",
@@ -40,7 +35,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
             line = line.slice(0, -4);
             layout += Elm(
                 "div", shown, 
-                {id: "DROP_" + lvl + "/" + line, class: "collapser", onclick: "collapser(this)", 
+                {id: "DROP_" + file, class: "collapser", onclick: "collapser(this)", 
                  onmouseover: "setcoll(this)"},
                 false
             )
