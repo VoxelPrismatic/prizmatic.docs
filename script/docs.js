@@ -250,14 +250,6 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\`(.+?)`/gm, 
-        function(m, p1) {
-            var st = `<span class="code">`;
-            st += py_mark(p1);
-            st += `</span>`;
-            return st;
-        }
-    ], [
         /\%n(\d+)\% ([^%{]+)\n\n/gm,
         function(m, p1, p2) {
             notes["\\%N" + p1 + "\\%"] = p2;
@@ -267,12 +259,12 @@ var docs_regex = [
     ], [
         /\{\{alias\}\} ([\w\d_]+)\n\n/gm,
         function(m, p1) {
-            return `\\!1\n    <b>NOTE ] </b>An alias resides under '${p1}'</div>`;
+            return `\u200c    <b>NOTE ] </b>An alias resides under \`${p1}</span>\``;
         }
     ], [
         /\{\{norm\}\} (.+)\n\n/gm,
         function(m, p1) {
-            return `\\!1\n    <b>NOTE ] </b>The default value is <span class="code">${p1}</span>`;
+            return `\u200c    <b>NOTE ] </b>The default value is \`${p1}\`\n`;
         }
     ], [
         /\{\{reqd\}\}\n+/gm,
@@ -305,6 +297,14 @@ var docs_regex = [
                 st += def;
             }
             st += "</div>";
+            return st;
+        }
+    ], [
+        /\`(.+?)`/gm, 
+        function(m, p1) {
+            var st = `<span class="code">`;
+            st += py_mark(p1);
+            st += `</span>`;
             return st;
         }
     ], [
