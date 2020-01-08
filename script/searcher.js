@@ -95,14 +95,20 @@ function find_text(re, parent = find("page")) {
     return ttl;
 }
 
-function filter_docs(thing) {
-    var pages = find("nav").children;
+function filter_docs(thing, page = find("nav")) {
+    var pages = page.children;
     re = regex(thing, "filter_docs");
-    if(re == 1)
-        return;
     for(var page of pages) {
+        if(page.id.startsWith("DROP")) {
+            filter_docs(thing, page);
+            continue;
+        }
         if(!(page.id.startsWith("/prizmatic.docs/doc/")))
             continue;
+        if(re == 1) {
+            page.style.display = "block";
+            continue;
+        }
         var id = page.id.slice(20, -4);
         if(thing == "" || id.search(re) != -1)
             page.style.display = "block";
