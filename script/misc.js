@@ -16,6 +16,10 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
     for(var line of lines) {
         if(line == "dir.txt")
             continue;
+        var shown = "<sub>" + lvl.slice(19) + "/" + ;
+        var end = line.replace(".txt", ".py").split("/").slice(-1)[0];
+        end = "/</sub><b>" + end + "</b>";
+        shown += lvl.split("/").slice(0, -1).join("/") + end;
         if(line.endsWith(".txt")) {
             var link = lvl + "/" + line;
             var short = link.slice(20);
@@ -27,7 +31,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
                 name = short.slice(15);
                 var file = lvl + "/" + line;
                 layout += Elm(
-                    "div", "./" + (lvl.slice(19) + "/" + line).split("/").slice(-1)[0], 
+                    "div", shown, 
                     {id: file, onclick: "collapser(this);", class: "lnk",
                      onmouseover: "setcoll(this);"}
                 )
@@ -35,7 +39,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
         } else if(line.endsWith(".dir")) {
             line = line.slice(0, -4);
             layout += Elm(
-                "div", "./" + (lvl.slice(19) + "/" + line).split("/").slice(-1)[0], 
+                "div", shown, 
                 {id: "DROP_" + lvl + "/" + line, class: "collapser", onclick: "collapser(this)", 
                  onmouseover: "setcoll(this)"},
                 false
@@ -109,15 +113,15 @@ function colldesel(elem = find("nav")) {
     var ch = elem.children;
     for(var c of ch) {
         if(c.className.includes("collhover"))
-            c.classList.remove("collhover");
+            collapser(c, true);
         colldesel(c);
     }
 }
 
 var timeout = false;
 
-function collapser(elem) {
-    if(globalThis.timeout)
+function collapser(elem, force = false) {
+    if(globalThis.timeout && !force)
         return;
     globalThis.timeout = true;
     window.setTimeout(function() {globalThis.timeout = false;}, 500);
@@ -134,6 +138,8 @@ function collapser(elem) {
     }
     var thing = elem.children;
     for(var child of thing) {
+        if(page.tagName != "DIV")
+            continue;
         if(disp && !child.className.includes("invis"))
             child.style.display = "block";
         else
