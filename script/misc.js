@@ -36,7 +36,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
             line = line.slice(0, -4);
             layout += Elm(
                 "div", lvl.slice(19) + "/" + line, 
-                {id: "DROP_" + lvl + "/" + line, class: "collapser", onclick: "collapser()", 
+                {id: "DROP_" + lvl + "/" + line, class: "collapser", onclick: "collapser(this)", 
                  onmouseover: "setcoll(this)"},
                 false
             )
@@ -114,7 +114,12 @@ function colldesel(elem = find("nav")) {
     }
 }
 
+var timeout = false;
+
 function collapser(elem) {
+    if(globalThis.timeout)
+        return;
+    globalThis.timeout = true;
     if(elem == undefined || elem == null|| elem.className.includes("lnk"))
         return;
     var disp = "block";
@@ -128,6 +133,8 @@ function collapser(elem) {
         child.style.display = disp;
     }
     elem.className = name;
+    window.setTimeout(function() {globalThis.timeout = false;}, 500);
+    //Set timeout so multiple collapses cannot run at the same time
 }
 
 function collall() {
