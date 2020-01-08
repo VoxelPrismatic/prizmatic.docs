@@ -100,6 +100,7 @@ function filter_docs(thing, page = find("nav")) {
     re = regex(thing, "filter_docs");
     for(var page of pages) {
         if(page.id.startsWith("DROP")) {
+            page.click();
             filter_docs(thing, page);
             continue;
         }
@@ -110,10 +111,14 @@ function filter_docs(thing, page = find("nav")) {
             continue;
         }
         var id = page.id.slice(20, -4);
-        if(thing == "" || id.search(re) != -1)
+        if(thing == "" || id.search(re) != -1) {
             page.style.display = "block";
-        else
+            page.className = page.className.replace(/invis/gm, "");
+        } else {
             page.style.display = "none";
+            page.className = page.className.replace(/invis/gm, "") + "invis";
+        }
+        page.className = page.className.replace(/ +/gm, " ");
     }
 }
 
