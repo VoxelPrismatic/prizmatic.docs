@@ -139,6 +139,9 @@ function filter_docs(thing, page = find("nav")) {
             page.style.display = "none";
         }
     }
+    if(re == 1) {
+        collall();
+    }
 }
 
 function filter_jump(thing) {
