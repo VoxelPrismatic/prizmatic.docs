@@ -17,7 +17,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
         var shown = "<span style='font-size: smaller; vertical-align: middle;'>"
         shown += lvl.slice(19) + "/";
         var end = line.replace(".txt", ".py");
-        shown += "/</span><b>" + end + "</b>";
+        shown += "</span><b>" + end + "</b>";
         var file = lvl + "/" + line;
         if(line.endsWith(".txt")) {
             dirs.push(file);
