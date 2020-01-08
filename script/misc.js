@@ -109,7 +109,7 @@ function colldesel(elem = find("nav")) {
     var ch = elem.children;
     for(var c of ch) {
         if(c.className.includes("collhover"))
-            c.className = c.className.replace("collhover", "");
+            c.classList.remove("collhover");
         colldesel(c);
     }
 }
@@ -126,15 +126,18 @@ function collapser(elem) {
         return loadDoc(elem);
     if(elem == undefined || elem == null)
         return;
-    var disp = "block";
+    var disp = true;
     var name = "collapser collopen";
     if(elem.className.includes("collopen")) {
-        disp = "none";
+        disp = false;
         name = "collapser";
     }
     var thing = elem.children;
     for(var child of thing) {
-        child.style.display = disp;
+        if(disp)
+            child.classList.remove("invis")
+        else
+            child.classList.add("invis")
     }
     elem.className = name;
 }
