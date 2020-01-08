@@ -30,14 +30,14 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
             }
         } else if(line.endsWith(".dir")) {
             layout += Elm(
-                "div", shown.slice(0, -4), 
+                "div", shown.replace(".dir", ""), 
                 {id: "DROP_" + file, class: "collapser", onclick: "collapser(this)", 
                  onmouseover: "setcoll(this)"},
                 false
             )
             var a = [];
             var b = "";
-            [a, b] = grab_dirs(lvl + "/" + line);
+            [a, b] = grab_dirs(file.slice(0, -4));
             dirs.push(...a)
             layout += b + "</div>";
         }
