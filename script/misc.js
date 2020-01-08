@@ -87,8 +87,6 @@ function check_for_dupes() {
 }
 
 function collsel(elem = find("nav")) {
-    if(!elem.className.includes("collapser"))
-        return loadDoc(elem);
     var ch = elem.children;
     var itm = null;
     for(var c of ch) {
@@ -122,7 +120,9 @@ function collapser(elem) {
     if(globalThis.timeout)
         return;
     globalThis.timeout = true;
-    if(elem == undefined || elem == null|| elem.className.includes("lnk"))
+    if(elem.className.includes("lnk"))
+        return loadDoc(elem);
+    if(elem == undefined || elem == null)
         return;
     var disp = "block";
     var name = "collapser collopen";
