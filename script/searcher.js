@@ -100,8 +100,21 @@ function filter_docs(thing, page = find("nav")) {
     re = regex(thing, "filter_docs");
     for(var page of pages) {
         if(page.id.startsWith("DROP")) {
-            page.click();
+            page.style.display = "block";
+            if(!page.className.includes("collopen"))
+                page.click();
             filter_docs(thing, page);
+            var child = page.children;
+            var hidden = true;
+            for(var c of child) {
+                if(c.style.display != "none") {
+                    hidden = false;
+                    break;
+                }
+            }
+            if(hidden) {
+                page.style.display = "none";
+            }
             continue;
         }
         if(!(page.id.startsWith("/prizmatic.docs/doc/")))
