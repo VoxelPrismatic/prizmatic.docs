@@ -100,7 +100,7 @@ function filter_docs(thing, page = find("nav")) {
     re = regex(thing, "filter_docs");
     for(var page of pages) {
         if(page.id.startsWith("DROP")) {
-            page.classList.remove("invis");
+            page.classList.remove("begone");
             page.style.display = "block";
             if(!page.className.includes("collopen"))
                 page.click();
@@ -108,13 +108,13 @@ function filter_docs(thing, page = find("nav")) {
             var child = page.children;
             var hidden = true;
             for(var c of child) {
-                if(!c.className.includes("invis")) {
+                if(!c.className.includes("begone")) {
                     hidden = false;
                     break;
                 }
             }
             if(hidden) {
-                page.classList.add("invis");
+                page.classList.add("begone");
                 page.style.display = "none";
             }
             continue;
@@ -122,7 +122,7 @@ function filter_docs(thing, page = find("nav")) {
         if(!(page.id.startsWith("/prizmatic.docs/doc/")))
             continue;
         if(re == 1) {
-            page.classList.remove("invis");
+            page.classList.remove("begone");
             page.style.display = "block";
             if(page.className.includes("collopen"))
                 page.click();
@@ -130,10 +130,10 @@ function filter_docs(thing, page = find("nav")) {
         }
         var id = page.id.slice(20, -4);
         if(thing == "" || id.search(re) != -1) {
-            page.classList.remove("invis");
+            page.classList.remove("begone");
             page.style.display = "block";
         } else {
-            page.classList.add("invis");
+            page.classList.add("begone");
             page.style.display = "none";
         }
     }
