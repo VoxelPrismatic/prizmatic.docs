@@ -77,7 +77,7 @@ var docs_regex = [
             return "";
         }
     ], [
-        /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, \[\]\n]*?)\)\n\n+/gm,
+        /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, \[\]\n]*?)\)\n\n/gm,
         function(m, p1, p2, p3) {
             var st = `<div id="top"></div><div id="${p2}" class="head1">`;
             st += `#] ` + p2 + ` <span class="typ">{{cls}}</span>`;
@@ -89,7 +89,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{subcls\}\} \[(.+)\] (.+?) = (.+?)\(([\w\d*_, \[\]\n]*?)\)\n\n+/gm,
+        /\{\{subcls\}\} \[(.+)\] (.+?) = (.+?)\(([\w\d*_, \[\]\n]*?)\)\n\n/gm,
         function(m, p4, p1, p2, p3) {
             var st = `<div id="top"></div><div id="${p2}" class="head1">`;
             st += `#] ` + p2 + "(" + p4 + ")" + ` <span class="typ">{{cls}}</span>`;
@@ -106,7 +106,7 @@ var docs_regex = [
             return ind(4) + trim(p1).replace(/\n */gm, " ") + "\n";
         }
     ], [
-        /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, \[\]]*?)\)(.*)\n\n+/gm,
+        /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, \[\]]*?)\)(.*)\n\n/gm,
         function(m, p1, p4, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -125,7 +125,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{bltin\}\} (.+?)\.(__[\w\d_]+__)\(([\w\d*_, \[\]]*?)\)\n\{\{usage\}\} (.*)\n\n+/gm,
+        /\{\{bltin\}\} (.+?)\.(__[\w\d_]+__)\(([\w\d*_, \[\]]*?)\)\n\{\{usage\}\} (.*)\n\n/gm,
         function(m, p4, p2, p3, p5) {
             if(p5 == undefined)
                 p5 = ""
@@ -139,7 +139,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{sepfn\}\} (await )?([\w\d_]+)\(([\w\d*_, \[\]]*?)\)(.*)\n\n+/gm,
+        /\{\{sepfn\}\} (await )?([\w\d_]+)\(([\w\d*_, \[\]]*?)\)(.*)\n\n/gm,
         function(m, p1, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -161,7 +161,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{clsfn\}\} (.*) = (await )?([\w\d_]+)\(([\w\d*_, \[\]]*?)\)(.*)\n\n+/gm,
+        /\{\{clsfn\}\} (.*) = (await )?([\w\d_]+)\(([\w\d*_, \[\]]*?)\)(.*)\n\n/gm,
         function(m, p4, p1, p2, p3, p5) {
             if(p1 == undefined)
                 p1 = "";
@@ -180,7 +180,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{param\}\} (.+?) \[(.+?)\]\n([^{]*)\n*/gm,
+        /\{\{param\}\} (.+?) \[(.+?)\]\n([^{]*)\n?/gm,
         function(m, p1, p2, p3) {
             var st = ""
             if(!params) {
@@ -197,7 +197,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{prop\}\} (.+?) \[(.+?)\]\n([^{]*)\n*/gm, 
+        /\{\{prop\}\} (.+?) \[(.+?)\]\n([^{]*)\n?/gm, 
         function(m, p1, p2, p3) {
             var st = ""
             if(!props) {
@@ -234,7 +234,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{note\}\} ([^{]+)\n\n+/gm,
+        /\{\{note\}\} ([^{]+)\n\n/gm,
         function(m, p1) {
             var st = `<div class="note"><b>NOTE ] </b>`
             st += p1.replace(/\n */gm, " ");
@@ -264,7 +264,7 @@ var docs_regex = [
             return "\n";
         }
     ], [
-        /\{\{alias\}\} ([\w\d_]+)\n+/gm,
+        /\{\{alias\}\} ([\w\d_]+)\n/gm,
         function(m, p1) {
             return `\\!1<b>NOTE ] </b>An alias resides under '${p1}'</div>`;
         }
@@ -280,7 +280,7 @@ var docs_regex = [
         /\{\{optn\}\}\n+/gm,
         `\\!1<b>NOTE ] </b>This is optional`
     ], [
-        /\{\{pydesc\}\} (.+)\n\n+/gm,
+        /\{\{pydesc\}\} (.+)\n\n/gm,
         function(m, p1) {
             try {
                 return ind(4) + py_desc[p1];
