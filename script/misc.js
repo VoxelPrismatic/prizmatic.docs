@@ -28,8 +28,8 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
                 var file = lvl + "/" + line;
                 layout += Elm(
                     "div", short, 
-                    {id: file, onclick: "loadDoc(this);", class: "lnk",
-                     onmouseover: "setcoll(this)"}
+                    {id: file, onclick: "collapser(this);", class: "lnk",
+                     onmouseover: "setcoll(this);"}
                 )
             }
         } else if(line.endsWith(".dir")) {
@@ -87,6 +87,8 @@ function check_for_dupes() {
 }
 
 function collsel(elem = find("nav")) {
+    if(!elem.className.includes("collapser"))
+        return loadDoc(elem);
     var ch = elem.children;
     var itm = null;
     for(var c of ch) {
