@@ -1,6 +1,9 @@
 function folder_back() {
+    while(prev_pages.slice(-1)[0] == findHtml("this-here"))
+        prev_pages = prev_pages.slice(0, -1)
     id = prev_pages.slice(-1)[0];
     next_pages.push(id);
+    prev_pages = prev_pages.slice(0, -1)
     loadDoc(id, false);
 }
 
@@ -24,6 +27,8 @@ function folder_up() {
 }
 
 function folder_next() {
+    while(next_pages.slice(-1)[0] == findHtml("this-here"))
+        next_pages = next_pages.slice(0, -1)
     var stuffs = find("nav").children;
     var stuff = [];
     for(thing in stuffs)
