@@ -116,6 +116,8 @@ function filter_docs(thing, page = find("nav")) {
             if(hidden) {
                 page.classList.add("invis");
                 page.style.display = "none";
+            } else {
+                page.click();
             }
             continue;
         }
