@@ -14,8 +14,6 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
         layout = findHtml("nav");
     var lines = read(lvl + "/dir.txt").split("\n");
     for(var line of lines) {
-        if(line == "dir.txt")
-            continue;
         var shown = "<span style='font-size: smaller; vertical-align: middle;'>"
         shown += lvl.slice(19) + "/";
         var end = line.replace(".txt", ".py");
@@ -23,8 +21,7 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
         var file = lvl + "/" + line;
         if(line.endsWith(".txt")) {
             dirs.push(file);
-            if(!(line.endsWith("index.txt") || line.endsWith("__init__.txt") ||
-                 line.endsWith("dir.txt"))) {
+            if(!(line.endsWith("index.txt") || line.endsWith("__init__.txt"))) {
                 layout += Elm(
                     "div", shown, 
                     {id: file, onclick: "collapser(this);", class: "lnk",
