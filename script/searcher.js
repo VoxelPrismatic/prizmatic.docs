@@ -99,6 +99,8 @@ function filter_docs(thing, page = find("nav")) {
     var pages = page.children;
     re = regex(thing, "filter_docs");
     for(var page of pages) {
+        if(page.tagName != "DIV")
+            continue;
         if(page.id.startsWith("DROP")) {
             page.classList.remove("invis");
             page.style.display = "block";
