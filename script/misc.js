@@ -134,7 +134,7 @@ function collapser(elem) {
     }
     var thing = elem.children;
     for(var child of thing) {
-        if(disp && !child.className.includes("bogone"))
+        if(disp && !child.className.includes("invis"))
             child.style.display = "block";
         else
             child.style.display = "none";
