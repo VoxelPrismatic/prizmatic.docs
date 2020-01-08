@@ -143,10 +143,7 @@ function collapser(elem) {
 }
 
 function collall() {
-    var elem = globalThis.hover_collapsable[0];
-    if(elem == undefined || elem.className.includes("lnk"))
-        return;
-    var child = elem.children;
+    var child = find("nav");
     for(var c of child) {
         if(c.className.includes("collopen")) {
             collapser(c);
