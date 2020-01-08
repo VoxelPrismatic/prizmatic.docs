@@ -120,6 +120,8 @@ function collapser(elem) {
     if(globalThis.timeout)
         return;
     globalThis.timeout = true;
+    window.setTimeout(function() {globalThis.timeout = false;}, 500);
+    //Set timeout so multiple collapses cannot run at the same time
     if(elem.className.includes("lnk"))
         return loadDoc(elem);
     if(elem == undefined || elem == null)
@@ -135,8 +137,6 @@ function collapser(elem) {
         child.style.display = disp;
     }
     elem.className = name;
-    window.setTimeout(function() {globalThis.timeout = false;}, 500);
-    //Set timeout so multiple collapses cannot run at the same time
 }
 
 function collall() {
