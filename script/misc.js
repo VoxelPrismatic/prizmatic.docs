@@ -16,10 +16,10 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
     for(var line of lines) {
         if(line == "dir.txt")
             continue;
-        var shown = "<sub>" + lvl.slice(19) + "/";
-        var end = line.replace(".txt", ".py").split("/").slice(-1)[0];
-        end = "/</sub><b>" + end + "</b>";
-        shown += lvl.split("/").slice(0, -1).join("/") + end;
+        var shown = "<span style='font-size: smaller; vertical-align: middle;'>"
+        shown += lvl.slice(19) + "/";
+        var end = line.replace(".txt", ".py");
+        shown += "/</span><b>" + end + "</b>";
         var file = lvl + "/" + line;
         if(line.endsWith(".txt")) {
             dirs.push(file);
@@ -32,9 +32,8 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
                 )
             }
         } else if(line.endsWith(".dir")) {
-            line = line.slice(0, -4);
             layout += Elm(
-                "div", shown, 
+                "div", shown.slice(0, -4), 
                 {id: "DROP_" + file, class: "collapser", onclick: "collapser(this)", 
                  onmouseover: "setcoll(this)"},
                 false
@@ -52,8 +51,11 @@ function grab_dirs(lvl = "/prizmatic.docs/doc") {
     var collapsers = find(".collapser");
     for(var collapse of collapsers) {
         var items = collapse.children;
-        for(var item of items)
+        for(var item of items) {
+            if(item.tagName != "DIV")
+                continue;
             item.style.display = "none";
+        }
     }
     return dirs;
 }
@@ -133,7 +135,7 @@ function collapser(elem, force = false) {
     }
     var thing = elem.children;
     for(var child of thing) {
-        if(page.tagName != "DIV")
+        if(child.tagName != "DIV")
             continue;
         if(disp && !child.className.includes("invis"))
             child.style.display = "block";
