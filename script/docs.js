@@ -131,7 +131,7 @@ var docs_regex = [
                 p5 = ""
             var st = `\n\n<div id="${p2}" class="head2">`;
             jumps.push([p2, `fn ${p2}()`]);
-            st += `~] ` + p2 + ` <span class="typ">{{fn}}</span>`;
+            st += `\n\n~] ` + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="note"><b>NOTE ] </b>This function is actually meant to be used as \``;
             st += `${p5}\` because it is a Python builtin function`;
             st += `</div><div class="code">`;
@@ -170,7 +170,7 @@ var docs_regex = [
             if(p5 == undefined)
                 p5 = ""
             var st = `\n\n<div id="${p2}" class="head3">`;
-            st += `~] ` + p1 + p2 + ` <span class="typ">{{fn}}</span>`;
+            st += `\n\n~] ` + p1 + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="code">`;
             var py = "";
             jumps.push([p2, `fn ${p2}()`]);
@@ -180,7 +180,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{param\}\} (.+?) \[(.+?)\]\n([^{]*)\n?/gm,
+        /\{\{param\}\} (.+?) \[(.+?)\]\n([^%{]*)\n?/gm,
         function(m, p1, p2, p3) {
             var st = ""
             if(!params) {
@@ -197,7 +197,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{prop\}\} (.+?) \[(.+?)\]\n([^{]*)\n?/gm, 
+        /\{\{prop\}\} (.+?) \[(.+?)\]\n([^%{]*)\n?/gm, 
         function(m, p1, p2, p3) {
             var st = ""
             if(!props) {
@@ -213,7 +213,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{rtn\}\} \[(.+?)\]([^{]*)\n\n/gm,
+        /\{\{rtn\}\} \[(.+?)\]([^%{]*)\n\n/gm,
         function(m, p1, p2) {
             if(p2 == undefined)
                 p2 = " ";
@@ -227,14 +227,14 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{err\}\} \[(.+?)\] ([^{]+)\n\n/gm,
+        /\{\{err\}\} \[(.+?)\] ([^%{]+)\n\n/gm,
         function(m, p1, p2) {
             var st = `<span class="typ">{{err}}</span>`;
             st += ` [<span class="err">${p1}</span>] ${p2}\n`;
             return st;
         }
     ], [
-        /\{\{note\}\} ([^{]+)\n\n/gm,
+        /\{\{note\}\} ([^%{]+)\n\n/gm,
         function(m, p1) {
             var st = `<div class="note"><b>NOTE ] </b>`
             st += p1.replace(/\n */gm, " ");
@@ -242,7 +242,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{warn\}\} ([^{]+)\n\n/gm,
+        /\{\{warn\}\} ([^%{]+)\n\n/gm,
         function(m, p1) {
             var st = `<div class="warn"><b>WARNING ] </b>`
             st += p1.replace(/\n */gm, " ");
@@ -258,27 +258,28 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\n\%n(\d+)\% ([^%{]+)\n+/gm,
+        /\%n(\d+)\% ([^%{]+)\n\n/gm,
         function(m, p1, p2) {
             notes["\\%N" + p1 + "\\%"] = p2;
+            console.log(notes);
             return "\n";
         }
     ], [
-        /\{\{alias\}\} ([\w\d_]+)\n/gm,
+        /\{\{alias\}\} ([\w\d_]+)\n\n/gm,
         function(m, p1) {
-            return `\\!1<b>NOTE ] </b>An alias resides under '${p1}'</div>`;
+            return `\\!1\n    <b>NOTE ] </b>An alias resides under '${p1}'</div>`;
         }
     ], [
-        /\{\{norm\}\} (.+)\n+/gm,
+        /\{\{norm\}\} (.+)\n\n/gm,
         function(m, p1) {
-            return `\\!1<b>NOTE ] </b>The default value is <span class="code">${p1}</span>`;
+            return `\\!1\n    <b>NOTE ] </b>The default value is <span class="code">${p1}</span>`;
         }
     ], [
         /\{\{reqd\}\}\n+/gm,
-        `\\!1<b>NOTE ] </b>This is required`
+        `\\!1\n    <b>NOTE ] </b>This is required`
     ], [
         /\{\{optn\}\}\n+/gm,
-        `\\!1<b>NOTE ] </b>This is optional`
+        `\\!1\n    <b>NOTE ] </b>This is optional`
     ], [
         /\{\{pydesc\}\} (.+)\n\n/gm,
         function(m, p1) {
@@ -290,7 +291,7 @@ var docs_regex = [
             }
         }
     ], [
-        /\{\{noinit\}\}([^{]*)\n\n+/gm,
+        /\{\{noinit\}\}([^%{]*)\n\n+/gm,
         function(m, p1) {
             var st = `<div class="note"><b>NOTE ] </b>`;
             var def = 
