@@ -14,6 +14,9 @@ function loadDoc(fileName, append = true) {
     else
         file_name = fileName;
     
+    if(file_name.startsWith("JUMP_"))
+        return jump(file_name);
+    
     if(append)
         prev_pages.push(file_name);
     
@@ -174,10 +177,11 @@ function jump(elem) {
     find("docs").click();
     var id = "";
     try {
-        id = elem.id.split("JUMP_").slice(-1)[0];
+        id = elem.id;
     } catch {
-        id = elem.split("JUMP_").slice(-1)[0];
+        id = elem;
     }
+    id = id.split("JUMP_").slice(-1)[0];
     try {
         find(id).scrollIntoView();
         var things = find("sect").children;
