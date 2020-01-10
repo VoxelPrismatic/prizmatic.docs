@@ -51,7 +51,7 @@ function loadDoc(fileName, append = true) {
                     "div",  `[View ${dir}]`, {
                         id: "/prizmatic.docs/doc/" + dir, 
                         class: "btn", 
-                        onclick: 'onclick="btnload(this.id)"'
+                        onclick: 'onclick="loadBtn(this.id)"'
                     }
                 ));
             }
