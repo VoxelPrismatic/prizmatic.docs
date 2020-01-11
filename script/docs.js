@@ -45,6 +45,12 @@ function rngHex() {
 var py_desc = {
     "__repr__": "Returns the 'Python Correct' name string",
     "__dict__": "Returns the 'send-ready' object",
+    "__iter__": "Makes a generator ",
+    "__next__": "Allows you to iterate through ",
+    "__list__": "Returns a list of ",
+    "__getitem__": "Treats this class as if it were a ",
+    "__getitemL__": "Treats this class as if it were a list",
+    "__getitemD__": "Treats this class as if it were a dict"
 };
 
 var notes = {};
