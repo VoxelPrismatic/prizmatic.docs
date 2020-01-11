@@ -7,18 +7,40 @@ function ind(num) {
     return st;
 }
 
-function mkJmp(nam, show = "") {
+function mkJmp(nam, show = "", ...other) {
+    if(typeof show != "string") {
+        show = "";
+        other = show.concat(...other)
+    }
     if(show == "")
         show = nam;
+    if(other.length != 0) {
+        var st = `<div class="collapser" id="DROP_${nam}" `;
+        st += `onclick="collapser(this)" onmouseover="setjump(this)">`;
+        st += show;
+        for(var jmp of other)
+            st += mkJmp(...jmp);
+        st += `</div>`;
+        return st;
+    }
     var st = `<div class="lnk" id="JUMP_${nam}"`;
     st += `onclick="jump(this);">#${show}</div>`;
     return st;
 }
 
+var hexs = [];
+
+function rngHex() {
+    var st = "";
+    for(var x = 0; x < 8; x += 1)
+        st += Math.floor(Math.random() * 16).toString(16)
+    if(globalThis.hexs.includes(st))
+        st = rngHex();
+    globalThis.hexs.push(st);
+    return st;
+}
 
 // Set up vars
-var props = false;
-var params = false;
 
 var py_desc = {
     "__repr__": "Returns the 'Python Correct' name string",
@@ -36,6 +58,8 @@ var links_to_docs = {
     "aiohttp.ClientSession": ahttp_site + "client_reference.html#client-session",
     "datetime.datetime": py_site + "datetime.html#datetime-objects",
 };
+
+var current_obj = ""
 
 var docs_regex = [
     [
@@ -79,9 +103,8 @@ var docs_regex = [
     ], [
         /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, \[\]\n]*?)\)\n\n/gm,
         function(m, p1, p2, p3) {
-            var st = `<div id="top"></div><div id="${p2}" class="head1">`;
+            var st = `<div id="top"></div>-=-/CLS_${p2}/-=--=-/CLS_${p2}-=-<div class="head1">`;
             st += `#] ` + p2 + ` <span class="typ">{{cls}}</span>`;
-            jumps.push([p2, `cls ${p2}()`]);
             st += `</div><div class="code">`;
             st += `${p1} = <span class="cls">${p2}</span>(`;
             st += p3.replace(/\n */gm, " ");
@@ -91,7 +114,8 @@ var docs_regex = [
     ], [
         /\{\{subcls\}\} \[(.+)\] (.+?) = (.+?)\(([\w\d*_, \[\]\n]*?)\)\n\n/gm,
         function(m, p4, p1, p2, p3) {
-            var st = `<div id="top"></div><div id="${p2}" class="head1">`;
+            var st = `<div id="top"></div>-=-/SUBCLS_${p2}/-=--=-/SUBCLS_${p2}-=-`;
+            st += `<div id="${p2}" class="head1">`;
             st += `#] ` + p2 + "(" + p4 + ")" + ` <span class="typ">{{cls}}</span>`;
             jumps.push([p2, `cls ${p2}()`]);
             st += `</div><div class="code">`;
@@ -103,7 +127,9 @@ var docs_regex = [
     ], [
         /\{\{desc\}\} ([^{]+)\n\n/gm,
         function(m, p1) {
-            return ind(4) + trim(p1).replace(/\n */gm, " ") + "\n";
+            var st = `-=-./__desc__(${rngHex()})-=-`;
+            st += ind(4) + trim(p1).replace(/\n */gm, " ") + "\n";
+            return st;
         }
     ], [
         /\{\{fn\}\} (await )?(.+?)\.([\w\d_]+)\(([\w\d*_, \[\]]*?)\)(.*)\n\n/gm,
@@ -114,8 +140,7 @@ var docs_regex = [
                 p1 = `await `;
             if(p5 == undefined)
                 p5 = ""
-            var st = `\n\n<div id="${p2}" class="head2">`;
-            jumps.push([p2, `fn ${p2}()`]);
+            var st = `\n\n-=-/FN_${p2}/-=--=-/FN_${p2}-=-<div class="head2">`;
             st += `~] ` + p1 + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="code">`;
             var py = "";
@@ -129,8 +154,7 @@ var docs_regex = [
         function(m, p4, p2, p3, p5) {
             if(p5 == undefined)
                 p5 = ""
-            var st = `\n\n<div id="${p2}" class="head2">`;
-            jumps.push([p2, `fn ${p2}()`]);
+            var st = `\n\n-=-/FN_${p2}/-=--=-/FN_${p2}-=-<div class="head2">`;
             st += `\n\n~] ` + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="note"><b>NOTE ] </b>This function is actually meant to be used as \``;
             st += `${p5}\` because it is a Python builtin function`;
@@ -147,11 +171,10 @@ var docs_regex = [
                 p1 = `await `;
             if(p5 == undefined)
                 p5 = ""
-            var st = `\n\n<div id="${p2}" class="head3">`;
+            var st = `\n\n-=-/FN_${p2}/-=--=-/FN_${p2}-=-<div class="head3">`;
             st += `~] ` + p1 + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="code">`;
             var py = "";
-            jumps.push([p2, `fn ${p2}()`]);
             py += p1 + p2 + "(";
             py += p3.replace(/\n */gm, " ") + ")" + p5;
             st += py_mark(py) + "</div>";
@@ -169,11 +192,10 @@ var docs_regex = [
                 p1 = `<span class="aio">await</span> `;
             if(p5 == undefined)
                 p5 = ""
-            var st = `\n\n<div id="${p2}" class="head3">`;
+            var st = `\n\n-=-/FN_${p2}/-=--=-./FN_${p2}-=-<div class="head3">`;
             st += `\n\n~] ` + p1 + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="code">`;
             var py = "";
-            jumps.push([p2, `fn ${p2}()`]);
             py += p4 + " = " + p1 + p2 + "(";
             py += p3.replace(/\n */gm, " ") + ")" + p5;
             st += py_mark(py) + "</div>";
@@ -183,11 +205,7 @@ var docs_regex = [
         /\{\{param\}\} (.+?) \[(.+?)\]\n([^%{]*)\n?/gm,
         function(m, p1, p2, p3) {
             var st = ""
-            if(!params) {
-                st += `<div id="params"></div>`;
-                jumps.push(["params", ""]);
-                params = true;
-            }
+            st += `-=-./params(${rngHex()})/-=--=-./${p1}(${rngHex()})-=-`;
             p2 = p2.replace(/\n */gm, " ");
             st += `<span class="typ">{{param}}</span>`;
             st += ` <span class="var"><b>${p1}</b></span> [<span class="cls">${p2}</span>]\n`;
@@ -200,11 +218,7 @@ var docs_regex = [
         /\{\{prop\}\} (.+?) \[(.+?)\]\n([^%{]*)\n?/gm, 
         function(m, p1, p2, p3) {
             var st = ""
-            if(!props) {
-                st += `<div id="props"></div>`;
-                jumps.push(["props", ""]);
-                props = true;
-            }
+            st += `-=-./props(${rngHex()})/-=--=-./${p1}(${rngHex()})-=-`;
             st += `<span class="typ">{{prop}}</span>`;
             st += ` <span class="var"><b>${p1}</b></span> [<span class="cls">${p2}</span>]\n`;
             if(p3 != undefined)
@@ -222,14 +236,14 @@ var docs_regex = [
                 p2 = "";
             }
             p2 = p2.trim();
-            var st = `<span class="typ">{{rtn}}</span>`;
+            var st = `-=-.../rtn(${rngHex()})-=-<span class="typ">{{rtn}}</span>`;
             st += ` [<span class="cls">${p1}</span>] ${p2}\n`;
             return st;
         }
     ], [
         /\{\{err\}\} \[(.+?)\] ([^%{]+)\n\n/gm,
         function(m, p1, p2) {
-            var st = `<span class="typ">{{err}}</span>`;
+            var st = `-=-.../err(${rngHex()})-=-<span class="typ">{{err}}</span>`;
             st += ` [<span class="err">${p1}</span>] ${p2}\n`;
             return st;
         }
@@ -275,11 +289,13 @@ var docs_regex = [
     ], [
         /\{\{pydesc\}\} (.+)\n\n/gm,
         function(m, p1) {
+            var p2 = p1.split(" ").slice(1).join(" ") || " ";
+            p1 = p1.split(" ")[0];
             try {
-                return ind(4) + py_desc[p1];
+                return `-=-./__desc__(${rngHex()})-=-` + ind(4) + py_desc[p1] + p2 + "\n";
             } catch(err) {
                 console.error(err)
-                return "{{pydesc}} " + p1;
+                return "{{pydesc}} " + p1 + p2;
             }
         }
     ], [
@@ -349,17 +365,16 @@ var docs_regex = [
 ]
 
 function docs_mark(st) {
-    jumps = [];
-    loc = "";
-    props = false;
-    params = false;
+    var og = st;
     var tmp = findHtml("this-here").split("/prizmatic.docs/doc/")
     while(tmp[0] == "")
         tmp = tmp.slice(1);
     tmp[0] = tmp[0].split("/").slice(0, -1).join(".");
     globalThis.loc = tmp[0];
     globalThis.here = tmp[0];
-    notes = {}
+    globalThis.current_obj = "";
+    globalThis.notes = {}
+    globalThis.jumps = [];
     if(st.startsWith("--top--"))
         st = st.slice(8); // Removes the "--top--"
     st = st.trim() + "\n\n";
@@ -384,6 +399,9 @@ function docs_mark(st) {
             `<a href="${links_to_docs[doc]}" target="_blank"><button class="btn">${doc}</button></a>`
         );
     st = st.trim().replace(/\n/gm, "<br>") + "<br>";
+    
+    st = getJmp(st);
+    
     while(find("sect").children.length > 1) {
         var jmp = find("sect").children;
         for(var elm of jmp)
@@ -393,4 +411,49 @@ function docs_mark(st) {
     for(var elm of jumps)
         find("sect").innerHTML += mkJmp(...elm);
     return st
+}
+
+function getJmp(st) {
+    var level = 0;
+    st = st.replace(/-=-(.+?)-=-/gm, function(m, p1) {
+        var ts = "";
+        var folder = true;
+        if(p1.startsWith(".../")) {
+            while(level > 1) {
+                ts += "</div>";
+                level -= 1;
+            }
+            p1 = p1.slice(4);
+        }
+        if(p1.startsWith("/")) {
+            while(level > 0) {
+                ts += "</div>";
+                level -= 1;
+            }
+            p1 = p1.slice(1);
+        }
+        if(p1.startsWith("./")) {
+            p1 = p1.slice(2);
+        }
+        ts += `<div`;
+        if(p1.endsWith("/")) {
+            level += 1;
+            p1 = p1.slice(0, -1);
+            ts += ` id="DROP_${p1}" class="collapser"`;
+        } else {
+            ts += ` id="JUMP_${p1}" class="lnk" `;
+            folder = false;
+        }
+        ts += ` onclick="collapser(this)" onmouseover="setjump(this)">`;
+        p1 = p1.replace(/\(.*\)/gm, "");
+        ts += p1;
+        if(!folder)
+            ts += "</div>";
+        return ts
+    });
+    while(level > 0) {
+        st += "</div>";
+        level -= 1;
+    }
+    return st;
 }
