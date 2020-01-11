@@ -1,5 +1,3 @@
-{{loc}} discord.models.Audit
-
 {{cls}} instance = AuditLog(*, too_many_args_to_list_here)
 
 {{desc}} Represents an audit log
@@ -43,7 +41,7 @@
 {{bltin}} instance.__getitem__(key)
 {{usage}} instance[key]
 
-{{desc}} Either returns a ~.AuditEvent or a ~.AuditSearch object
+{{pydesc}} __getitemL__
 
 {{param}} key [int, str, ~/Member.User]
     If `int`, then it will return that index in `instance.events` or it
@@ -54,6 +52,7 @@
 
 {{rtn}} [~.AuditSearch] The filtered events if `key` is a User, user ID,
 or str
+
 {{rtn}} [~.AuditEvent] The event if `key` is an index
 
 {{bltin}} instance.__dict__()
@@ -62,3 +61,17 @@ or str
 {{pydesc}} __dict__
 
 {{rtn}} [dict]
+
+{{bltin}} instance.__iter__()
+{{usage}} iter(instance)
+
+{{pydesc}} __iter__
+
+{{rtn}} [generator]
+
+{{bltin}} instance.__next__()
+{{usage}} for event in instance: #code...
+
+{{pydesc}} __next__
+
+{{rtn}} [~.AuditEvent] The next event

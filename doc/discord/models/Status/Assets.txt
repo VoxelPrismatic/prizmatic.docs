@@ -28,10 +28,9 @@
 {{prop}} lil_txt [str]
     Short description
 
-{{fn}} instance.__dict__()
+{{bltin}} instance.__dict__()
+{{usage}} dict(instance)
 
-{{note}} This function is actually meant to be used as `dict(instance)`
+{{pydesc}} __dict__
 
-{{desc}} Returns the send-ready object
-
-{{rtn}} [dict] The send-ready object
+{{rtn}} [dict]

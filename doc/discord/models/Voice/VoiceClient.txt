@@ -2,4 +2,4 @@
 
 {{desc}} Allows connecting to voice channels
 
-{{note}} This class doesn' actually exist yet
+{{note}} This class doesn't actually exist yet

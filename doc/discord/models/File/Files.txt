@@ -14,10 +14,17 @@ you want to have a name
 
 {{rtn}} [bytes] The data
 
+{{bltin}} instance.__list__()
+{{usage}} list(instance)
+
+{{pydesc}} __list__ `file`s
+
+{{rtn}} [List[~.File]]
+
 {{bltin}} instance.__getitem__(index)
 {{usage}} instance[index]
 
-{{desc}} Treats this as if it were a list
+{{pydesc}} __getitemL__
 
 {{rtn}} [~.File] The item at that index
 
@@ -26,3 +33,17 @@ you want to have a name
 {{pydesc}} __dict__
 
 {{rtn}} [dict]
+
+{{bltin}} instance.__iter__()
+{{usage}} iter(instance)
+
+{{pydesc}} __iter__ of `file`s
+
+{{rtn}} [generator]
+
+{{bltin}} instance.__next__()
+{{usage}} for file in instance: #code...
+
+{{pydesc}} __next__ the files
+
+{{rtn}} [~.File]

@@ -1,3 +1,5 @@
+{{loc}} discord.models.Perms
+
 {{cls}} instance = Overwrites(overwrites)
 
 {{desc}} Represents a list of overwrites with some extra features
@@ -29,13 +31,13 @@
 {{bltin}} instance.__iter__()
 {{usage}} iter(instance)
 
-{{desc}} Creates a generator of channels
+{{pydesc}} __iter__ of `Overwrite`s
 
 {{rtn}} [generator]
 
 {{bltin}} instance.__next__()
 {{usage}} for overwrite in instance: #... code
 
-{{desc}} Allows you to iterate through these overwrites
+{{pydesc}} __next__ the overwrites
 
 {{rtn}} [~.Overwrite]

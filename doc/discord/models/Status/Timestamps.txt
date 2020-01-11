@@ -16,3 +16,10 @@
 
 {{prop}} end [datetime.datetime]
     The end time
+
+{{bltin}} instance.__dict__()
+{{usage}} dict(instance)
+
+{{pydesc}} __dict__
+
+{{rtn}} [dict]

@@ -1,78 +1,25 @@
-DESCRIPTION ---
-    Makes a list of consecutive items that match a class
+{{cls}} instance = _AllOf()
 
-PARAMS ---
-   typ [class]
-   - The class in question
+{{desc}} Makes a list of consecutive items that match a class
 
-USAGE ---
-    This is not a regular class. It must be used as follows:
+{{warn}} This class is used as an argument type. It is meant to be used as
+`async def command_name(inf, arg1, arg2: AllOf[data_type]): #code...`,
+where `data_type` is the type of data, eg `int` or `str`
 
-        def function(arg1: AllOf[class]):
-            ...
+{{cls}} instance = _Option
 
-        def fun(arg0, arg1: AllOf[class], ...):
-            ...
+{{desc}} Has a default value but can be changed, will not throw an error if
+not a valid input
 
-    This is a parameter class that forms a list of all consecutive
-    arguments that match its class parameter. It is mainly used with
-    commands for arguments and things.
+{{warn}} This class is used as an argument type. It is meant to be used as
+`async def command_name(inf, arg1: Option[data_type]: norm_val): #code...`,
+where `data_type` is the type of data, eg `int` or `str` and `norm_val` is
+the default value
 
-DESCRIPTION ---
-    Has a default value but can be changed
+{{cls}} instance = _Any()
 
-PARAMS ---
-    typ [class]
-    - The class
+{{desc}} Can be any one of a list of data types
 
-USAGE ---
-    This is not a regular class. It must be used as follows:
-
-        def function(arg1: Option[class] = default_value):
-            ...
-
-        def fun(arg0, arg1: Option[class] = default_value, ...):
-            ...
-
-    This is a parameter class that forms an optional argument and will not
-    break when an invalid param is passed [when the command is called]. It is
-    mainly used with commands for arguments and things.
-
-DESCRIPTION ---
-    Can be any of these values
-
-PARAMS ---
-    *typ [class]
-    - The classes, as a list
-
-USAGE ---
-    This is not a regular class. It must be used as follows:
-
-        def function(arg1: Any[class1, class2, ...]):
-            ...
-
-        def fun(arg0, arg1: Any[class1, class2, ...] = default_value, ...):
-            ...
-
-    This is a parameter class that forms an argument that can have multiple
-    forms and will not break as often on a command call. It is mainly used
-    with commands for arguments and things.
-
-DESCRIPTION ---
-    Allows for equations
-
-PARAMS ---
-    *fns [str]
-    - Allowed functions, at least one must be specified
-
-USAGE ---
-    This is not a regular class. It must be used as follows:
-
-        def function(arg1: Equation[operator]):
-            ...
-
-        def fun(arg0, arg1: Any[op1, op2, ...] = default_value, ...):
-            ...
-
-    Operators can be '+', '-', or any operator or function because it is a
-    string. It is mainly used with commands for arguments and things.
+{{warn}} This class is used as an argument type. It is meant to be used as
+`async def command_name(inf, arg1, arg2: Any[type1, type2, ...]): #code...`,
+where `type#` is the type of data, eg `int` or `str`

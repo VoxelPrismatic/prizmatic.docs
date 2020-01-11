@@ -1,3 +1,5 @@
 {{cls}} instance = SemiIntegration(*, id, name, type, account, bot_obj)
 
 {{desc}} Represents a partial integration
+
+{{note}} Documentation for this class is not complete yet

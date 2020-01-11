@@ -4,4 +4,6 @@
 
 {{noinit}}
 
+{{note}} The documentation for this class is not complete yet
+
 {{param}} last_message_id []

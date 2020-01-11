@@ -1,9 +1,19 @@
-{{sepfn}} datetime_object = from_ts(ts)
+{{sepfn}} from_ts(ts)
 
 {{desc}} Instead of writing `datetime.datetime.fromtimestamp(timestamp)`,
 you can just write `from_ts(timestamp)`
 
-{{param}} ts [str]
+{{param}} ts [str, datetime.datetime]
     A valid ISO 8601 timestamp
 
-{{rtn}} [datetime.datetime] The datetime
+{{rtn}} [datetime.datetime] The datetime object
+
+{{sepfn}} https(thing)
+
+{{desc}} If `thing` is a valid attachment URL, it returns `thing`, otherwise
+it returns an empty string
+
+{{param}} thing [str]
+    The URL to check
+
+{{rtn}} [str]

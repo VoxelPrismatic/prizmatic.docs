@@ -4,19 +4,21 @@
 
 {{desc}} Represents a presence, or "status" as referred to in the UI
 
-{{param}} user [dict, ~/Member.User]
+{{param}} user [dict]
     The user that has this status
 
-{{param}} roles [List[dict], List[~/Role]]
+{{param}} roles [List[dict]]
     A list of roles that the user has
 
-{{param}} guild_id [str, discord.models.Snow]
+{{param}} guild_id [str, ~/Snow, int]
     The guild ID
 
 {{param}} status [str]
     Their "online" status, eg "Online" or "Do not Disturb"
 
-{{param}} activites [List[dict], List[~/Status.Actitivites]]
+{{param}} activites [List[dict]]
+    A list of activites
 
-FUNCTIONS ---
-    None yet
+{{param}} client_status
+
+{{note}} This class has not been finished yet

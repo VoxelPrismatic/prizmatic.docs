@@ -75,3 +75,10 @@
 
 {{prop}} bot_obj [discord.models.Bot]
     The bot object
+
+{{bltin}} instance.__dict__()
+{{usage}} dict(instance)
+
+{{pydesc}} __dict__
+
+{{rtn}} [dict]

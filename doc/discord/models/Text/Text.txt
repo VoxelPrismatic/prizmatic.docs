@@ -2,7 +2,9 @@
 
 {{desc}} Represents a message
 
-{{note}} This class shouldn't be initialized by hand. Don't do that.
+{{noinit}}
+
+{{note}} The documentation for this class is not complete yet
 
 {{param}} id [str, ~/Snow]
     ID of the message
@@ -21,3 +23,4 @@
     either left the guild or sent the message in DMs.
 
 {{param}} timestamp [str]
+    When this channel was made

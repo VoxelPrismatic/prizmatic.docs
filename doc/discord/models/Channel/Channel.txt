@@ -4,6 +4,8 @@
 
 {{noinit}}
 
+{{note}} The documentation for this class is not complete yet
+
 {{param}} id [str, ~/Snow, int]
     The Channel ID
 

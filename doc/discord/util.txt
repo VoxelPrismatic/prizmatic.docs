@@ -1,1 +1,10 @@
+{{sepfn}} escape(st)
 
+{{desc}} Escapes markdown
+
+{{param}} st [str]
+    The string to escape
+
+{{note}} This function also escapes mentions/pings
+
+{{rtn}} [str] The escaped string
