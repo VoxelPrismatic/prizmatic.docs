@@ -109,7 +109,7 @@ var docs_regex = [
     ], [
         /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, \[\]\n]*?)\)\n\n/gm,
         function(m, p1, p2, p3) {
-            var st = `<div id="top"></div>-=-/CLS_${p2}/-=--=-/CLS_${p2}-=-<div class="head1">`;
+            var st = `<div id="top"></div>\u200a-=-/CLS_${p2}/-=-\u200a-=-/CLS_${p2}-=-\u200a<div class="head1">`;
             st += `#] ` + p2 + ` <span class="typ">{{cls}}</span>`;
             st += `</div><div class="code">`;
             st += `${p1} = <span class="cls">${p2}</span>(`;
@@ -120,7 +120,7 @@ var docs_regex = [
     ], [
         /\{\{subcls\}\} \[(.+)\] (.+?) = (.+?)\(([\w\d*_, \[\]\n]*?)\)\n\n/gm,
         function(m, p4, p1, p2, p3) {
-            var st = `<div id="top"></div>-=-/SUBCLS_${p2}/-=--=-/SUBCLS_${p2}-=-`;
+            var st = `<div id="top"></div>\u200a-=-/SUBCLS_${p2}/-=-\u200a-=-/SUBCLS_${p2}-=-\u200a`;
             st += `<div id="${p2}" class="head1">`;
             st += `#] ` + p2 + "(" + p4 + ")" + ` <span class="typ">{{cls}}</span>`;
             jumps.push([p2, `cls ${p2}()`]);
@@ -133,7 +133,7 @@ var docs_regex = [
     ], [
         /\{\{desc\}\} ([^{]+)\n\n/gm,
         function(m, p1) {
-            var st = `-=-./__desc__(${rngHex()})-=-`;
+            var st = `\u200a-=-./__desc__(${rngHex()})-=-\u200a`;
             st += ind(4) + trim(p1).replace(/\n */gm, " ") + "\n";
             return st;
         }
@@ -146,7 +146,7 @@ var docs_regex = [
                 p1 = `await `;
             if(p5 == undefined)
                 p5 = ""
-            var st = `\n\n-=-/FN_${p2}/-=--=-/FN_${p2}-=-<div class="head2">`;
+            var st = `\n\n\u200a-=-/FN_${p2}/-=-\u200a-=-/FN_${p2}-=-\u200a<div class="head2">`;
             st += `~] ` + p1 + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="code">`;
             var py = "";
@@ -160,7 +160,7 @@ var docs_regex = [
         function(m, p4, p2, p3, p5) {
             if(p5 == undefined)
                 p5 = ""
-            var st = `\n\n-=-/FN_${p2}/-=--=-/FN_${p2}-=-<div class="head2">`;
+            var st = `\n\n\u200a-=-/FN_${p2}/-=-\u200a-=-/FN_${p2}-=-\u200a<div class="head2">`;
             st += `\n\n~] ` + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="note"><b>NOTE ] </b>This function is actually meant to be used as \``;
             st += `${p5}\` because it is a Python builtin function`;
@@ -177,7 +177,7 @@ var docs_regex = [
                 p1 = `await `;
             if(p5 == undefined)
                 p5 = ""
-            var st = `\n\n-=-/FN_${p2}/-=--=-/FN_${p2}-=-<div class="head3">`;
+            var st = `\n\n\u200a-=-/FN_${p2}/-=-\u200a-=-/FN_${p2}-=-\u200a<div class="head3">`;
             st += `~] ` + p1 + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="code">`;
             var py = "";
@@ -198,7 +198,7 @@ var docs_regex = [
                 p1 = `<span class="aio">await</span> `;
             if(p5 == undefined)
                 p5 = ""
-            var st = `\n\n-=-/FN_${p2}/-=--=-./FN_${p2}-=-<div class="head3">`;
+            var st = `\n\n\u200a-=-/FN_${p2}/-=-\u200a-=-./FN_${p2}-=-\u200a<div class="head3">`;
             st += `\n\n~] ` + p1 + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="code">`;
             var py = "";
@@ -211,7 +211,7 @@ var docs_regex = [
         /\{\{param\}\} (.+?) \[(.+?)\]\n([^%{]*)\n?/gm,
         function(m, p1, p2, p3) {
             var st = ""
-            st += `-=-./params(${rngHex()})/-=--=-./${p1}(${rngHex()})-=-`;
+            st += `\u200a-=-./params(${rngHex()})/-=-\u200a-=-./${p1}(${rngHex()})-=-\u200a`;
             p2 = p2.replace(/\n */gm, " ");
             st += `<span class="typ">{{param}}</span>`;
             st += ` <span class="var"><b>${p1}</b></span> [<span class="cls">${p2}</span>]\n`;
