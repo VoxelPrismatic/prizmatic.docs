@@ -208,7 +208,7 @@ var docs_regex = [
         /\{\{param\}\} (.+?) \[(.+?)\]\n([^%{]*)\n?/gm,
         function(m, p1, p2, p3) {
             var st = ""
-            st += `\0-=-.../params(${rngHex()})[1]/-=-\0-=-./${p1}(${rngHex()})-=-\0`;
+            st += `\0-=-.../params(${rngHex()})/-=-\0-=-./${p1}(${rngHex()})-=-\0`;
             p2 = p2.replace(/\n */gm, " ");
             st += `<span class="typ">{{param}}</span>`;
             st += ` <span class="var"><b>${p1}</b></span> [<span class="cls">${p2}</span>]\n`;
@@ -220,7 +220,7 @@ var docs_regex = [
     ], [
         /\{\{prop\}\} (.+?) \[(.+?)\]\n([^%{]*)\n?/gm, 
         function(m, p1, p2, p3) {
-            var st = `\0-=-.../prop(${rngHex()})[1]/-=-\0-=-./${p1}(${rngHex()})-=-\0`;
+            var st = `\0-=-.../prop(${rngHex()})/-=-\0-=-./${p1}(${rngHex()})-=-\0`;
             st += `<span class="typ">{{prop}}</span>`;
             st += ` <span class="var"><b>${p1}</b></span> [<span class="cls">${p2}</span>]\n`;
             if(p3 != undefined)
@@ -238,7 +238,7 @@ var docs_regex = [
                 p2 = "";
             }
             p2 = p2.trim();
-            var st = `\0-=-.../rtn(${rngHex()})[1]/-=-\0-=-./${p1}(${rngHex()})-=-\0`;
+            var st = `\0-=-.../rtn(${rngHex()})/-=-\0-=-./${p1}(${rngHex()})-=-\0`;
             st += `<span class="typ">{{rtn}}</span>`;
             st += ` [<span class="cls">${p1}</span>] ${p2}\n`;
             return st;
@@ -246,7 +246,7 @@ var docs_regex = [
     ], [
         /\{\{err\}\} \[(.+?)\] ([^%{]+)\n\n/gm,
         function(m, p1, p2) {
-            var st = `\0-=-.../err(${rngHex()})[1]/-=-\0-=-./${p1}(${rngHex()})-=-\0`;
+            var st = `\0-=-.../err(${rngHex()})/-=-\0-=-./${p1}(${rngHex()})-=-\0`;
             st += `<span class="typ">{{err}}</span>`;
             st += ` [<span class="err">${p1}</span>] ${p2}\n`;
             return st;
