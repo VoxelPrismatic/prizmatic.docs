@@ -440,7 +440,7 @@ function getJmp(st) {
         }
         if(line.endsWith("/")) {
             line = line.slice(0, -1);
-            var tmp0 = (lvl.slice(-1)[0] || "undefined" + rngHex()).replace(/\(.*\)/gm, "");
+            var tmp0 = (lvl.slice(-1)[0] || `undefined(${rngHex()})`).replace(/\(.*\)/gm, "");
             var tmp1 = line.replace(/\(.*\)/gm, "");
             if(lvl.length == 0 || tmp0 != tmp1) {
                 lvl.push(line);
