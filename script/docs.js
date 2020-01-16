@@ -440,12 +440,17 @@ function getJmp(st) {
         }
         if(line.endsWith("/")) {
             line = line.slice(0, -1);
-            if(lvl.length == 0 || lvl.slice(-1)[0].replace(/\(.*\)/gm, "") != line.slice(/\(.*\)/gm, "")) {
+            var tmp0 = (lvl.slice(-1)[0] || "undefined" + rngHex()).replace(/\(.*\)/gm, "");
+            var tmp1 = line.replace(/\(.*\)/gm, "");
+            if(lvl.length == 0 || tmp0 != tmp1) {
                 lvl.push(line);
                 jmp[lvl.join("/")] = [];
             }
         } else {
             jmp[lvl.join("/")].push(line);
+        }
+        while(lvl.length != 0 && lvl[0] == undefined) {
+            lvl = lvl.slice(1);
         }
     }
     var layout = "";
@@ -464,7 +469,7 @@ function getJmp(st) {
                 }
             }
             layout += Elm(
-                "div", thisdirs.slice(-1)[0], 
+                "div", thisdirs.slice(-1)[0].replace(/\(.*?\)/gm, ""), 
                 {id: "DROP_" + key, class: "collapser", onclick: "collapser(this)", 
                  onmouseover: "setjump(this)"},
                 false
@@ -473,7 +478,7 @@ function getJmp(st) {
         }
         for(var lnk of jmp[key]) {
             layout += Elm(
-                "div", lnk,
+                "div", lnk.replace(/\(.*?\)/gm, ""),
                 {id: "JUMP_" + lnk, class: "lnk", onclick: "collapser(this)",
                  onmouseover: "setjump(this)"}
             );
