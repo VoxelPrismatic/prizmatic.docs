@@ -106,7 +106,7 @@ var docs_regex = [
         /\{\{cls\}\} (.+?) = (.+?)\(([\w\d*_, \[\]\n]*?)\)\n\n/gm,
         function(m, p1, p2, p3) {
             var st = `<div id="top"></div>`;
-            st += `\0-=-/CLS_${p2}/-=-\0-=-./CLS_${p2}-=-\0<div class="head1">`;
+            st += `\0-=-/CLS ${p2}/-=-\0-=-./CLS ${p2}-=-\0<div class="head1">`;
             st += `#] ` + p2 + ` <span class="typ">{{cls}}</span>`;
             st += `</div><div class="code">`;
             st += `${p1} = <span class="cls">${p2}</span>(`;
@@ -117,7 +117,7 @@ var docs_regex = [
     ], [
         /\{\{subcls\}\} \[(.+)\] (.+?) = (.+?)\(([\w\d*_, \[\]\n]*?)\)\n\n/gm,
         function(m, p4, p1, p2, p3) {
-            var st = `<div id="top"></div>\0-=-/SUBCLS_${p2}/-=-\0-=-/SUBCLS_${p2}-=-\0`;
+            var st = `<div id="top"></div>\0-=-/SUBCLS ${p2}/-=-\0-=-./SUBCLS ${p2}-=-\0`;
             st += `<div id="${p2}" class="head1">`;
             st += `#] ` + p2 + "(" + p4 + ")" + ` <span class="typ">{{cls}}</span>`;
             jumps.push([p2, `cls ${p2}()`]);
@@ -130,7 +130,7 @@ var docs_regex = [
     ], [
         /\{\{desc\}\} ([^{]+)\n\n/gm,
         function(m, p1) {
-            var st = `\0-=-./desc(${rngHex()})-=-\0`;
+            var st = `\0-=-.../desc(${rngHex()})-=-\0`;
             st += ind(4) + trim(p1).replace(/\n */gm, " ") + "\n";
             return st;
         }
@@ -143,7 +143,7 @@ var docs_regex = [
                 p1 = `await `;
             if(p5 == undefined)
                 p5 = ""
-            var st = `\n\n\0-=-/FN_${p2}/-=-\0-=-/FN_${p2}-=-\0<div class="head2">`;
+            var st = `\n\n\0-=-/FN ${p2}/-=-\0-=-./FN ${p2}-=-\0<div class="head2">`;
             st += `~] ` + p1 + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="code">`;
             var py = "";
@@ -157,7 +157,7 @@ var docs_regex = [
         function(m, p4, p2, p3, p5) {
             if(p5 == undefined)
                 p5 = ""
-            var st = `\n\n\0-=-/FN_${p2}/-=-\0-=-/FN_${p2}-=-\0<div class="head2">`;
+            var st = `\n\n\0-=-/FN ${p2}/-=-\0-=-./FN ${p2}-=-\0<div class="head2">`;
             st += `\n\n~] ` + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="note"><b>NOTE ] </b>This function is actually meant to be used as \``;
             st += `${p5}\` because it is a Python builtin function`;
@@ -174,7 +174,7 @@ var docs_regex = [
                 p1 = `await `;
             if(p5 == undefined)
                 p5 = ""
-            var st = `\n\n\0-=-/FN_${p2}/-=-\0-=-/FN_${p2}-=-\0<div class="head3">`;
+            var st = `\n\n\0-=-/FN ${p2}/-=-\0-=-./FN ${p2}-=-\0<div class="head3">`;
             st += `~] ` + p1 + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="code">`;
             var py = "";
@@ -195,7 +195,7 @@ var docs_regex = [
                 p1 = `<span class="aio">await</span> `;
             if(p5 == undefined)
                 p5 = ""
-            var st = `\n\n\0-=-/FN_${p2}/-=-\0-=-./FN_${p2}-=-\0<div class="head3">`;
+            var st = `\n\n\0-=-/FN ${p2}/-=-\0-=-./FN_${p2}-=-\0<div class="head3">`;
             st += `\n\n~] ` + p1 + p2 + ` <span class="typ">{{fn}}</span>`;
             st += `</div><div class="code">`;
             var py = "";
@@ -271,7 +271,6 @@ var docs_regex = [
         /\%n(\d+)\% ([^%{]+)\n\n/gm,
         function(m, p1, p2) {
             notes["\\%N" + p1 + "\\%"] = p2;
-            console.log(notes);
             return "\n";
         }
     ], [
@@ -452,7 +451,6 @@ function getJmp(st) {
         while(lvl.length != 0 && lvl[0] == undefined) {
             lvl = lvl.slice(1);
         }
-        console.log(lvl);
     }
     var layout = "";
     var lastkey = "";
@@ -461,21 +459,23 @@ function getJmp(st) {
         if(key != "") {
             var thisdirs = key.split("/");
             var lastdirs = lastkey.split("/");
-            if(thisdirs.length < lastdirs.length) {
-                for(var i = 0; i < lastdirs.length; i += 1) {
-                    if(thisdirs[i] != lastdirs[i]) {
-                        layout += "</div>";
-                        level -= 1;
+            if(thisdirs.slice(-1)[0] != lvl(-1)[0]) {
+                if(thisdirs.length < lastdirs.length) {
+                    for(var i = 0; i < lastdirs.length; i += 1) {
+                        if(thisdirs[i] != lastdirs[i]) {
+                            layout += "</div>";
+                            level -= 1;
+                        }
                     }
                 }
+                layout += Elm(
+                    "div", thisdirs.slice(-1)[0].replace(/\(.*?\)/gm, ""), 
+                    {id: "DROP_" + key, class: "collapser", onclick: "collapser(this)", 
+                     onmouseover: "setjump(this)"},
+                    false
+                );
+                level += 1;
             }
-            layout += Elm(
-                "div", thisdirs.slice(-1)[0].replace(/\(.*?\)/gm, ""), 
-                {id: "DROP_" + key, class: "collapser", onclick: "collapser(this)", 
-                 onmouseover: "setjump(this)"},
-                false
-            );
-            level += 1;
         }
         for(var lnk of jmp[key]) {
             layout += Elm(
@@ -490,6 +490,7 @@ function getJmp(st) {
         layout += "</div>";
     }
     setHtml("sect", layout);
+    setJump();
     st = st.replace(/\u0000*-=-(.+?)-=-\u0000*/gm, "");
     return st;
 }
