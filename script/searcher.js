@@ -95,70 +95,47 @@ function find_text(re, parent = find("page")) {
     return ttl;
 }
 
-function filter_docs(thing, page = find("nav")) {
-    var pages = page.children;
-    re = regex(thing, "filter_docs");
+function filter_docs(thing, parent = find("nav"), loc = "filter_docs") {
+    var pages = parent.children;
+    re = regex(thing, loc);
+    var nothidden = false;
     for(var page of pages) {
         if(page.tagName != "DIV")
             continue;
-        if(page.id.startsWith("DROP")) {
-            page.classList.remove("invis");
-            page.style.display = "block";
-            if(!page.className.includes("collopen"))
-                page.click();
-            filter_docs(thing, page);
-            var child = page.children;
-            var hidden = true;
-            for(var c of child) {
-                if(!c.className.includes("invis")) {
-                    hidden = false;
-                    break;
+        page.classList.remove("invis");
+        page.style.display = "block";
+        if(re != 1) {
+            if(page.className.includes("collapser")) {
+                if(!page.className.includes("collopen")) {
+                    collapser(page);
+                }
+                var donthideme = filter_docs(thing, page, loc);
+                if(!donthideme) {
+                    page.style.display = "none";
+                    page.classList.add("invis");
+                    collapser(page);
+                }
+                nothidden = nothidden || donthideme;
+            } else {
+                var rawtext = page.children.item(0).innerHTML;
+                rawtext += page.children.item(1).innerHTML;
+                if(rawtext.search(re) != -1) {
+                    nothidden = true
+                } else {
+                    page.style.display = "none";
+                    page.classList.add("invis");
                 }
             }
-            if(hidden) {
-                page.classList.add("invis");
-                page.style.display = "none";
-            } else {
-                page.click();
-            }
-            continue;
-        }
-        if(!(page.id.startsWith("/prizmatic.docs/doc/")))
-            continue;
-        if(re == 1) {
-            page.classList.remove("invis");
-            page.style.display = "block";
-            if(page.className.includes("collopen"))
-                page.click();
-            continue;
-        }
-        var id = page.id.slice(20, -4);
-        if(thing == "" || id.search(re) != -1) {
-            page.classList.remove("invis");
-            page.style.display = "block";
-        } else {
-            page.classList.add("invis");
-            page.style.display = "none";
         }
     }
     if(re == 1) {
         collall();
     }
+    return nothidden;
 }
 
 function filter_jump(thing) {
-    var pages = find("sect").children;
-    re = regex(thing, "filter_sects");
-    if(re == 1)
-        return;
-    for(var page of pages) {
-        if(!(page.id.startsWith("JUMP_")))
-            continue;
-        if(thing == "" || page.id.slice(5).search(re) != -1)
-            page.style.display = "block";
-        else
-            page.style.display = "none";
-    }
+    filter_docs(thing, find("sect"), "filter_jumps");
 }
 
 function find_in_docs(thing) {
