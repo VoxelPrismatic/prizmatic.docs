@@ -152,7 +152,7 @@ function collall(parent = find("nav")) {
         if(c.className.includes("collopen")) {
             c.click();
         }
-        collopen(c);
+        collall(c);
     }
 }
 
