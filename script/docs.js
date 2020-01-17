@@ -433,9 +433,7 @@ function getJmp(st) {
         }
         if(line.endsWith("/")) {
             line = line.slice(0, -1);
-            console.log(line.replace(/\(.*\)/gm, "") + " | " + lastlvl.replace(/\(.*\)/gm, ""));
             if(line.replace(/\(.*\)/gm, "") != lastlvl.replace(/\(.*\)/gm, "")) {
-                console.log("entered")
                 lvl.push(line);
                 jmp[lvl.join("/")] = [];
             } else {
@@ -443,7 +441,6 @@ function getJmp(st) {
             }
             lastlvl = line;
         } else {
-            console.log(lvl);
             jmp[lvl.join("/")].push(line);
         }
         prevlvl = lvl;
