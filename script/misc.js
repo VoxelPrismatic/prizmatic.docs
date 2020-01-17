@@ -100,10 +100,28 @@ function collsel(elem = find("nav")) {
 
 function setcoll(elem) {
     colldesel();
+    if(!elem.className.includes("collopen") && elem.className.includes("collapser")) {
+        var child = elem.children;
+        for(var c of child) {
+            if(c.style.display == "block" || !c.className.includes("invis")) {
+                collapser(elem);
+                break;
+            }
+        }
+    }
 }
 
 function setjump(elem) {
     colldesel(find("sect"));
+    if(!elem.className.includes("collopen") && elem.className.includes("collapser")) {
+        var child = elem.children;
+        for(var c of child) {
+            if(c.style.display == "block" || !c.className.includes("invis")) {
+                collapser(elem);
+                break;
+            }
+        }
+    }
 }
 
 function colldesel(elem = find("nav")) {
@@ -148,8 +166,7 @@ function collapser(elem, force = false) {
 function collall(parent = find("nav")) {
     var child = parent.children;
     for(var c of child) {
-        if(c.className.includes("collapser")) {
-			collapser(c, true);
+        if(c.className.includes("collapser")) {collapser(c, true);
         	if(c.className.includes("collopen")) {
             	collapser(c, true);
         	}
