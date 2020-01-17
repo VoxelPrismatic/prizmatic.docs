@@ -103,7 +103,7 @@ function setcoll(elem) {
     if(!elem.className.includes("collopen") && elem.className.includes("collapser")) {
         var child = elem.children;
         for(var c of child) {
-            if(c.style.display == "block" || !c.className.includes("invis")) {
+            if(c.style.display == "block" && !c.className.includes("invis")) {
                 collapser(elem);
                 break;
             }
@@ -116,7 +116,7 @@ function setjump(elem) {
     if(!elem.className.includes("collopen") && elem.className.includes("collapser")) {
         var child = elem.children;
         for(var c of child) {
-            if(c.style.display == "block" || !c.className.includes("invis")) {
+            if(c.style.display == "block" && !c.className.includes("invis")) {
                 collapser(elem);
                 break;
             }
