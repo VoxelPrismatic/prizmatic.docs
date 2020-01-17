@@ -414,6 +414,8 @@ function getJmp(st) {
     var level = 0;
     var jmp = {"": []};
     var lvl = [];
+    var prevlvl = [];
+    var lastlvl = "";
     for(var line of st.split("\0")) {
         if(!line.startsWith("-=-") || !line.endsWith("-=-"))
             continue;
@@ -431,18 +433,20 @@ function getJmp(st) {
         }
         if(line.endsWith("/")) {
             line = line.slice(0, -1);
-            var tmp0 = (lvl.slice(-1)[0] || `undefined(${rngHex()})`).replace(/\(.*\)/gm, "");
-            var tmp1 = line.replace(/\(.*\)/gm, "");
-            if(lvl.length == 0 || tmp0 != tmp1) {
+            console.log(line.replace(/\(.*\)/gm, "") + " | " + lastlvl.replace(/\(.*\)/gm, ""));
+            if(line.replace(/\(.*\)/gm, "") != lastlvl.replace(/\(.*\)/gm, "")) {
+                console.log("entered")
                 lvl.push(line);
                 jmp[lvl.join("/")] = [];
+            } else {
+                lvl = prevlvl;
             }
+            lastlvl = line;
         } else {
+            console.log(lvl);
             jmp[lvl.join("/")].push(line);
         }
-        while(lvl.length != 0 && lvl[0] == undefined) {
-            lvl = lvl.slice(1);
-        }
+        prevlvl = lvl;
     }
     var layout = "";
     var lastkey = "";
@@ -451,24 +455,21 @@ function getJmp(st) {
         if(key != "") {
             var thisdirs = key.split("/");
             var lastdirs = lastkey.split("/");
-            console.log(thisdirs.slice(-1)[0] + " " + lvl.slice(-1)[0]);
-            if(thisdirs.slice(-1)[0] != lvl.slice(-1)[0]) {
-                if(thisdirs.length < lastdirs.length) {
-                    for(var i = 0; i < lastdirs.length; i += 1) {
-                        if(thisdirs[i] != lastdirs[i]) {
-                            layout += "</div>";
-                            level -= 1;
-                        }
+            if(thisdirs.length <= lastdirs.length) {
+                for(var i = 0; i < lastdirs.length; i += 1) {
+                    if(thisdirs[i] != lastdirs[i]) {
+                        layout += "</div>";
+                        level -= 1;
                     }
                 }
-                layout += Elm(
-                    "div", thisdirs.slice(-1)[0].replace(/\(.*?\)/gm, ""), 
-                    {id: "DROP_" + key, class: "collapser", onclick: "collapser(this)", 
-                     onmouseover: "setjump(this)"},
-                    false
-                );
-                level += 1;
             }
+            layout += Elm(
+                "div", thisdirs.slice(-1)[0].replace(/\(.*?\)/gm, ""), 
+                {id: "DROP_" + key, class: "collapser", onclick: "collapser(this)", 
+                 onmouseover: "setjump(this)"},
+                false
+            );
+            level += 1;
         }
         for(var lnk of jmp[key]) {
             layout += Elm(
@@ -484,7 +485,7 @@ function getJmp(st) {
     }
     remJumps();
     addHtml("sect", layout);
-    collall(find("sect"));
-    st = st.replace(/\u0000*-=-(.+?)-=-\u0000*/gm, "");
+    //collall(find("sect"));
+    st = st.replace(/\u0000*-=-\.*\/?(.+?)\/?-=-\u0000*/gm, `<div id="$1"></div>`);
     return st;
 }
