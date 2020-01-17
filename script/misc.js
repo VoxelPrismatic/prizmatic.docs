@@ -145,7 +145,8 @@ function collapser(elem, force = false) {
     elem.className = name;
 }
 
-function collall(child = find("nav")) {
+function collall(parent = find("nav")) {
+    var child = parent.children
     for(var c of child) {
         if(c.className.includes("collopen")) {
             collapser(c);
