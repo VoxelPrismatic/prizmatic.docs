@@ -1,7 +1,7 @@
 function remJumps() {
     var jumps = find("sect").children;
     for(var jmp of jumps) {
-        if(jmp.id.startsWith("JUMP_")) {
+        if(jmp.id.startsWith("JUMP_") || jmp.id.startsWith("DROP_")) {
             jmp.remove();
         }
     }
