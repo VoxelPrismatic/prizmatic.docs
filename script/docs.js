@@ -459,7 +459,7 @@ function getJmp(st) {
         if(key != "") {
             var thisdirs = key.split("/");
             var lastdirs = lastkey.split("/");
-            if(thisdirs.slice(-1)[0] != lvl(-1)[0]) {
+            if(thisdirs.slice(-1)[0] != lvl.slice(-1)[0]) {
                 if(thisdirs.length < lastdirs.length) {
                     for(var i = 0; i < lastdirs.length; i += 1) {
                         if(thisdirs[i] != lastdirs[i]) {
@@ -489,8 +489,9 @@ function getJmp(st) {
     for(var x = 0; x < level; x += 1) {
         layout += "</div>";
     }
-    setHtml("sect", layout);
-    setJump();
+    remJumps();
+    addHtml("sect", layout);
+    collall(find("sect"));
     st = st.replace(/\u0000*-=-(.+?)-=-\u0000*/gm, "");
     return st;
 }
