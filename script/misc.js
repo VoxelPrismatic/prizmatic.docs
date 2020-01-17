@@ -148,11 +148,13 @@ function collapser(elem, force = false) {
 function collall(parent = find("nav")) {
     var child = parent.children;
     for(var c of child) {
-        c.click();
-        if(c.className.includes("collopen")) {
-            c.click();
-        }
-        collall(c);
+        if(c.className.includes("collapser")) {
+			collapser(c, true);
+        	if(c.className.includes("collopen")) {
+            	collapser(c, true);
+        	}
+        	collall(c);
+    	}
     }
 }
 
