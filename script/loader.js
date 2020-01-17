@@ -15,7 +15,7 @@ function loadDoc(fileName, append = true) {
         file_name = fileName;
     
     if(file_name.startsWith("JUMP_"))
-        return jump(file_name);
+        return jump(fileName);
     
     if(append)
         prev_pages.push(file_name);
