@@ -485,7 +485,7 @@ function getJmp(st) {
     }
     remJumps();
     addHtml("sect", layout);
-    //collall(find("sect"));
+    collall(find("sect"));
     st = st.replace(/\u0000*-=-\.*\/?(.+?)\/?-=-\u0000*/gm, `<div id="$1"></div>`);
     return st;
 }
