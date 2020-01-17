@@ -429,7 +429,7 @@ function getJmp(st) {
         line = line.slice(3, -3);
         if(line.startsWith(".../")) {
             line = line.slice(4);
-            lvl = [lvl[0]];
+            lvl = lvl.slice(0, 1);
         }
         if(line.startsWith("/")) {
             line = line.slice(1);
@@ -452,6 +452,7 @@ function getJmp(st) {
         while(lvl.length != 0 && lvl[0] == undefined) {
             lvl = lvl.slice(1);
         }
+        console.log(lvl);
     }
     var layout = "";
     var lastkey = "";
