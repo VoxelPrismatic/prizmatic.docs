@@ -451,6 +451,7 @@ function getJmp(st) {
         if(key != "") {
             var thisdirs = key.split("/");
             var lastdirs = lastkey.split("/");
+            console.log(thisdirs.slice(-1)[0] + " " + lvl.slice(-1)[0]);
             if(thisdirs.slice(-1)[0] != lvl.slice(-1)[0]) {
                 if(thisdirs.length < lastdirs.length) {
                     for(var i = 0; i < lastdirs.length; i += 1) {
