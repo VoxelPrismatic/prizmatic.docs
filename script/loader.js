@@ -127,6 +127,8 @@ function loadUri(uri, init = false) {
     try {
         loadDoc(url);
     } catch(err) {
+        console.log("Error that prevented loading: ");
+        console.error(err);
         setHtml("page", Elm(
             "div", "An unknown error occured, check console for details", 
             {class: "warn"}
