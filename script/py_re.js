@@ -43,16 +43,16 @@ function str_regex(m, a, b, c) {
 
 py_regex = [
     [
-        /([fFrRuUbB]?)(")(.+?)"/gm,
+        /([fFrRuUbB]?)(")(.*?)"/gm,
         str_regex
     ], [
-        /([fFrRuUbB]?)(')(.+?)'/gm,
+        /([fFrRuUbB]?)(')(.*?)'/gm,
         str_regex
     ], [
-        /([fFrRuUbB]?)(''')((.|\n)+)'''/gm,
+        /([fFrRuUbB]?)(''')((.|\n)*)'''/gm,
         str_regex
     ], [
-        /([fFrRuUbB]?)(""")((.|\n)+)"""/gm,
+        /([fFrRuUbB]?)(""")((.|\n)*)"""/gm,
         str_regex
     ], [
         /\\u([A-Fa-f0-9\u200b]{8})/gm, 
