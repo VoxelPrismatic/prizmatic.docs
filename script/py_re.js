@@ -104,7 +104,7 @@ py_regex = [
         /^([\u200b ]*)\@([\d\w_.]+)/gm,
         `<span class="dec">$1@$2</span>`
     ], [
-        /([\w\d_]*)([Error|Exception|Failure|Exit|Warning)/gm,
+        /([\w\d_]*)(Error|Exception|Failure|Exit|Warning)/gm,
         `<span class="err">$1$2</span>`
     ], [
         /Stop([\w\d_]+)/gm,
