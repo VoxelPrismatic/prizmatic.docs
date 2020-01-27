@@ -42,15 +42,26 @@ function rngHex() {
 
 // Set up vars
 
+gsd = " an item as if this class as if it were a "
+
 var py_desc = {
     "__repr__": "Returns the 'Python Correct' name string",
     "__dict__": "Returns the 'send-ready' object",
     "__iter__": "Makes a generator ",
     "__next__": "Allows you to iterate through ",
     "__list__": "Returns a list of ",
-    "__getitem__": "Treats this class as if it were a ",
-    "__getitemL__": "Treats this class as if it were a list",
-    "__getitemD__": "Treats this class as if it were a dict"
+
+    "__getitem__": "Get" + gsd,
+    "__setitem__": "Set" + gsd,
+    "__delitem__": "Delete" + gsd,
+
+    "__getitemL__": "Get" + gsd + "list",
+    "__setitemL__": "Set" + gsd + "list",
+    "__delitemL__": "Delete" + gsd + "list",
+
+    "__getitemD__": "Get" + gsd + "dict",
+    "__setitemD__": "Set" + gsd + "dict",
+    "__delitemD__": "Delete" + gsd + "dict"
 };
 
 var notes = {};
@@ -60,12 +71,20 @@ var here = "";
 
 let py_site = "https://docs.python.org/3/library/";
 let ahttp_site = "https://docs.aiohttp.org/en/stable/";
+let py_modules = [
+    "io.BytesIO",
+    "datetime.datetime",
+    'io.IOBase'
+];
+// ^ Updated when necessary, ofc I won't list every single python module
 var links_to_docs = {
-    "aiohttp.ClientSession": ahttp_site + "client_reference.html#client-session",
-    "datetime.datetime": py_site + "datetime.html#datetime-objects",
+    "aiohttp.ClientSession": ahttp_site + "client_reference.html#client-session"
 };
+for(var module of py_modules) {
+    links_to_docs[module] = py_site + module.split(".")[0] + ".html#" + module;
+}
 
-var current_obj = ""
+var current_obj = "";
 
 var docs_regex = [
     [
@@ -78,7 +97,7 @@ var docs_regex = [
         /mat\.mod\./gm,
         `riot.models.`
     ], [
-        /\~\//gm, 
+        /\~\//gm,
         function(m) {
             return here.split(".").slice(0, 2).join(".") + ".";
         }
@@ -218,7 +237,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\{\{prop\}\} (.+?) \[(.+?)\]\n([^%{]*)\n?/gm, 
+        /\{\{prop\}\} (.+?) \[(.+?)\]\n([^%{]*)\n?/gm,
         function(m, p1, p2, p3) {
             var st = `\0-=-.../prop(${rngHex()})/-=-\0-=-./${p1}(${rngHex()})-=-\0`;
             st += `<span class="typ">{{prop}}</span>`;
@@ -251,6 +270,15 @@ var docs_regex = [
             st += ` [<span class="err">${p1}</span>] ${p2}\n`;
             return st;
         }
+    ], [
+        /\{\{notdone\}\}/gm,
+        `{{note}} This class is not completely finished`
+    ], [
+        /\{\{nodocs\}\}/gm,
+        `{{note}} The documentation for this class is not complete`
+    ], [
+        /\{\{noexist\}\}/gm,
+        `{{note}} This class doesn't actually exist yet`
     ], [
         /\{\{note\}\} ([^%{]+)\n\n/gm,
         function(m, p1) {
@@ -307,7 +335,7 @@ var docs_regex = [
         /\{\{noinit\}\}([^%{]*)\n\n+/gm,
         function(m, p1) {
             var st = `<div class="note"><b>NOTE ] </b>`;
-            var def = 
+            var def =
                 "This class shouldn't be initialized by hand. Don't do that. ";
             if(p1 != undefined) {
                 if(p1.startsWith("+"))
@@ -321,7 +349,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /\`(.+?)`/gm, 
+        /\`(.+?)`/gm,
         function(m, p1) {
             var st = `<span class="code">`;
             st += py_mark(p1);
@@ -337,7 +365,7 @@ var docs_regex = [
             return st;
         }
     ], [
-        /(discord|reddit|matrix)\.([.\w_]+)/gm, 
+        /(discord|reddit|matrix)\.([.\w_]+)/gm,
         function(m, p2, p1) {
             if(p1 == "discord" && p1.startsWith("gg"))
                 return "discord." + p1;
@@ -348,7 +376,7 @@ var docs_regex = [
                 l = "~." + p1;
             }
             if(l.startsWith("~.models."))
-                l = p2 + "." + p1;
+                l = p2 + "." + p1.split(".").slice(-1)[0];
             st += l;
             st += "</button>";
             return st;
@@ -400,13 +428,13 @@ function docs_mark(st) {
         st = st.replace(RegExp(n, "gm"), notes[n]);
     for(var doc in links_to_docs)
         st = st.replace(
-            RegExp(doc.replace(/\./gm, "\\."), "gm"), 
+            RegExp(doc.replace(/\./gm, "\\."), "gm"),
             `<a href="${links_to_docs[doc]}" target="_blank"><button class="btn">${doc}</button></a>`
         );
     st = st.trim().replace(/\n/gm, "<br>") + "<br>";
-    
+
     st = getJmp(st);
-    
+
     return st
 }
 
@@ -461,8 +489,8 @@ function getJmp(st) {
                 }
             }
             layout += Elm(
-                "div", thisdirs.slice(-1)[0].replace(/\(.*?\)/gm, ""), 
-                {id: "DROP_" + key, class: "collapser", onclick: "collapser(this)", 
+                "div", thisdirs.slice(-1)[0].replace(/\(.*?\)/gm, ""),
+                {id: "DROP_" + key, class: "collapser", onclick: "collapser(this)",
                  onmouseover: "setjump(this)"},
                 false
             );
