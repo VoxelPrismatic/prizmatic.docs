@@ -287,7 +287,7 @@ category)
     The bitrate of this vc
     {{norm}} 64
 
-{{param}} overwrites [List[dict, ~/Perms/Overwrite], ~/Perms/Overwrites]
+{{param}} overwrites [List[dict, ~/Perms.Overwrite], ~/Perms.Overwrites]
     Channel overwrites
 
 {{param}} limit [int]
