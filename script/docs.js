@@ -434,6 +434,8 @@ function docs_mark(st) {
     st = st.trim().replace(/\n/gm, "<br>") + "<br>";
 
     st = getJmp(st);
+    
+    st = st.trim().replace(/<span class=".*"><br>(.*)<\/span>/gm, `$1`
 
     return st
 }
