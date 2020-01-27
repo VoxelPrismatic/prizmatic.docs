@@ -254,7 +254,7 @@ var docs_regex = [
                 p2 = " ";
             if(p2.includes("]")) {
                 p1 += p2.split("]")[0] + "]";
-                p2 = p2.split("]", 1)[1]
+                p2 = p2.split("]").slice(1).join("]");
             }
             p2 = p2.trim();
             var st = `\0-=-.../rtn(${rngHex()})/-=-\0-=-./${p1}(${rngHex()})-=-\0`;
