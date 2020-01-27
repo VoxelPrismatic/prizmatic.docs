@@ -120,12 +120,16 @@ function py_mark(st) {
         st = st.replace(r[0], r[1]);
     } for(var r of cls) {
         st = st.replace(
-            RegExp("^"+r+gsym, "gm"),
+            RegExp("^" + r + gsym, "gm"),
             `<span class="cls">${r.split('').join('\u200b')}</span>$1`
         );
         st = st.replace(
-            RegExp("("+sym+"|\n|[\u200b ]+)"+r+gsym, "gm"), 
+            RegExp("(" + sym + "|\n|[\u200b ]+)" + r + gsym, "gm"), 
             `$1<span class="cls">${r.split('').join('\u200b')}</span>$2`
+        );
+        st = st.replace(
+            RegExp("^" + r + "$"),
+            `<span class="cls">${r.split('').join('\u200b')}</span>`
         );
     } for(var r of kw) {
         st = st.replace(
@@ -136,6 +140,10 @@ function py_mark(st) {
             RegExp("("+sym+"|\n|[\u200b ]+)"+r+gsym, "gm"), 
             `$1<span class="kw">${r.split('').join('\u200b')}</span>$2`
         );
+        st = st.replace(
+            RegExp("^" + r + "$"),
+            `<span class="kw">${r.split('').join('\u200b')}</span>`
+        );
     } for(var r of ["await", "async"]) {
         st = st.replace(
             RegExp("^"+r+gsym, "gm"), 
@@ -144,6 +152,10 @@ function py_mark(st) {
         st = st.replace(
             RegExp("("+sym+"|\n|[\u200b ]+)"+r+gsym, "gm"), 
             `$1<span class="aio">${r.split('').join('\u200b')}</span>$2`
+        );
+        st = st.replace(
+            RegExp("^" + r + "$"),
+            `<span class="aio">${r.split('').join('\u200b')}</span>`
         );
     }
     return st.replace(/([^ ])\u200b/gm, "$1").replace(/ +\n/gm, "\n");
