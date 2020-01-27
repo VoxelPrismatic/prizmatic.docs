@@ -98,14 +98,17 @@ py_regex = [
         /(-?)(0x[A-Fa-f0-9\u200b]+)/gm,
         `<span class="var">$1$2</span>`
     ], [
-        /(-?)(\d+(\.\d+)?j?)/gm, 
+        /([^\w])(\d+(\.\d+)?j?)/gm, 
         `<span class="var">$1$2</span>`
     ], [
         /^([\u200b ]*)\@([\d\w_.]+)/gm,
         `<span class="dec">$1@$2</span>`
     ], [
-        /([\w\d_]*)(Error|Exception)/gm,
+        /([\w\d_]*)([Error|Exception|Failure|Exit|Warning)/gm,
         `<span class="err">$1$2</span>`
+    ], [
+        /Stop([\w\d_]+)/gm,
+        `<span class="err">Stop$1</span>`
     ]
 ];
 
