@@ -2,4 +2,4 @@
 
 {{desc}} Represents a guild, thats offline
 
-{{note}} Documentation for this class is not complete yet
+{{noexist}}

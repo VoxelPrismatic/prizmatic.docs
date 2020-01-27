@@ -1,7 +1,46 @@
-{{cls}} instance = RawObj()
+{{cls}} instance = RawObj(typ, *args, **kwargs)
 
 {{desc}} Represents an object that hasn't actually been created yet, but
 unlike the regular Raw, this class already has all the info needed to make
 the object.
 
-{{note}} Documentation for this class is not complete yet
+{{param}} typ [Class]
+    The type of object to create
+
+{{param}} *args, **kwargs [args, kwargs]
+    How to initialize the object
+
+{{prop}} typ [Class]
+    The type of object to create
+
+{{prop}} args [List[Any]]
+    A list of *args to initialize the object
+
+{{prop}} kw [Dict[Any: Any]]
+    A dict of **kwargs to initialize the object
+
+{{prop}} obj [Any]
+    The actual object
+
+{{note}} Any attributes from the kwargs are also set as attributes within
+the class
+
+{{fn}} instance.make()
+
+{{desc}} Actually makes the object
+
+{{rtn}} [Any] The created object
+
+{{bltin}} instance.__call__()
+{{usage}} instance()
+
+{{desc}} Short-hand for `instance.obj` for lazy people like me
+
+{{rtn}} [bytes] The bytes object
+
+{{bltin}} instance.__repr__()
+{{usage}} repr(instance)
+
+{{pydesc}} __repr__
+
+{{rtn}} [str]

@@ -1,6 +1,114 @@
-{{cls}} instance = RawList()
+{{cls}} instance = RawList(typ, url, bot, *a, **kw)
 
 {{desc}} Represents a list of RawObj objects, but is itself raw too! Useful
-for things that return a list of things that you want to be raw.
+for things that return a list that is online, like a list of reactions
 
-{{note}} Documentation for this class is not complete yet
+{{param}} typ [Class]
+    The type of object to create
+
+{{param}} url [str]
+    Where to download the list
+
+{{param}} bot [~/Bot]
+    The bot object
+
+{{param}} *a, **kw [args, kwargs]
+    How to initialize the objects in the list
+
+{{prop}} typ [Class]
+    The type of object to create
+
+{{prop}} url [str]
+    Where to download the object
+
+{{prop}} data [List[Any]]
+    A list of fully created objects
+
+{{prop}} raw_data [List[~.RawObj]]
+    A list of ~.RawObj s
+
+{{prop}} is_raw [bool, None]
+    Whether or not the object is raw, `None` indicating that it hasn't been
+    downloaded yet
+
+{{prop}} bot [~/Bot]
+    The bot object
+
+{{prop}} a [List[Any]]
+    A list of *args to initialize each object
+
+{{prop}} kw [Dict[Any: Any]]
+    A dict of **kwargs to initialize each object
+
+{{fn}} await instance.make()
+
+{{desc}} Downloads the list and creates each item in that list
+
+{{rtn}} [List[Any]] The fully created list
+
+{{fn}} await instance.raw()
+
+{{desc}} Downloads the list but each item in that list is raw
+
+{{rtn}} [List[~.RawObj]] The list of raw objects
+
+{{fn}} await instance.update()
+
+{{desc}} Re-downloads the list as a raw list
+
+{{rtn}} [List[~.RawObj]] The list of raw objects
+
+{{fn}} await instance.remake()
+
+{{desc}} Re-downloads the list as a completely made list
+
+{{rtn}} [List[Any]] A list of fully created objects
+
+{{bltin}} instance.__call__()
+{{usage}} instance()
+
+{{desc}} Short-hand for `instance.objs` or `instance.raw_objs` for lazy
+people like me
+
+{{rtn}} [bytes] The bytes object
+
+{{bltin}} instance.__repr__()
+{{usage}} repr(instance)
+
+{{pydesc}} __repr__
+
+{{rtn}} [str]
+
+{{bltin}} instance.__getitem__(index)
+{{usage}} instance[index]
+
+{{param}} index [int]
+    The index to get
+
+{{desc}} Returns a raw object if `instance.is_raw` is `True`, otherwise
+it returns an actual object
+
+{{rtn}} [Any] The corrosponding object
+
+{{bltin}} instance.__setitem__(index, value)
+{{usage}} instance[index] = value
+
+{{pydesc}} __setitemL__
+
+{{param}} index [int]
+    The index to edit
+
+{{param}} value [Any]
+    The value to set to
+
+{{note}} All changes will be erased upon calling any of `raw()`,
+`make()`, `update(), or `remake()` functions
+
+{{bltin}} instance.__delitem__(index)
+{{usage}} del instance[index]
+
+{{param}} index [int]
+    The index to delete
+
+{{note}} Just like above, all changes will be erased upon calling any
+of those functions

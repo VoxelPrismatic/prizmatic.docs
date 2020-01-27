@@ -9,7 +9,7 @@
     The name of the file
     {{norm}} Random hex
 
-{{prop}} data [~/Raw.RawFile]
+{{prop}} data [~/Raw.RawFile, io.BytesIO, bytes, str, io.IOBase]
     The file data
 
 {{prop}} name [str]

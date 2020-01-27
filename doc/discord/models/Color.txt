@@ -2,6 +2,8 @@
 
 {{desc}} Represents a color... yes thats it
 
+{{note}} An alias for this class exists under `Colour`
+
 {{param}} int_color [Optional[int]]
     The integer representation of the number
 
@@ -40,9 +42,10 @@
 
 {{sepfn}} get_color(obj)
 
-{{desc}} Returns the color value of an object
+{{desc}} Returns the color value of an object}
 
-{{note}} An alias for this function lies under `grab_color()`
+{{note}} Aliases for this function lie under `grab_color()`. `get_colour()`,
+and `grab_colour()` for my non-fellow brittish m8s
 
 {{param}} obj [tuple, int, str, Color]
     A color object or color compatible object

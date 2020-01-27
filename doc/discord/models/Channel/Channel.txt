@@ -94,7 +94,8 @@
 {{prop}} type [int]
     This should always be 0 unless you change it
 
-{{}}
+{{prop}} bot_obj [~/Bot]
+    The bot object
 
 {{bltin}} instance.__str__()
 {{usage}} str(instance)

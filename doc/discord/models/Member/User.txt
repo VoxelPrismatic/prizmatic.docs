@@ -2,4 +2,105 @@
 
 {{desc}} Represents a non-guild player
 
-{{note}} Documentation for this class is not complete yet
+{{param}} id [int]
+    ID of the user
+
+{{param}} username [str]
+    Name of the user, eg `PRIZ ;]`
+
+{{param}} discriminator [int]
+    The user discriminator eg `9244`
+
+{{param}} avatar [str]
+    The hash of the avatar, this is not a URL
+
+{{param}} bot [bool]
+    Whether or not this user is a bot
+
+{{param}} mfa_enabled [bool]
+    Whether or not the user has 2FA enabled, this will be `False` %N3%
+
+{{param}} locale [str]
+    The language, this will be `None` %N3%
+
+{{param}} verified [bool]
+    Whether or not the user has been verified, this will be `False` %N3%
+
+{{param}} email [str]
+    The user's email, this will be `None` %N3%
+
+{{param}} flags [int]
+    A bitset of flags that the user has
+
+{{param}} premium_type [int]
+    The type of nitro the user has
+
+{{param}} bot_obj [~/Bot]
+    The bot object
+
+%n3% unless the client has scopes other than "bot"
+
+{{prop}} id [int]
+    The ID of the user
+
+{{prop}} name [str]
+    The name of the user
+
+{{prop}} discrim [int]
+    The user's discriminator
+    {{alias}} discriminator
+
+{{prop}} pfp_hash [str]
+    The hash of the PFP
+
+{{prop}} pfp [str]
+    The actual URL of the pfp
+
+{{prop}} bot [bool]
+    Whether or not the user is a bot
+
+{{prop}} mfa [bool]
+    Whether or not the user has 2FA enabled
+
+{{prop}} locale [str]
+    The user's language
+
+{{prop}} email [str]
+    The user's email
+
+{{prop}} flags [~/Bitset]
+    A proper bitset of flags
+
+{{prop}} nitro [str]
+    The nitro name, `"Nitro"` or `"Nitro Classic"`
+
+{{prop}} nitro_type [int]
+    The type of nitro
+
+{{prop}} bot_obj [~/Bot]
+    The bot object
+
+{{fn}} await instance.edit(name, pfp)
+
+{{desc}} Edits the user and refreshes the class
+
+{{note}} All parameters are optional
+
+{{param}} name [str]
+    The new name of the user
+
+{{param}} pfp [str, file, ~/Raw.RawFile, bytes, io.BytesIO]
+
+{{bltin}} instance.__str__()
+{{usage}} str(instance)
+
+{{desc}} Returns the username and discriminator eg `PRIZ ;]#9244`
+
+{{rtn}} [str]
+
+{{bltin}} instance.__dict__()
+{{usage}} dict(instance)
+
+{{pydesc}} __dict__
+
+{{rtn}} [dict]

@@ -73,6 +73,8 @@ chat so the name "VC" was chosen instead.
 {{prop}} bot_obj [~/Bot]
     The bot object
 
+{{note}} This class is not done, you may NOT join VCs yet
+
 {{fn}} await instance.refresh()
 
 {{desc}} Refreshes the channel if you think it is out of date

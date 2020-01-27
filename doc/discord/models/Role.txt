@@ -26,7 +26,7 @@
 {{param}} mentionable [bool]
     Whether or not this role can be pinged
 
-{{param}} guild_id [str, discord.models.Snow]
+{{param}} guild_id [str, ~/Snow]
     The guild that owns this role
 
 {{prop}} id [int]
@@ -35,8 +35,9 @@
 {{prop}} name [str]
     Name of the object
 
-{{prop}} color [discord.models.Color]
+{{prop}} color [~/Color]
     Color of the object
+    {{alias}} colour
 
 {{prop}} hoist [bool]
     Whether or not this role shows differently on the player board
@@ -44,7 +45,7 @@
 {{prop}} position [int]
     Position on the role list, 0 is @everyone and it counts up
 
-{{prop}} perms [discord.models.Perms.Perms]
+{{prop}} perms [~/Perms.Perms]
     The permissions
 
 {{prop}} managed [bool]
@@ -57,10 +58,10 @@
 {{prop}} guild_id [int]
     The Guild ID
 
-{{prop}} guild [discord.models.Guild]
+{{prop}} guild [~/Guild]
     The guild that owns this object
 
-{{prop}} bot_obj [discord.models.Bot]
+{{prop}} bot_obj [~/Bot]
     The bot object
 
 {{fn}} await instance.edit(*, too_many_args_to_list_here)

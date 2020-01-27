@@ -5,3 +5,5 @@
 {{noinit}}
 
 {{note}} All the params and props are the same as in ~.Channel
+
+{{notdone}}

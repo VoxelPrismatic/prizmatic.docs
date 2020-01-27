@@ -316,7 +316,7 @@ can edit all the params in one command
 {{pydesc}} __getitemD__
 
 {{param}} key [str]
-    The attribute you want
+    The attribute to get
 
 {{rtn}} [Any] The attribute
 
@@ -331,3 +331,12 @@ it were a dict
 
 {{param}} val [Any]
     The value to set the attribute to
+
+{{bltin}} instance.__delitem__(key, val)
+{{usage}} del instance[key]
+
+{{desc}} Deletes an attribute, so you can interact with this class as if
+it were a dict
+
+{{param}} key [str]
+    The attribute to delete

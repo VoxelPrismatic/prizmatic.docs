@@ -1,6 +1,37 @@
-{{cls}} instance = RawAny()
+{{cls}} instance = RawAny(typ, url, bot, *a, **kw)
 
 {{desc}} Acts like a raw object, until it's created. When it is created, it
 turns into the object you wanted.
 
-{{note}} Documentation for this class is not complete yet
+{{param}} typ [Class]
+    The type of object to create
+
+{{param}} url [str]
+    Where to download the object
+
+{{param}} bot [~/Bot]
+    The bot object
+
+{{param}} *a, **kw [args, kwargs]
+    How to initialize the object
+
+{{prop}} typ [Class]
+    The type of object to create
+
+{{prop}} url [str]
+    Where to download the object
+
+{{prop}} a [List[Any]]
+    A list of *args for the object's initialization
+
+{{prop}} kw [Dict[Any: Any]]
+    A dict of **kwargs for the object's initialization
+
+{{prop}} bot [~/Bot]
+    The bot object
+
+{{fn}} await instance.make()
+
+{{desc}} The transformation shall commense
+
+{{rtn}} [Any] The created object

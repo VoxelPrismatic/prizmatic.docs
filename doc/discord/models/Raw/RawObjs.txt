@@ -1,5 +1,71 @@
-{{cls}} instance = RawObjs()
+{{cls}} instance = RawObjs(type, ls, *args, **kwargss)
 
 {{desc}} Makes a list of RawObj objects from a list and a class
 
-{{note}} Documentation for this class is not complete yet
+{{param}} typ [Class]
+    The type of object to create
+
+{{param}} ls [List[dict]]
+    A list of objects sent from discord
+
+{{param}} *args, **kwargs [args, kwargs]
+    Global args and kwargs for each object's initialization
+
+{{prop}} ls [List[dict]]
+    A list of objects sent from discord
+
+{{prop}} typ [Class]
+    The type of object to create
+
+{{prop}} data [List[Any]]
+    The actual objects
+
+{{prop}} raw_data [List[~.RawObj]]
+    A list of raw objects
+
+{{prop}} is_raw [bool, None]
+    Whether or not it is raw, `None` denoting that it has not been created
+    yet
+
+{{bltin}} instance.__call__()
+{{usage}} instance()
+
+{{desc}} Short-hand for `instance.data` for lazy people like me
+
+{{rtn}} [bytes] The bytes object
+
+{{bltin}} instance.__getitem__(index)
+{{usage}} instance[index]
+
+{{pydesc}} __getitemL__
+
+{{param}} index [int]
+    The index of the object
+
+{{rtn}} [Any] The corrosponding object
+
+{{bltin}} instance.__delitem__(index)
+{{usage}} del instance[index]
+
+{{pydesc}} __delitemL__
+
+{{param}} index [int]
+    The index of the object
+
+{{bltin}} instance.__setitem__(i, val)
+{{usage}} instance[i] = val
+
+{{pydesc}} __setitemL__
+
+{{param}} i [int]
+    The index of the object
+
+{{param}} val [Any]
+    The value of the object
+
+{{bltin}} instance.__repr__()
+{{usage}} repr(instance)
+
+{{pydesc}} __repr__
+
+{{rtn}} [str]

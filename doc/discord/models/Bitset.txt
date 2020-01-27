@@ -1,0 +1,69 @@
+{{cls}} instance = Bitset(bits, sets)
+
+{{desc}} Represents a bitset with extra features
+
+{{param}} bits [int]
+    The actual bitset
+
+{{param}} sets [List[str]]
+    What each bit means, from left to right
+
+{{prop}} bits [int]
+    The actual bitset
+
+{{prop}} sets [List[str]]
+    What each bit means, from left to right
+
+{{bltin}} instance.__list__()
+{{usage}} list(instance)
+
+{{desc}} Returns a list of actual flags this bitset has
+
+{{rtn}} [List[str]]
+
+{{bltin}} instance.__int__()
+{{usage}} int(instance)
+
+{{desc}} Returns the actual bitset
+
+{{rtn}} [int]
+
+{{bltin}} instance.__str__()
+{{usage}} str(instance)
+
+{{desc}} Returns the binary bitset
+
+{{rtn}} [str]
+
+{{bltin}} instance.__getitem__(key)
+{{usage}} instance[key]
+
+{{desc}} Returns the flag at an index if the key is an `int`, or a bool
+if the flag is an str
+
+{{param}} key [int, str]
+    Index or flag name
+
+{{rtn}} [int] The flag at that index if key is an int, least significant
+flag first [right to left]
+
+{{rtn}} [bool] Whether or not that flag is set if key is an str
+
+{{err}} [IndexError] If that flag index doesn't exist
+
+{{err}} [KeyError] If that flag name doesn't exist
+
+{{err}} [TypeError] If the key isn't an int or an str
+
+{{bltin}} instance.__setitem__(key, val)
+{{usage}} instance[key] = val
+
+{{desc}} Sets a bit
+
+{{param}} key [int, str]
+    Index or flag name
+
+{{param}} val [int, bool]
+    Whether or not the bit is set
+
+{{rtn}} [int] The new bitset
