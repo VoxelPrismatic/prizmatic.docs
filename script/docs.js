@@ -513,6 +513,11 @@ function getJmp(st) {
     remJumps();
     addHtml("sect", layout);
     collall(find("sect"));
-    st = st.replace(/\u0000*-=-\.*\/?(.+?)\/?-=-\u0000*/gm, `<div id="$1"></div>`);
+    st = st.replace(
+        /\u0000*-=-\.*\/?(.+?)\/?-=-\u0000*/gm, 
+        function(m, p1) {
+            return `<div id="${p1.replace(".", ",")}"></div>`
+        }
+    );
     return st;
 }
