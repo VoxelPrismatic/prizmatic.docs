@@ -109,6 +109,9 @@ py_regex = [
     ], [
         /Stop([\w\d_]+)/gm,
         `<span class="err">Stop$1</span>`
+    ], [
+        /\u200b/gm,
+        ""
     ]
 ];
 
@@ -157,6 +160,6 @@ function py_mark(st) {
             RegExp("^" + r + "$"),
             `<span class="aio">${r.split('').join('\u200b')}</span>`
         );
-    }
+    } st = st.replace(/\u200b/gm, "");
     return st.replace(/([^ ])\u200b/gm, "$1").replace(/ +\n/gm, "\n");
 }
