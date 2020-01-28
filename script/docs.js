@@ -3,7 +3,7 @@
 function ind(num) {
     var st = "";
     for(var i = 0; i < num; i++)
-        st += "\u200b \u200b";
+        st += " ";
     return st;
 }
 
@@ -304,12 +304,12 @@ var docs_regex = [
     ], [
         /\{\{alias\}\} ([\w\d_]+)\n\n/gm,
         function(m, p1) {
-            return `\u200c    <b>NOTE ] </b>An alias resides under \`${p1}</span>\`\n`;
+            return `    <b>NOTE ] </b>An alias resides under \`${p1}</span>\`\n`;
         }
     ], [
         /\{\{norm\}\} (.+)\n\n/gm,
         function(m, p1) {
-            return `\u200c    <b>NOTE ] </b>The default value is \`${p1}\`\n`;
+            return `    <b>NOTE ] </b>The default value is \`${p1}\`\n`;
         }
     ], [
         /\{\{reqd\}\}\n+/gm,
@@ -385,11 +385,6 @@ var docs_regex = [
         /<<md>>((.|\n)+)<<\/md>>/gm,
         function(m, p1) {
             return mark_page(p1);
-        }
-    ], [
-        /( {2,})/gm,
-        function(m, p1) {
-            return p1.replace(/ /gm, "\u200b \u200b");
         }
     ], [
         /\\n/gm,
