@@ -426,15 +426,16 @@ function docs_mark(st) {
     var keys = notes.constructor.keys(notes);
     for(var n of keys)
         st = st.replace(RegExp(n, "gm"), notes[n]);
-    for(var doc in links_to_docs)
+    
+    st = getJmp(st);
+    
+    for(var doc in links_to_docs) {
         st = st.replace(
             RegExp(doc.replace(/\./gm, "\\."), "gm"),
             `<a href="${links_to_docs[doc]}" target="_blank"><button class="btn">${doc}</button></a>`
         );
-    st = st.trim().replace(/\n/gm, "<br>") + "<br>";
-
-    st = getJmp(st);
-    
+    }
+    st = st.trim().replace(/\n/gm, "<br>") + "<br>";    
     st = st.trim().replace(/<span class="(.*)"><br>(.*)<\/span>/gm, `<span class="$1">$2</span>`);
 
     return st
