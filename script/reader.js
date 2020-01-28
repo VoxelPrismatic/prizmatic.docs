@@ -5,7 +5,6 @@ function read(filename, aio = false) {
             var resp = f.responseText;
             resp = resp.trim() + "\n"
             resp = resp.replace(/ *\n/gm, "\n");
-            resp = resp.replace(/  /gm, "\u200b \u200b \u200b");
             setHtml("file", resp)
         }
     }
