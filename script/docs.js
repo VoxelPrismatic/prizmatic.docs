@@ -392,6 +392,22 @@ var docs_regex = [
     ]
 ]
 
+var postRegex = [
+    [
+        /\n/gm, 
+        "<br>"
+    ], [
+        /<br> */gm,
+        "<br>"
+    ], [
+        /(<br>){2,}/gm,
+        "<br><br>"
+    ], [
+        /<span class="(.*)"><br>(.*)<\/span>/gm, 
+        `<span class="$1">$2</span>`
+    ]
+];
+
 function docs_mark(st) {
     var og = st;
     var tmp = findHtml("this-here").split("/prizmatic.docs/doc/")
@@ -430,10 +446,11 @@ function docs_mark(st) {
             `<a href="${links_to_docs[doc]}" target="_blank"><button class="btn">${doc}</button></a>`
         );
     }
-    st = st.trim().replace(/\n/gm, "<br>") + "<br>";    
-    st = st.trim().replace(/<span class="(.*)"><br>(.*)<\/span>/gm, `<span class="$1">$2</span>`);
+    
+    for(var re of postRegex)
+        st = st.replace(re[0], re[1]);
 
-    return st
+    return st.trim() + "<br>"
 }
 
 function getJmp(st) {
