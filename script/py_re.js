@@ -96,19 +96,29 @@ py_regex = [
         }
     ], [
         /(-?)(0x[A-Fa-f0-9\u200b]+)/gm,
-        `<span class="var">$1$2</span>`
+        function(m, p1, p2) {
+            return `<span class="var">${(p1 + p2).split('').join('\u200b')}</span>`;
+        }
     ], [
         /([^\w])(\d+(\.\d+)?j?)/gm, 
-        `<span class="var">$1$2</span>`
+        function(m, p1, p2) {
+            return `<span class="var">${(p1 + p2).split('').join('\u200b')}</span>`;
+        }
     ], [
         /^([\u200b ]*)\@([\d\w_.]+)/gm,
-        `<span class="dec">$1@$2</span>`
+        function(m, p1, p2) {
+            return `<span class="dec">${(p1 + "@" + p2).split('').join('\u200b')}</span>`;
+        }
     ], [
         /([\w\d_]*)(Error|Exception|Failure|Exit|Warning)/gm,
-        `<span class="err">$1$2</span>`
+        function(m, p1, p2) {
+            return `<span class="err">${(p1 + p2).split('').join('\u200b')}</span>`;
+        }
     ], [
         /Stop([\w\d_]+)/gm,
-        `<span class="err">Stop$1</span>`
+        function(m, p1, p2) {
+            return `<span class="err">${("Stop" + p2).split('').join('\u200b')}</span>`;
+        }
     ], [
         /\u200b/gm,
         ""
