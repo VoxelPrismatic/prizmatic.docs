@@ -2,9 +2,11 @@
 CODE---
 PY---
 from python import interpreter
+@decorator
 def generator():
     for x in range(20):
         yield x
+
 class abcd:
     def __init__(self):
         self.stuff = 2
