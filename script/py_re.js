@@ -41,7 +41,7 @@ function str_regex(m, a, b, c) {
     return `<span class="str">${a}${b}${st}${b}</span>`;
 }
 
-py_regex = [
+var py_regex = [
     [
         /([fFrRuUbB]?)(")(.*?)"/gm,
         str_regex
@@ -95,7 +95,12 @@ py_regex = [
             return `<span class="comm">#${a.split('').join('\u200b')}</span>`;
         }
     ], [
-        /([^\w\d])(-?(0x)?\d+(\.\d+)?j?)/gm, 
+        /([^\w\d])(-?0x[A-Fa-f0-9]+)/gm, 
+        function(m, p1, p2) {
+            return `${p1}<span class="var">${p2.split('').join('\u200b')}</span>`;
+        }
+    ], [
+        /([^\w\d])(-?\d+(\.\d+)?j?)/gm, 
         function(m, p1, p2) {
             return `${p1}<span class="var">${p2.split('').join('\u200b')}</span>`;
         }
