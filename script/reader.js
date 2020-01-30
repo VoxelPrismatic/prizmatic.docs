@@ -4,7 +4,6 @@ function read(filename, aio = false) {
         if (this.readyState == 4 && this.status == 200) {
             var resp = f.responseText;
             resp = resp.trim() + "\n"
-            resp = resp.replace(/ *\n/gm, "\n");
             setHtml("file", resp)
         }
     }
