@@ -397,7 +397,7 @@ var postRegex = [
         /\n/gm, 
         "<br>"
     ], [
-        /(<br>){3,}/gm,
+        /(<br> *){3,}/gm,
         "<br><br>"
     ], [
         /<span class="(.*)"><br>(.*)<\/span>/gm, 
