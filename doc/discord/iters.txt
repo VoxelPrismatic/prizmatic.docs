@@ -6,7 +6,7 @@
 `async def command_name(inf, arg1, arg2: AllOf[data_type]): #code...`,
 where `data_type` is the type of data, eg `int` or `str`
 
-{{cls}} instance = _Option
+{{cls}} instance = _Option()
 
 {{desc}} Has a default value but can be changed, will not throw an error if
 not a valid input
